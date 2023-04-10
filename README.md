@@ -51,6 +51,8 @@ There are two aspects to this brief: the customer-facing side of the website whe
 
 ## Acknowledgements
 
+- Alexander Barrett [Github](https://github.com/Anclagen)
+
 ## References
 
 ## Author
