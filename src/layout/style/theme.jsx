@@ -222,7 +222,7 @@ export const themeSettings = (mode) => {
         light: colors.grey[100],
        },
        background: {
-        default: "#e3e3e3",
+        default: "#deeef7",
        },
        text: {
         main: "#000",
@@ -237,31 +237,31 @@ export const themeSettings = (mode) => {
       }),
   },
   typography: {
-   fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-   fontSize: 12,
+   fontFamily: ['Anonymous Pro', 'monospace'].join(","),
+   fontSize: 16,
    h1: {
-    fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-    fontSize: 40,
+    fontFamily: ['Kameron', 'serif'].join(","),
+    fontSize: 48,
    },
    h2: {
-    fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-    fontSize: 32,
+      fontFamily: ['Kameron', 'serif'].join(","),
+    fontSize: 38,
    },
    h3: {
-    fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-    fontSize: 20,
+      fontFamily: ['Kameron', 'serif'].join(","),
+    fontSize: 35,
    },
    h4: {
-    fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-    fontSize: 20,
+      fontFamily: ['Kameron', 'serif'].join(","),
+    fontSize: 32,
    },
    h5: {
-    fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-    fontSize: 16,
+      fontFamily: ['Kameron', 'serif'].join(","),
+    fontSize: 24,
    },
    h6: {
-    fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-    fontSize: 14,
+      fontFamily: ['Kameron', 'serif'].join(","),
+    fontSize: 20,
    },
   },
   textField: {

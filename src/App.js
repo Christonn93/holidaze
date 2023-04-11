@@ -3,10 +3,11 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 
 // Importing MUI
-import { ThemeProvider } from "@mui/material";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 
 // Importing Theme
 import { ColorModeContext, useMode } from "../src/layout/style/theme";
+import "../src/layout/style/defaultStyle.css";
 
 // Importing base layout
 import Layout from "./layout/BaseLayout";
@@ -22,6 +23,7 @@ function App() {
   <>
    <ColorModeContext.Provider value={colorMode}>
     <ThemeProvider theme={theme}>
+    <CssBaseline />
      <Routes>
       <Route path="/" element={<Layout />}>
        <Route index element={<Home />} />

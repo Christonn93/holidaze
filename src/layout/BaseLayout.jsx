@@ -6,8 +6,8 @@ import styled from "styled-components";
 import { Container } from "@mui/material";
 
 // Importing components
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
+import Header from "../components/Layout/Header/Header";
+import Footer from "../components/Layout/Footer/Footer";
 
 // Styling component
 const PageLayout = styled.div`
