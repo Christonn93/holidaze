@@ -1,9 +1,6 @@
 // Importing React
 import React, { useState } from "react";
 
-// Importing Swal
-// import Swal from "sweetalert2";
-
 // Importing function
 import { loginUser } from "../../api/auth/logIn";
 
@@ -22,7 +19,7 @@ const LogIn = () => {
   if ("accessToken" in resp) {
    localStorage.setItem("ApiToken", resp["accessToken"]);
    localStorage.setItem("UserData", JSON.stringify(resp));
-   this.props.history.replace("/Profile");
+   window.location.href = "/profile";
   }
  };
 
