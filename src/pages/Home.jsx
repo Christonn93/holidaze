@@ -1,7 +1,10 @@
 // Importing React
-import React from "react";
+import React, { useState } from "react";
 import { Box, Card, Container, Link, Typography, CardMedia, CardContent, CardActions, Button } from "@mui/material";
 import { updateHead } from "../functions/headUpdater";
+
+import LoginDialog from "../components/Dialog/LoginDialog";
+import RegisterDialog from "../components/Dialog/RegisterDialog";
 
 /**
  * Home.
@@ -9,7 +12,10 @@ import { updateHead } from "../functions/headUpdater";
  *
  * @returns Content on the home page
  */
-const Home = ({ state }) => {
+const Home = () => {
+ const [login, setLogin] = useState(false);
+ const [register, setRegister] = useState(false);
+
  updateHead("Home", "Holidaze landing page");
 
  return (
@@ -34,7 +40,12 @@ const Home = ({ state }) => {
 
     <Box>
      <Card sx={{ maxWidth: 345 }}>
-      <CardMedia component="img" alt="green iguana" height="140" image="https://st4.depositphotos.com/4329009/19956/v/450/depositphotos_199564354-stock-illustration-creative-vector-illustration-default-avatar.jpg" />
+      <CardMedia
+       component="img"
+       alt="green iguana"
+       height="140"
+       image="https://st4.depositphotos.com/4329009/19956/v/450/depositphotos_199564354-stock-illustration-creative-vector-illustration-default-avatar.jpg"
+      />
       <CardContent>
        <Typography gutterBottom variant="h5" component="div">
         Lizard
@@ -48,6 +59,15 @@ const Home = ({ state }) => {
        <Button size="small">Learn More</Button>
       </CardActions>
      </Card>
+    </Box>
+
+    <Box
+     sx={{
+      padding: 4,
+     }}
+    >
+     <LoginDialog state={login} setState={setLogin} />
+     <RegisterDialog state={register} setState={setRegister} />
     </Box>
    </Container>
   </>

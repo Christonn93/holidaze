@@ -14,6 +14,7 @@ import Layout from "./layout/BaseLayout";
 
 // Importing pages
 import Home from "./pages/Home";
+import Profile from "./pages/Profile";
 import NotFound from "./pages/404";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
      <Routes>
       <Route path="/" element={<Layout />}>
        <Route index element={<Home />} />
+       <Route element={<Profile />} />
        <Route path="*" element={<NotFound />} />
       </Route>
      </Routes>
