@@ -1,10 +1,14 @@
 // Importing React
 import React, { useState } from "react";
-import { Box, Card, Container, Link, Typography, CardMedia, CardContent, CardActions, Button } from "@mui/material";
+import { Link } from "react-router-dom";
+import { Box, Card, Container, Link as MUILink, Typography, CardMedia, CardContent, CardActions, Button } from "@mui/material";
 import { updateHead } from "../functions/headUpdater";
 
 import LoginDialog from "../components/Dialog/LoginDialog";
 import RegisterDialog from "../components/Dialog/RegisterDialog";
+
+import ApiHook from "../api/BaseCall";
+import { venues, baseUrl } from "../api/constants";
 
 /**
  * Home.
@@ -17,6 +21,8 @@ const Home = () => {
  const [register, setRegister] = useState(false);
 
  updateHead("Home", "Holidaze landing page");
+
+ const { data, isError, isLoading } = ApiHook(baseUrl + venues);
 
  return (
   <>
@@ -35,30 +41,7 @@ const Home = () => {
     </Box>
 
     <Box>
-     <Link>This is a link</Link>
-    </Box>
-
-    <Box>
-     <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-       component="img"
-       alt="green iguana"
-       height="140"
-       image="https://st4.depositphotos.com/4329009/19956/v/450/depositphotos_199564354-stock-illustration-creative-vector-illustration-default-avatar.jpg"
-      />
-      <CardContent>
-       <Typography gutterBottom variant="h5" component="div">
-        Lizard
-       </Typography>
-       <Typography variant="body2" color="text.secondary">
-        Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica
-       </Typography>
-      </CardContent>
-      <CardActions>
-       <Button size="small">Share</Button>
-       <Button size="small">Learn More</Button>
-      </CardActions>
-     </Card>
+     <MUILink>This is a link</MUILink>
     </Box>
 
     <Box
@@ -68,6 +51,37 @@ const Home = () => {
     >
      <LoginDialog state={login} setState={setLogin} />
      <RegisterDialog state={register} setState={setRegister} />
+    </Box>
+
+    <Box>
+     {data.map((values) => {
+      const { id, name, description, media, price, maxGuests, created, updated, meta } = values;
+
+      return (
+       <>
+        <Card sx={{ maxWidth: 345, marginTop: 2 }} key={id}>
+         <CardMedia component="img" alt="green iguana" height="140" image={media[0]} />
+         <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+           {name}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+           {description}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+           {price}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+           {maxGuests}
+          </Typography>
+         </CardContent>
+         <CardActions>
+          <Link to={`/venue/${id}`}>Learn More</Link>
+         </CardActions>
+        </Card>
+       </>
+      );
+     })}
     </Box>
    </Container>
   </>

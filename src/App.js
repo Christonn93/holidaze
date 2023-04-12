@@ -15,6 +15,7 @@ import Layout from "./layout/BaseLayout";
 // Importing pages
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
+import Venue from "./pages/Venue";
 import NotFound from "./pages/404";
 
 function App() {
@@ -28,7 +29,8 @@ function App() {
      <Routes>
       <Route path="/" element={<Layout />}>
        <Route index element={<Home />} />
-       <Route path="/profile" element={<Profile />} />
+       <Route path="profile" element={<Profile />} />
+       <Route path="venue/:id" element={<Venue />} />
        <Route path="*" element={<NotFound />} />
       </Route>
      </Routes>
