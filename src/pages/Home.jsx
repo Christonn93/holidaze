@@ -1,7 +1,7 @@
 // Importing React
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Box, Card, Container, Link as MUILink, Typography, CardMedia, CardContent, CardActions, Button } from "@mui/material";
+import { Box, Card, Container, Link as MUILink, Typography, CardMedia, CardContent, CardActions } from "@mui/material";
 import { updateHead } from "../functions/headUpdater";
 
 import LoginDialog from "../components/Dialog/LoginDialog";
@@ -22,7 +22,7 @@ const Home = () => {
 
  updateHead("Home", "Holidaze landing page");
 
- const { data, isError, isLoading } = ApiHook(baseUrl + venues);
+ const { data } = ApiHook(baseUrl + venues);
 
  return (
   <>
@@ -55,7 +55,7 @@ const Home = () => {
 
     <Box>
      {data.map((values) => {
-      const { id, name, description, media, price, maxGuests, created, updated, meta } = values;
+      const { id, name, description, media, price, maxGuests, created, updated } = values;
 
       return (
        <>
@@ -73,6 +73,12 @@ const Home = () => {
           </Typography>
           <Typography variant="body2" color="text.secondary">
            {maxGuests}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+           {created}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+           {updated}
           </Typography>
          </CardContent>
          <CardActions>

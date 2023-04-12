@@ -1,5 +1,5 @@
 // Importing React
-import React, { useContext } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 
 import ApiHook from "../api/BaseCall";
@@ -8,7 +8,7 @@ import { Typography } from "@mui/material";
 
 const Venue = () => {
  let { id } = useParams();
- const { data, isError, isLoading } = ApiHook(baseUrl + venues + `/${id}`);
+ const { data } = ApiHook(baseUrl + venues + `/${id}`);
  return (
   <>
    <Typography variant="h1">{data.name}</Typography>
