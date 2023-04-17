@@ -33,23 +33,27 @@ const Navigation = ({ status }) => {
   localStorage.removeItem("ApiToken");
  };
 
+ const loggedIn = (
+  <>
+   <Link route="/login" children={<MenuItem>Log in</MenuItem>} color="primary" />
+   <Link route="/register" children={<MenuItem>Register user</MenuItem>} color="secondary" />
+  </>
+ );
+
+ const notLoggedIn = (
+  <>
+   <Link route="/profile" children={<MenuItem>Dashboard</MenuItem>} />
+   <Link route="/" children={<MenuItem onClick={handleLogOut}>Log out</MenuItem>} />
+  </>
+ );
+
  return (
   <>
    <div>
     <UserAvatar action={handleMenu} src="" alt="user avatar" size="56" />
     <Menu id="dropDown-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose} sx={{ width: "auto" }}>
      <Stack direction="row" spacing={1} padding={1}>
-      {status ? (
-       <>
-        <Link route="/login" children={<MenuItem>Log in</MenuItem>} color="primary" />
-        <Link route="/register" children={<MenuItem>Register user</MenuItem>} color="secondary" />
-       </>
-      ) : (
-       <>
-        <Link route="/profile" children={<MenuItem>Dashboard</MenuItem>} />
-        <Link route="/" children={<MenuItem onClick={handleLogOut}>Log out</MenuItem>} />
-       </>
-      )}
+      {!status ? loggedIn : notLoggedIn}
      </Stack>
     </Menu>
     <SnackbarAlert
