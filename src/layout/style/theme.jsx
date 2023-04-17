@@ -206,6 +206,7 @@ export const themeSettings = (mode) => {
        },
        NavigationLink: {
         main: colors.orangeAccent[400],
+        secondary: colors.greenAccent[500],
        },
       }
     : {
@@ -231,6 +232,7 @@ export const themeSettings = (mode) => {
        },
        NavigationLink: {
         main: colors.orangeAccent[400],
+        secondary: colors.greenAccent[500],
        },
       }),
   },

@@ -5,15 +5,11 @@ import React, { useState } from "react";
 import { Menu, MenuItem, Stack } from "@mui/material";
 
 // Importing components
-import LoginDialog from "../../Dialog/LoginDialog";
-import RegisterDialog from "../../Dialog/RegisterDialog";
 import UserAvatar from "../../User/UserAvatar/UserAvatar";
 import Link from "../../Link/Link";
 
 const Navigation = () => {
  // Setting states
- const [login, setLogin] = useState(false);
- const [register, setRegister] = useState(false);
  const [anchorEl, setAnchorEl] = useState(null);
 
  const isLoggedIn = false;
@@ -45,8 +41,8 @@ const Navigation = () => {
        </>
       ) : (
        <>
-        <LoginDialog state={login} setState={setLogin} />
-        <RegisterDialog state={register} setState={setRegister} />
+        <Link route="/login" children={<MenuItem>Log in</MenuItem>} color="primary" />
+        <Link route="/register" children={<MenuItem>Register user</MenuItem>} color="secondary" />
        </>
       )}
      </Stack>
