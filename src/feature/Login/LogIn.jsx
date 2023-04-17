@@ -19,7 +19,7 @@ const LogIn = () => {
   if ("accessToken" in resp) {
    localStorage.setItem("ApiToken", resp["accessToken"]);
    localStorage.setItem("UserData", JSON.stringify(resp));
-   window.location.href = "/profile";
+   this.props.history.push('/profile');
   }
  };
 

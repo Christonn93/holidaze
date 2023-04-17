@@ -15,17 +15,28 @@ import { createTheme } from "@mui/material/styles";
 export const tokens = (mode) => ({
  ...(mode === "dark"
   ? {
-   orange: {
-      100: "#fee7cc",
-      200: "#fdce99",
-      300: "#fdb666",
-      400: "#fc9d33",
-      500: "#fb8500",
-      600: "#c96a00",
-      700: "#975000",
-      800: "#643500",
-      900: "#321b00"
-  },
+     primary: {
+      100: "#002530",
+      200: "#004a60",
+      300: "#01708f",
+      400: "#0195bf",
+      500: "#01baef",
+      600: "#34c8f2",
+      700: "#67d6f5",
+      800: "#99e3f9",
+      900: "#ccf1fc",
+     },
+     secondary: {
+      100: "#331000",
+      200: "#662000",
+      300: "#983001",
+      400: "#cb4001",
+      500: "#fe5001",
+      600: "#fe7334",
+      700: "#fe9667",
+      800: "#ffb999",
+      900: "#ffdccc",
+     },
      grey: {
       100: "#e0e0e0",
       200: "#c2c2c2",
@@ -37,64 +48,7 @@ export const tokens = (mode) => ({
       800: "#292929",
       900: "#141414",
      },
-     primary: {
-      100: "#d0d1d5",
-      200: "#a1a4ab",
-      300: "#727681",
-      400: "#1F2A40",
-      500: "#141b2d",
-      600: "#101624",
-      700: "#0c101b",
-      800: "#080b12",
-      900: "#040509",
-     },
-     secondary: {
-      100: "#d4d3d7",
-      200: "#a8a7ae",
-      300: "#7d7b86",
-      400: "#514f5d",
-      500: "#262335",
-      600: "#1e1c2a",
-      700: "#171520",
-      800: "#0f0e15",
-      900: "#08070b",
-     },
-     greenAccent: {
-      100: "#dbf5ee",
-      200: "#b7ebde",
-      300: "#94e2cd",
-      400: "#70d8bd",
-      500: "#4cceac",
-      600: "#3da58a",
-      700: "#2e7c67",
-      800: "#1e5245",
-      900: "#0f2922",
-     },
-     redAccent: {
-      100: "#f2d1cf",
-      200: "#e5a2a0",
-      300: "#d97470",
-      400: "#cc4541",
-      500: "#bf1711",
-      600: "#99120e",
-      700: "#730e0a",
-      800: "#4c0907",
-      900: "#260503",
-     },
-     blueAccent: {
-      100: "#000914",
-      200: "#001228",
-      300: "#001c3b",
-      400: "#00254f",
-      500: "#002e63",
-      600: "#335882",
-      700: "#6682a1",
-      800: "#99abc1",
-      900: "#ccd5e0",
-     },
-    }
-  : {
-   orange: {
+     orangeAccent: {
       100: "#321b00",
       200: "#643500",
       300: "#975000",
@@ -104,7 +58,64 @@ export const tokens = (mode) => ({
       700: "#fdb666",
       800: "#fdce99",
       900: "#fee7cc",
-  },
+     },
+     greenAccent: {
+      100: "#0f291a",
+      200: "#1e5333",
+      300: "#2e7c4d",
+      400: "#3da666",
+      500: "#4ccf80",
+      600: "#70d999",
+      700: "#94e2b3",
+      800: "#b7eccc",
+      900: "#dbf5e6",
+     },
+     redAccent: {
+      100: "#301312",
+      200: "#612625",
+      300: "#913937",
+      400: "#c24c4a",
+      500: "#f25f5c",
+      600: "#f57f7d",
+      700: "#f79f9d",
+      800: "#fabfbe",
+      900: "#fcdfde",
+     },
+     blueAccent: {
+      100: "#071920",
+      200: "#0e3140",
+      300: "#164a60",
+      400: "#1d6280",
+      500: "#247ba0",
+      600: "#5095b3",
+      700: "#7cb0c6",
+      800: "#a7cad9",
+      900: "#d3e5ec",
+     },
+    }
+  : {
+     primary: {
+      100: "#ccf1fc",
+      200: "#99e3f9",
+      300: "#67d6f5",
+      400: "#34c8f2",
+      500: "#01baef",
+      600: "#0195bf",
+      700: "#01708f",
+      800: "#004a60",
+      900: "#002530",
+     },
+     secondary: {
+      100: "#ffdccc",
+      200: "#ffb999",
+      300: "#fe9667",
+      400: "#fe7334",
+      500: "#fe5001",
+      600: "#cb4001",
+      700: "#983001",
+      800: "#662000",
+      900: "#331000",
+     },
      grey: {
       100: "#141414",
       200: "#292929",
@@ -116,49 +127,50 @@ export const tokens = (mode) => ({
       800: "#c2c2c2",
       900: "#e0e0e0",
      },
-     primary: {
-      100: "#040509",
-      200: "#080b12",
-      300: "#0c101b",
-      400: "#f2f0f0", // manually changed
-      500: "#141b2d",
-      600: "#1F2A40",
-      700: "#727681",
-      800: "#a1a4ab",
-      900: "#d0d1d5",
+
+     orangeAccent: {
+      100: "#fee7cc",
+      200: "#fdce99",
+      300: "#fdb666",
+      400: "#fc9d33",
+      500: "#fb8500",
+      600: "#c96a00",
+      700: "#975000",
+      800: "#643500",
+      900: "#321b00",
      },
      greenAccent: {
-      100: "#0f2922",
-      200: "#1e5245",
-      300: "#2e7c67",
-      400: "#3da58a",
-      500: "#4cceac",
-      600: "#70d8bd",
-      700: "#94e2cd",
-      800: "#b7ebde",
-      900: "#dbf5ee",
+      100: "#dbf5e6",
+      200: "#b7eccc",
+      300: "#94e2b3",
+      400: "#70d999",
+      500: "#4ccf80",
+      600: "#3da666",
+      700: "#2e7c4d",
+      800: "#1e5333",
+      900: "#0f291a",
      },
      redAccent: {
-      100: "#260503",
-      200: "#4c0907",
-      300: "#730e0a",
-      400: "#99120e",
-      500: "#bf1711",
-      600: "#cc4541",
-      700: "#d97470",
-      800: "#e5a2a0",
-      900: "#f2d1cf",
+      100: "#fcdfde",
+      200: "#fabfbe",
+      300: "#f79f9d",
+      400: "#f57f7d",
+      500: "#f25f5c",
+      600: "#c24c4a",
+      700: "#913937",
+      800: "#612625",
+      900: "#301312",
      },
      blueAccent: {
-      100: "#ccd5e0",
-      200: "#99abc1",
-      300: "#6682a1",
-      400: "#335882",
-      500: "#002e63",
-      600: "#00254f",
-      700: "#001c3b",
-      800: "#001228",
-      900: "#000914",
+      100: "#d3e5ec",
+      200: "#a7cad9",
+      300: "#7cb0c6",
+      400: "#5095b3",
+      500: "#247ba0",
+      600: "#1d6280",
+      700: "#164a60",
+      800: "#0e3140",
+      900: "#071920",
      },
     }),
 });
@@ -173,16 +185,10 @@ export const themeSettings = (mode) => {
    ...(mode === "dark"
     ? {
        primary: {
-        main: colors.orange[500],
+        main: colors.primary[500],
        },
        secondary: {
-        main: colors.greenAccent[500],
-       },
-       cta: {
-        main: colors.redAccent[500],
-       },
-       ctaSuccess: {
-        main: colors.greenAccent[300],
+        main: colors.secondary[500],
        },
        neutral: {
         dark: colors.grey[700],
@@ -192,29 +198,22 @@ export const themeSettings = (mode) => {
        background: {
         default: "#253f58",
        },
-       text: {
-        main: "#000",
-        secondary: "#fff",
+       primaryButton: {
+        main: colors.primary[500],
        },
-       navText: {
-        main: colors.greenAccent[500],
+       secondaryButton: {
+        main: colors.secondary[500],
        },
-       input: {
-        main: "#000",
+       NavigationLink: {
+        main: colors.orangeAccent[400],
        },
       }
     : {
        primary: {
-        main: colors.primary[100],
+        main: colors.primary[500],
        },
        secondary: {
-        main: colors.greenAccent[500],
-       },
-       cta: {
-        main: colors.redAccent[500],
-       },
-       ctaSuccess: {
-        main: colors.greenAccent[700],
+        main: colors.secondary[500],
        },
        neutral: {
         dark: colors.grey[700],
@@ -222,44 +221,44 @@ export const themeSettings = (mode) => {
         light: colors.grey[100],
        },
        background: {
-        default: " #9bbad4",
+        default: " #FDFFFC",
        },
-       text: {
-        main: "#000",
+       primaryButton: {
+        main: colors.primary[500],
        },
-       navText: {
-        main: "#000",
+       secondaryButton: {
+        main: colors.secondary[500],
        },
-       input: {
-        main: "#000",
+       NavigationLink: {
+        main: colors.orangeAccent[400],
        },
       }),
   },
   typography: {
-   fontFamily: ['Anonymous Pro', 'monospace'].join(","),
+   fontFamily: ["Anonymous Pro", "monospace"].join(","),
    fontSize: 16,
    h1: {
-    fontFamily: ['Kameron', 'serif'].join(","),
+    fontFamily: ["Kameron", "serif"].join(","),
     fontSize: 48,
    },
    h2: {
-      fontFamily: ['Kameron', 'serif'].join(","),
+    fontFamily: ["Kameron", "serif"].join(","),
     fontSize: 38,
    },
    h3: {
-      fontFamily: ['Kameron', 'serif'].join(","),
+    fontFamily: ["Kameron", "serif"].join(","),
     fontSize: 35,
    },
    h4: {
-      fontFamily: ['Kameron', 'serif'].join(","),
+    fontFamily: ["Kameron", "serif"].join(","),
     fontSize: 32,
    },
    h5: {
-      fontFamily: ['Kameron', 'serif'].join(","),
+    fontFamily: ["Kameron", "serif"].join(","),
     fontSize: 24,
    },
    h6: {
-      fontFamily: ['Kameron', 'serif'].join(","),
+    fontFamily: ["Kameron", "serif"].join(","),
     fontSize: 20,
    },
   },
@@ -292,5 +291,3 @@ export const useMode = () => {
  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
  return [theme, colorMode];
 };
-
-

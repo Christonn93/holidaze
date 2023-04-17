@@ -49,6 +49,35 @@ There are two aspects to this brief: the customer-facing side of the website whe
 - A registered user may update their avatar
 - A registered user may logout
 
+## Style guide
+
+### Headers
+
+```md
+     <Typography variant="h1">H1</Typography>
+     <Typography variant="h2">H2</Typography>
+     <Typography variant="h3">H3</Typography>
+     <Typography variant="h4">H4</Typography>
+     <Typography variant="h5">H5</Typography>
+     <Typography variant="h6">H6</Typography>
+```
+
+### Body
+
+```md
+     <Typography variant="body1">Body text 1</Typography>
+     <Typography variant="body2">body text 2</Typography>
+```
+
+### Login / Register modal
+
+```md
+     <LoginDialog state={login} setState={setLogin} />
+     <RegisterDialog state={register} setState={setRegister} />
+```
+
+## End to end testing
+
 ## Acknowledgements
 
 - Alexander Barrett [Github](https://github.com/Anclagen)

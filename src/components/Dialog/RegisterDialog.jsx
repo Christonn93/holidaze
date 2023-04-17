@@ -16,7 +16,7 @@ const RegisterDialog = ({ state, setState }) => {
 
  return (
   <div>
-   <Button variant="outlined" onClick={handleClickOpen}>
+   <Button variant="contained" color="secondary" onClick={handleClickOpen}>
     Register new user
    </Button>
    <Dialog open={state} onClose={handleClose} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">

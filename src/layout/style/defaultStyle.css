@@ -1,0 +1,79 @@
+.venueCard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  border: 1px solid black;
+  max-width: 800px;
+  margin: 20px;
+}
+
+.venueCard-image {
+  object-fit: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 200px;
+  width: 100%;
+
+  position: relative;
+}
+
+.venueLikes {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+}
+
+.venueLikes i {
+  font-size: 28px;
+  filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.5));
+}
+
+.venueLikes:hover {
+  cursor: pointer;
+  filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 1));
+}
+
+.venueCard-content {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.venueCard-information {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.venueCard-information .venueCard-information-section span {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.venueCard-button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.5));
+}
+
+.venueCard-button:hover {
+  cursor: pointer;
+  filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 1));
+}
+
+.venueCard-footer {
+  padding: 15px;
+  display: flex;
+  justify-content: flex-end;
+}

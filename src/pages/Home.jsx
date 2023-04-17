@@ -1,14 +1,72 @@
 // Importing React
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Box, Card, Container, Link as MUILink, Typography, CardMedia, CardContent, CardActions } from "@mui/material";
+import React from "react";
+
+import { Button, Container, Grid } from "@mui/material";
+
+import { CardActions, Card, CardContent, Typography, CardMedia, Box, useTheme, useMediaQuery } from "@mui/material";
+
 import { updateHead } from "../functions/headUpdater";
 
-import LoginDialog from "../components/Dialog/LoginDialog";
-import RegisterDialog from "../components/Dialog/RegisterDialog";
+const ButtonComponent = ({ color, variant, buttonAction, text, id }) => {
+ return (
+  <Button color={color} variant={variant} onClick={buttonAction} id={id}>
+   {text}
+  </Button>
+ );
+};
 
-import ApiHook from "../api/BaseCall";
-import { venues, baseUrl } from "../api/constants";
+const VenueCard = ({ data }) => {
+ const device = useTheme();
+ const isMobile = useMediaQuery(device.breakpoints.down("md"));
+
+ const { title } = data;
+
+ const cardStructureDesk = {
+  display: "grid",
+  gridTemplateColumns: "1fr auto",
+  gap: 2,
+  padding: 2,
+ };
+
+ const cardStructureMobile = {
+  display: "flex",
+  flexDirection: "column",
+  gap: 2,
+  padding: 2,
+  maxWidth: 300,
+ };
+
+ return (
+  <>
+   <Card sx={isMobile !== true ? cardStructureDesk : cardStructureMobile}>
+    <CardMedia component="img" image="https://via.placeholder.com/600x400?text=Image+missing" alt="alternative text for image" height={200} />
+    <CardContent
+     sx={{
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-evenly",
+     }}
+    >
+     <Box sx={{}}>
+      <Typography gutterBottom variant="h5" component="h2">
+       {title}
+      </Typography>
+      <Typography variant="body2" color="textSecondary" component="p">
+       The CardMedia component sets a background image to cover available space.
+      </Typography>
+     </Box>
+     <CardActions
+      sx={{
+       justifyContent: "end",
+      }}
+     >
+      <ButtonComponent color="primaryButton" variant="contained" buttonAction={() => {}} text="Button text" id="button" />
+     </CardActions>
+    </CardContent>
+   </Card>
+  </>
+ );
+};
 
 /**
  * Home.
@@ -17,77 +75,70 @@ import { venues, baseUrl } from "../api/constants";
  * @returns Content on the home page
  */
 const Home = () => {
- const [login, setLogin] = useState(false);
- const [register, setRegister] = useState(false);
-
  updateHead("Home", "Holidaze landing page");
 
- const { data } = ApiHook(baseUrl + venues);
+ const mockDataMap = [
+  {
+   id: 1,
+   title: "Mock title",
+  },
+  {
+   id: 2,
+   title: "Mock title",
+  },
+ ];
 
  return (
   <>
    <Container>
-    <Box>
-     <Typography variant="h1">H1</Typography>
-     <Typography variant="h2">H2</Typography>
-     <Typography variant="h3">H3</Typography>
-     <Typography variant="h4">H4</Typography>
-     <Typography variant="h5">H5</Typography>
-     <Typography variant="h6">H6</Typography>
-    </Box>
-    <Box>
-     <Typography variant="body1">Body text 1</Typography>
-     <Typography variant="body2">body text 2</Typography>
-    </Box>
-
-    <Box>
-     <MUILink>This is a link</MUILink>
+    <Box
+     sx={{
+      marginTop: 2,
+      marginBottom: 2,
+     }}
+    >
+     <Typography variant="h2">Our latest venues</Typography>
+     <Grid
+      container
+      sx={{
+       gap: 2,
+       marginTop: 2,
+       marginBottom: 2,
+      }}
+     >
+      {mockDataMap.map((e) => {
+       return (
+        <Grid item key={e.id}>
+         <VenueCard data={e} />
+        </Grid>
+       );
+      })}
+     </Grid>
     </Box>
 
     <Box
      sx={{
-      padding: 4,
+      marginTop: 2,
+      marginBottom: 2,
      }}
     >
-     <LoginDialog state={login} setState={setLogin} />
-     <RegisterDialog state={register} setState={setRegister} />
-    </Box>
-
-    <Box>
-     {data.map((values) => {
-      const { id, name, description, media, price, maxGuests, created, updated } = values;
-
-      return (
-       <>
-        <Card sx={{ maxWidth: 345, marginTop: 2 }} key={id}>
-         <CardMedia component="img" alt="green iguana" height="140" image={media[0]} />
-         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-           {name}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-           {description}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-           {price}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-           {maxGuests}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-           {created}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-           {updated}
-          </Typography>
-         </CardContent>
-         <CardActions>
-          <Link to={`/venue/${id}`}>Learn More</Link>
-         </CardActions>
-        </Card>
-       </>
-      );
-     })}
+     <Typography variant="h2">Top rated venues</Typography>
+     <Grid
+      container
+      sx={{
+       gap: 2,
+       marginTop: 2,
+       marginBottom: 2,
+      }}
+     >
+      {mockDataMap.map((e) => {
+       return (
+        <Grid item key={e.id}>
+         <VenueCard data={e} />
+        </Grid>
+       );
+      })}
+     </Grid>
     </Box>
    </Container>
   </>

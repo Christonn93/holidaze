@@ -1,6 +1,6 @@
 import React from "react";
 
-const Profile = () => {
+const Profile = ({user}) => {
  const userData = localStorage.getItem("UserData");
  const parsedUserData = JSON.parse(userData);
 

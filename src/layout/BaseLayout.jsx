@@ -24,7 +24,10 @@ const Layout = () => {
  return (
   <PageLayout>
    <Header />
-   <Container>
+   <Container sx={{
+    marginTop: 4,
+    marginBottom: 4
+   }}>
     <Outlet />
    </Container>
    <Footer />
