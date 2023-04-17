@@ -14,6 +14,8 @@ import Navigation from "../Navigation/Navigation";
 import SearchBar from "../../SearchBar/SearchBar";
 
 const Header = () => {
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+
  return (
   <header>
    <Box
@@ -44,7 +46,7 @@ const Header = () => {
        }}
       >
        <SearchBar />
-       <Navigation />
+       <Navigation status={isLoggedIn}/>
       </Box>
      </Toolbar>
     </AppBar>

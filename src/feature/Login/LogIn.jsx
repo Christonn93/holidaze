@@ -19,6 +19,7 @@ const LogIn = () => {
   if ("accessToken" in resp) {
    localStorage.setItem("ApiToken", resp["accessToken"]);
    localStorage.setItem("UserData", JSON.stringify(resp));
+   localStorage.setItem("isLoggedIn", true);
   }
  };
 
