@@ -7,6 +7,7 @@ import { Menu, Stack } from "@mui/material";
 
 // Importing components
 import UserAvatar from "../User/UserAvatar/UserAvatar";
+import Logo from "../../assets/Images/h.png";
 
 const Navigation = ({ status }) => {
  // Setting states
@@ -32,7 +33,7 @@ const Navigation = ({ status }) => {
  return (
   <>
    <div>
-    {avatar ? <UserAvatar action={handleMenu} src={avatar} alt="user avatar" size="56" /> : <UserAvatar action={handleMenu} src="" alt="user avatar" size="56" />}
+    {avatar ? <UserAvatar action={handleMenu} src={avatar} alt="user avatar" size="56" /> : <UserAvatar action={handleMenu} src={Logo} alt="user avatar" size="56" />}
     <Menu id="dropDown-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose} sx={{ width: "auto" }}>
      <Stack direction="row" spacing={1} padding={1}>
       {!isLoggedIn ? (
