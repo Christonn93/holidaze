@@ -32,23 +32,21 @@ const Navigation = ({ status }) => {
 
  return (
   <>
-   <div>
-    {avatar ? <UserAvatar action={handleMenu} src={avatar} alt="user avatar" size="56" /> : <UserAvatar action={handleMenu} src={Logo} alt="user avatar" size="56" />}
-    <Menu id="dropDown-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose} sx={{ width: "auto" }}>
-     <Stack direction="row" spacing={1} padding={1}>
-      {!isLoggedIn ? (
-       <>
-        <Link to="/login">Log in</Link>
-        <Link to="/register">Register</Link>
-       </>
-      ) : (
-       <>
-        <Link to="/profile">Profile</Link>
-       </>
-      )}
-     </Stack>
-    </Menu>
-   </div>
+   {!avatar ? <UserAvatar action={handleMenu} src={avatar} alt="user avatar" size="56" /> : <UserAvatar action={handleMenu} src={Logo} alt="user avatar" size="56" />}
+   <Menu id="dropDown-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose} sx={{ width: "auto" }}>
+    <Stack direction="row" spacing={1} padding={1}>
+     {!isLoggedIn ? (
+      <>
+       <Link to="/login">Log in</Link>
+       <Link to="/register">Register</Link>
+      </>
+     ) : (
+      <>
+       <Link to="/profile">Profile</Link>
+      </>
+     )}
+    </Stack>
+   </Menu>
   </>
  );
 };
