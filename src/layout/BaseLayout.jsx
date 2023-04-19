@@ -6,8 +6,8 @@ import styled from "styled-components";
 import { Container } from "@mui/material";
 
 // Importing components
-import Header from "../components/Layout/Header/Header";
-import Footer from "../components/Layout/Footer/Footer";
+import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
 
 // Styling component
 const PageLayout = styled.div`
@@ -24,10 +24,12 @@ const Layout = () => {
  return (
   <PageLayout>
    <Header />
-   <Container sx={{
-    marginTop: 4,
-    marginBottom: 4
-   }}>
+   <Container
+    sx={{
+     marginTop: 4,
+     marginBottom: 4,
+    }}
+   >
     <Outlet />
    </Container>
    <Footer />
