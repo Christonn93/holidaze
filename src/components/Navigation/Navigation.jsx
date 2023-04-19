@@ -23,16 +23,9 @@ const Navigation = ({ status }) => {
 
  const isLoggedIn = localStorage.getItem("isLoggedIn");
 
- const getLocalData = localStorage.getItem("UserData");
- if (!getLocalData) {
-  return;
- }
- const parsedLocalData = JSON.parse(getLocalData);
- const avatar = parsedLocalData.avatar;
-
  return (
   <>
-   {!avatar ? <UserAvatar action={handleMenu} src={avatar} alt="user avatar" size="56" /> : <UserAvatar action={handleMenu} src={Logo} alt="user avatar" size="56" />}
+   <UserAvatar action={handleMenu} src={Logo} alt="user avatar" size="56" />
    <Menu id="dropDown-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose} sx={{ width: "auto" }}>
     <Stack direction="row" spacing={1} padding={1}>
      {!isLoggedIn ? (
