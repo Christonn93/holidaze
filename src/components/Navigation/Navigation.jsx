@@ -23,6 +23,9 @@ const Navigation = ({ status }) => {
  const isLoggedIn = localStorage.getItem("isLoggedIn");
 
  const getLocalData = localStorage.getItem("UserData");
+ if (!getLocalData) {
+  return;
+ }
  const parsedLocalData = JSON.parse(getLocalData);
  const avatar = parsedLocalData.avatar;
 
