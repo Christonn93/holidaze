@@ -1,4 +1,4 @@
-import { Button, TextField } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import React from "react";
 import { baseUrl, bookings } from "../../api/constants";
 
@@ -21,18 +21,31 @@ const VenueBookingSection = ({ id }) => {
   e.preventDefault();
 
   const form = e.target;
-  const venueId = id;
-  const data = new FormData(form);
 
-  data.append("venueId", venueId);
+  const dateFrom = new Date(form.dateFrom.value);
+  const dateTo = new Date(form.dateTo.value);
+  const guests = form.guests.value;
+  const venueId = id;
 
   const endpoint = bookings;
   const method = "POST";
-  const body = data;
+  const body = {
+   dateFrom: dateFrom,
+   dateTo: dateTo,
+   guests: guests,
+   venueId: venueId,
+  };
+
+  console.log(body);
 
   fetch(baseUrl + endpoint, {
    method: method,
-   body: body,
+   body: {
+    dateFrom: dateFrom,
+    dateTo: dateTo,
+    guests: guests,
+    venueId: venueId,
+   },
   })
    .then((response) => {
     if (!response.ok) {
@@ -50,16 +63,33 @@ const VenueBookingSection = ({ id }) => {
    });
  };
 
+ const boxSx = {
+  display: "flex",
+  gap: 2,
+  flexDirection: "column",
+ };
+
  return (
   <>
    <form onSubmit={handleSubmit}>
-    <TextField label="From" type="date" name="dateFrom" id="dateFrom" required />
-    <TextField label="To" type="date" name="dateTo" id="dateTo" required />
-    <TextField label="Guests" type="number" name="guests" id="guests" required />
+    <Box sx={boxSx}>
+     <Box sx={boxSx}>
+      <Typography variant="caption">From</Typography>
+      <TextField type="date" name="dateFrom" id="dateFrom" required />
+     </Box>
+     <Box sx={boxSx}>
+      <Typography variant="caption">To</Typography>
+      <TextField type="date" name="dateTo" id="dateTo" required />
+     </Box>
+     <Box sx={boxSx}>
+      <Typography variant="caption">Guests</Typography>
+      <TextField type="number" name="guests" id="guests" required />
+     </Box>
 
-    <Button variant="contained" type="submit">
-     Submit
-    </Button>
+     <Button variant="contained" type="submit">
+      Submit
+     </Button>
+    </Box>
    </form>
   </>
  );

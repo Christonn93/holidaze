@@ -11,6 +11,7 @@ const VenueDetailsSection = ({ venueDescription, maxGuests, price, wifi, breakfa
  const stackSx = {
   display: "flex",
   gap: 2,
+  alignItems: "center",
  };
 
  return (
