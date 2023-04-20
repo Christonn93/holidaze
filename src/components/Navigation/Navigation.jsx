@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { Menu, Stack } from "@mui/material";
 
 // Importing components
-import UserAvatar from "../User/UserAvatar/UserAvatar";
+import UserAvatar from "../UserAvatar/UserAvatar";
 import Logo from "../../assets/Images/h.png";
 
 const Navigation = ({ status }) => {

@@ -26,6 +26,7 @@ import RouteNotFound from "./pages/public/404";
 
 // Private pages
 import Profile from "./pages/private/Profile";
+import Venue from "./pages/public/Venue";
 
 function App() {
  const [theme, colorMode] = useMode();
@@ -42,6 +43,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/venue/:id" element={<Venue />} />
         <Route path="*" element={<RouteNotFound />} />
 
         {/* Private routes routes */}
