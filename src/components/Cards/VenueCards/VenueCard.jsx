@@ -35,6 +35,7 @@ const VenueCard = ({ data }) => {
   flexDirection: "row",
   gap: 2,
   maxWidth: 1150,
+  maxHeight: 250,
  };
 
  const CardBaseMobile = {
