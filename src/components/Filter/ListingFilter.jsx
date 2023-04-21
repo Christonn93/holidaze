@@ -24,10 +24,11 @@ const ListingFilter = () => {
      component="form"
      sx={{
       display: "flex",
-      gap: 1,
+      gap: 3,
       justifyContent: "space-between",
       alignItems: "center",
       alignContent: "flex-start",
+      flexWrap: "wrap",
      }}
     >
      <FormGroup

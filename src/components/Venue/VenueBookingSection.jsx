@@ -1,7 +1,7 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import React from "react";
 import { baseUrl, bookings } from "../../api/constants";
-
+import { headers } from "../../api/auth/headers";
 /*
 NOTE: 
 
@@ -20,32 +20,22 @@ const VenueBookingSection = ({ id }) => {
  const handleSubmit = (e) => {
   e.preventDefault();
 
-  const form = e.target;
-
-  const dateFrom = new Date(form.dateFrom.value);
-  const dateTo = new Date(form.dateTo.value);
-  const guests = form.guests.value;
-  const venueId = id;
-
+  // Fetch variable data
   const endpoint = bookings;
   const method = "POST";
-  const body = {
-   dateFrom: dateFrom,
-   dateTo: dateTo,
-   guests: guests,
-   venueId: venueId,
-  };
 
-  console.log(body);
+  // Form data
+  const form = e.target;
+  const formData = new FormData(form);
+  const guests = parseInt(formData.get("guests"));
+  const dateFrom = formData.get("dateFrom");
+  const dateTo = formData.get("dateTo");
+  const venueId = id;
 
   fetch(baseUrl + endpoint, {
+   headers: headers("application/json"),
    method: method,
-   body: {
-    dateFrom: dateFrom,
-    dateTo: dateTo,
-    guests: guests,
-    venueId: venueId,
-   },
+   body: JSON.stringify({ dateFrom, dateTo, venueId, guests }),
   })
    .then((response) => {
     if (!response.ok) {

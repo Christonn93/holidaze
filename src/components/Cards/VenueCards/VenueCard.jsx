@@ -55,7 +55,7 @@ const VenueCard = ({ data }) => {
 
  return (
   <Card sx={!isMobile ? CardBase : CardBaseMobile}>
-   <Box maxWidth={350}>
+   <Box maxWidth={!isMobile ? 350 : 400}>
     {media ? <CardMedia component="img" image={media[0]} alt="alternative text for image" /> : <CardMedia component="img" image={imageMissing} alt="alternative text for image" />}
    </Box>
    <Box
