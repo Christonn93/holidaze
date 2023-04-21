@@ -49,7 +49,7 @@ const VenueDetailsSection = ({ venueDescription, maxGuests, price, wifi, breakfa
      </Box>
      <Box sx={stackSx}>
       <PetsIcon />
-      {pets ? <Typography variant="body2">Not allowed</Typography> : <Typography variant="body2">Allowed</Typography>}
+      {pets ? <Typography variant="body2">Allowed</Typography> : <Typography variant="body2">Not allowed</Typography>}
      </Box>
     </Stack>
    </Box>

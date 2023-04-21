@@ -28,13 +28,17 @@ const Dashboard = ({ status }) => {
 
  const { data, isLoading, isError } = useApi(endpoint, method);
 
- //  console.log(data);
+ console.log("Dashboard", data.venues);
 
  const userData = {
   name: data.name,
   avatar: data.avatar,
   venueManager: data.venueManager,
  };
+
+ if (!userData) {
+  return;
+ }
 
  if (isLoading) return <h1>Loading....</h1>;
 
@@ -71,13 +75,13 @@ const Dashboard = ({ status }) => {
      {status ? <Tab label="Your Venues" /> : <></>}
     </Tabs>
     <TabPanel value={value} index={0}>
-     <ProfileDetails data={userData} />
+     <ProfileDetails name={data.name} avatar={data.avatar} venueManager={data.venueManager} />
     </TabPanel>
     <TabPanel value={value} index={1}>
-     <BookingsDetails data={null} />
+     <BookingsDetails data={data.bookings} />
     </TabPanel>
     <TabPanel value={value} index={2}>
-     <VenueDetails data={null} />
+     <VenueDetails data={data.venues} />
     </TabPanel>
    </Box>
   </>

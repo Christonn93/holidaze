@@ -2,8 +2,10 @@ import React from "react";
 
 import { Box, CardMedia, Typography } from "@mui/material";
 
-const ProfileDetails = ({ data }) => {
- const { name, avatar, venueManager } = data;
+const ProfileDetails = ({ name, avatar, venueManager }) => {
+ if (!name) {
+  return;
+ }
 
  // Capitalize title
  const fixedName = name.charAt(0).toUpperCase() + name.slice(1);

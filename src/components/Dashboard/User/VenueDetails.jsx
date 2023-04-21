@@ -1,10 +1,24 @@
+import { Chip, Stack } from "@mui/material";
 import React from "react";
+import ListingCards from "../Listings/ListingCards";
 
 const VenueDetails = ({ data }) => {
+ console.log("VenueDetails", data);
+
  return (
   <>
-   <h2>Here will your venues be displayed</h2>
-   <p>It wil be cards</p>
+   <h2>Venues you manage</h2>
+   <Stack spacing={2}>
+    {data.map((e) => {
+     const status = false;
+
+     return (
+      <>
+       <ListingCards name={e.name} infoChildren={<Chip label={!status ? "Free" : "rented out"} color={!status ? "success" : "error"} variant="outlined" />} buttonChildren={"Manage venue"} />
+      </>
+     );
+    })}
+   </Stack>
   </>
  );
 };

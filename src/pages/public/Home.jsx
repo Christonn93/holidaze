@@ -4,6 +4,7 @@ import VenueCard from "../../components/Cards/VenueCards/VenueCard";
 import useApi from "../../hooks/useApi";
 import { venues } from "../../api/constants";
 import { Box } from "@mui/material";
+import ListingFilter from "../../components/Filter/ListingFilter";
 
 const Home = () => {
  const endpoint = venues + `?_owner=true&_bookings=true`;
@@ -18,6 +19,7 @@ const Home = () => {
  return (
   <>
    <h1>Home</h1>
+   <ListingFilter />
    {data.map((venue) => {
     return (
      <Box
