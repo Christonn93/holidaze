@@ -12,9 +12,12 @@ import BookingsDetails from "./User/BookingsDetails";
 import useApi from "../../hooks/useApi";
 import { profiles } from "../../api/constants";
 import { logOutListener } from "../../js/logOut";
+import { updateHead } from "../../js/updateHeader";
 
 const Dashboard = ({ status }) => {
  const [value, setValue] = useState(0);
+
+ updateHead("Dashboard");
 
  const handleChange = (event, newValue) => {
   setValue(newValue);

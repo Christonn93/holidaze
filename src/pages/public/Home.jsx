@@ -5,8 +5,11 @@ import useApi from "../../hooks/useApi";
 import { venues } from "../../api/constants";
 import { Box } from "@mui/material";
 import ListingFilter from "../../components/Filter/ListingFilter";
+import { updateHead } from "../../js/updateHeader";
 
 const Home = () => {
+ updateHead("Home");
+
  const endpoint = venues + `?_owner=true&_bookings=true`;
  const method = "GET";
 

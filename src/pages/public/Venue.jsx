@@ -1,16 +1,23 @@
 // Importing React
 import React from "react";
 import { useParams } from "react-router-dom";
-import useApi from "../../hooks/useApi";
-import { venues } from "../../api/constants";
+
+// importing MUi
 import { Box, Typography } from "@mui/material";
 
+// Importing functions
+import useApi from "../../hooks/useApi";
+import { venues } from "../../api/constants";
+import { updateHead } from "../../js/updateHeader";
+
+// Importing components
 import VenueTitleSection from "../../components/Venue/VenueTitleSection";
 import VenueOwnerSection from "../../components/Venue/VenueOwnerSection";
 import VenueDetailsSection from "../../components/Venue/VenueDetailsSection";
 import VenueMainMedia from "../../components/Venue/VenueMainMedia";
 import VenueMediaGallery from "../../components/Venue/VenueMediaGallery";
 import VenueBookingSection from "../../components/Venue/VenueBookingSection";
+
 const Venue = () => {
  let { id } = useParams();
  const endpoint = venues + `/${id}?_owner=true&_bookings=true`;
@@ -22,20 +29,10 @@ const Venue = () => {
 
  if (isError) console.error(isError);
 
- //  if (data) console.log(data);
-
  // Destructing venue data
  const { id: venueId, name, description, media, price, maxGuests, created, updated, meta, bookings, owner } = data;
 
- if (!meta) {
-  return null;
- }
-
- if (!owner) {
-  return null;
- }
-
- if (!bookings) {
+ if (!meta && !owner && !bookings) {
   return null;
  }
 
@@ -44,6 +41,8 @@ const Venue = () => {
 
  // Destructing owner data
  const { name: ownerName, email, avatar } = owner;
+
+ updateHead(name);
 
  return (
   <>

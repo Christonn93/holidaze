@@ -89,7 +89,7 @@ const Navigation = ({ status }) => {
     {isLoggedIn ? (
      <Box>
       <MenuItem onClick={handleNavigate}>
-       <Avatar /> Profile
+       <Avatar src={src} /> Profile
       </MenuItem>
       <Divider />
       <MenuItem onClick={handleLogout}>
