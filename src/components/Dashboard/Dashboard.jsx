@@ -11,6 +11,7 @@ import VenueDetails from "./User/VenueDetails";
 import BookingsDetails from "./User/BookingsDetails";
 import useApi from "../../hooks/useApi";
 import { profiles } from "../../api/constants";
+import { logOutListener } from "../../js/logOut";
 
 const Dashboard = ({ status }) => {
  const [value, setValue] = useState(0);
@@ -45,6 +46,7 @@ const Dashboard = ({ status }) => {
  if (isError) console.log(isError);
 
  const logOutUser = () => {
+  logOutListener();
   alert("logging out");
  };
 

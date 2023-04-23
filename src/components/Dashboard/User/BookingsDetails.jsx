@@ -7,6 +7,11 @@ import ListingCards from "../Listings/ListingCards";
 const BookingsDetails = ({ data }) => {
  console.log("BookingsDetails", data);
 
+ if (!data) {
+  console.error(data);
+  return <h1>There was no data found</h1>;
+ }
+
  return (
   <>
    <h2>Here will your bookings be displayed</h2>

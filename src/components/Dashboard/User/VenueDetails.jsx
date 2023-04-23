@@ -1,14 +1,39 @@
-import { Chip, Stack } from "@mui/material";
+import { Box, Button, Chip, Stack } from "@mui/material";
 import React from "react";
 import ListingCards from "../Listings/ListingCards";
 
 const VenueDetails = ({ data }) => {
  console.log("VenueDetails", data);
 
+ if (!data) {
+  console.error(data);
+  return <h1>There was no data found</h1>;
+ }
+
+ const handleNewVenue = () => {
+  alert("button worked");
+ };
+
  return (
   <>
-   <h2>Venues you manage</h2>
-   <Stack spacing={2}>
+   <Box
+    sx={{
+     display: "flex",
+     justifyContent: "space-between",
+     alignItems: "center",
+    }}
+   >
+    <h2>Venues you manage</h2>
+    <Button variant="contained" color="info" onClick={handleNewVenue}>
+     Add new venue
+    </Button>
+   </Box>
+   <Stack
+    spacing={2}
+    sx={{
+     marginTop: 2,
+    }}
+   >
     {data.map((e) => {
      const status = false;
 

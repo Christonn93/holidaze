@@ -9,6 +9,7 @@ import Logout from "@mui/icons-material/Logout";
 
 // Importing components
 import { getLocalStorageItem } from "../../js/storage/getItems";
+import { logOutListener } from "../../js/logOut";
 
 const Navigation = ({ status }) => {
  const [anchorEl, setAnchorEl] = useState(null);
@@ -34,6 +35,7 @@ const Navigation = ({ status }) => {
 
  const handleLogout = () => {
   setAnchorEl(null);
+  logOutListener();
  };
 
  const handleClose = () => {

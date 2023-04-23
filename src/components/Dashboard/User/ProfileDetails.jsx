@@ -8,7 +8,8 @@ const ProfileDetails = ({ name, avatar, venueManager }) => {
  const isMobile = useMediaQuery(device.breakpoints.down("md"));
 
  if (!name) {
-  return;
+  console.error(name);
+  return <h1>There was no data found</h1>;
  }
 
  // Capitalize title
