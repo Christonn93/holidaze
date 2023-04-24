@@ -3,14 +3,8 @@ import * as React from "react";
 import { Button, TextField, Dialog, DialogContent, DialogContentText, DialogTitle, IconButton } from "@mui/material";
 import { PhotoCamera } from "@mui/icons-material";
 
-import { baseUrl, profiles } from "../../api/constants";
-import { headers } from "../../api/auth/headers";
-import { getLocalStorageItem } from "../../js/storage/getItems";
-
 const ReplaceUserImage = () => {
  const [open, setOpen] = React.useState(false);
-
- const storedData = getLocalStorageItem("UserData");
 
  const handleClickOpen = () => {
   setOpen(true);
