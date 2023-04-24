@@ -42,7 +42,7 @@ const Venue = () => {
  // Destructing owner data
  const { name: ownerName, email, avatar } = owner;
 
- updateHead(name);
+ updateHead(name, description);
 
  return (
   <>

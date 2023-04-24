@@ -22,32 +22,6 @@ const ReplaceUserImage = () => {
 
  const handleRequest = (e) => {
   e.preventDefault();
-
-  const form = e.target;
-  const data = form.avatar.value;
-
-  const endpoint = profiles + `/${storedData.name}/media`;
-  const method = "PUT";
-
-  fetch(baseUrl + endpoint, {
-   headers: headers("application/json"),
-   method: method,
-   body: JSON.stringify({ avatar: data }),
-  })
-   .then((response) => {
-    if (!response.ok) {
-     throw new Error("Failed to submit form");
-    }
-    return response.json();
-   })
-   .then((data) => {
-    // Handle successful response from API
-    console.log(data);
-   })
-   .catch((error) => {
-    // Handle error
-    console.error(error);
-   });
  };
 
  return (
@@ -56,7 +30,7 @@ const ReplaceUserImage = () => {
     <PhotoCamera />
    </IconButton>
    <Dialog open={open} onClose={handleClose}>
-    <DialogTitle>Subscribe</DialogTitle>
+    <DialogTitle>Update user Avatar</DialogTitle>
     <DialogContent>
      <DialogContentText>Change your profile image</DialogContentText>
      <form onSubmit={handleRequest}>

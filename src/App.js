@@ -16,17 +16,19 @@ import { AuthProvider } from "./context/AuthProvider";
 
 // Importing components
 
-// Importing pages
+/* == Importing pages == */
 
 // Public pages
 import Home from "./pages/public/Home";
 import Login from "./pages/public/Login";
 import Register from "./pages/public/Register";
+import Venue from "./pages/public/Venue";
 import RouteNotFound from "./pages/public/404";
 
 // Private pages
 import Profile from "./pages/private/Profile";
-import Venue from "./pages/public/Venue";
+import PrivVenue from "./pages/private/PrivVenue";
+import { VenueProvider } from "./context/venueContext";
 
 function App() {
  const [theme, colorMode] = useMode();
@@ -37,21 +39,24 @@ function App() {
     <ThemeProvider theme={theme}>
      <CssBaseline />
      <AuthProvider>
-      <Routes>
-       <Route path="/" element={<Layout />}>
-        {/* Public routes */}
-        <Route index element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/venue/:id" element={<Venue />} />
-        <Route path="*" element={<RouteNotFound />} />
+      <VenueProvider>
+       <Routes>
+        <Route path="/" element={<Layout />}>
+         {/* Public routes */}
+         <Route index element={<Home />} />
+         <Route path="/login" element={<Login />} />
+         <Route path="/register" element={<Register />} />
+         <Route path="/venue/:id" element={<Venue />} />
+         <Route path="*" element={<RouteNotFound />} />
 
-        {/* Private routes routes */}
-        <Route element={<RequireAuth />}>
-         <Route path="/profile" element={<Profile />} />
+         {/* Private routes routes */}
+         <Route element={<RequireAuth />}>
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/venue/:id/edit" element={<PrivVenue />} />
+         </Route>
         </Route>
-       </Route>
-      </Routes>
+       </Routes>
+      </VenueProvider>
      </AuthProvider>
     </ThemeProvider>
    </ColorModeContext.Provider>

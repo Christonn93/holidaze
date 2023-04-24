@@ -1,11 +1,19 @@
+// Importing React
 import React from "react";
-import VenueCard from "../../components/Cards/VenueCards/VenueCard";
 
+// Importing MUI
+import { Box } from "@mui/material";
+
+// Importing hooks and functions
 import useApi from "../../hooks/useApi";
 import { venues } from "../../api/constants";
-import { Box } from "@mui/material";
-import ListingFilter from "../../components/Filter/ListingFilter";
 import { updateHead } from "../../js/updateHeader";
+
+// Importing components
+import VenueCard from "../../components/Cards/VenueCards/VenueCard";
+import ListingFilter from "../../components/Filter/ListingFilter";
+import UiFeedback from "../../components/UiFeedback/UiFeedback";
+import Loading from "../../components/Loading/Loading";
 
 const Home = () => {
  updateHead("Home");
@@ -15,9 +23,12 @@ const Home = () => {
 
  const { data, isLoading, isError } = useApi(endpoint, method);
 
- if (isLoading) return <h1>Loading...</h1>;
+ if (isLoading) return <Loading />;
 
- if (isError) console.error(isError);
+ if (isError) {
+  console.error(isError);
+  return <UiFeedback severity="error" title={"An unexpected error have accrued"} message={"Please refresh the page"} />;
+ }
 
  return (
   <>

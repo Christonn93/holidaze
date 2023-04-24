@@ -1,9 +1,12 @@
-import { Box, Button, Chip, Stack } from "@mui/material";
 import React from "react";
-import ListingCards from "../Listings/ListingCards";
+import { useNavigate } from "react-router-dom";
+
+import { Box, Button, Chip, Stack } from "@mui/material";
+
+import ListingCards from "../../Cards/ListingCards";
 
 const VenueDetails = ({ data }) => {
- console.log("VenueDetails", data);
+ const navigate = useNavigate();
 
  if (!data) {
   console.error(data);
@@ -13,6 +16,12 @@ const VenueDetails = ({ data }) => {
  const handleNewVenue = () => {
   alert("button worked");
  };
+
+ const openVenueManager = (id) => {
+  navigate(`/venue/${id}/edit`);
+ };
+
+ console.log("VenueDetails", data);
 
  return (
   <>
@@ -39,7 +48,12 @@ const VenueDetails = ({ data }) => {
 
      return (
       <>
-       <ListingCards name={e.name} infoChildren={<Chip label={!status ? "Free" : "rented out"} color={!status ? "success" : "error"} variant="outlined" />} buttonChildren={"Manage venue"} />
+       <ListingCards
+        name={e.name}
+        infoChildren={<Chip label={!status ? "Free" : "rented out"} color={!status ? "success" : "error"} variant="outlined" />}
+        buttonChildren={"Manage venue"}
+        buttonAction={() => openVenueManager(e.id)}
+       />
       </>
      );
     })}
