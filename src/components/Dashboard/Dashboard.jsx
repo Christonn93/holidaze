@@ -6,9 +6,9 @@ import { Box, Tabs, Tab, Button } from "@mui/material";
 
 // Importing components
 import { TabPanel } from "../Tab/TabPanel";
-import ProfileDetails from "./User/ProfileDetails";
-import VenueDetails from "./User/VenueDetails";
-import BookingsDetails from "./User/BookingsDetails";
+import ProfileDetails from "./ProfileDetails";
+import VenueDetails from "./Manager/VenueDetails";
+import BookingsDetails from "./BookingsDetails";
 import useApi from "../../hooks/useApi";
 import { profiles } from "../../api/constants";
 import { logOutListener } from "../../js/logOut";

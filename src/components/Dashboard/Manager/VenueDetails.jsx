@@ -13,12 +13,13 @@ const VenueDetails = ({ data }) => {
   return <h1>There was no data found</h1>;
  }
 
- const handleNewVenue = () => {
-  alert("button worked");
- };
-
- const openVenueManager = (id) => {
-  navigate(`/venue/${id}/edit`);
+ const handleNavigate = (path, id) => {
+  if (path === "create") {
+   navigate(`/venue/create`);
+  }
+  if (path === "edit") {
+   navigate(`/venue/${id}/edit`);
+  }
  };
 
  console.log("VenueDetails", data);
@@ -33,7 +34,7 @@ const VenueDetails = ({ data }) => {
     }}
    >
     <h2>Venues you manage</h2>
-    <Button variant="contained" color="info" onClick={handleNewVenue}>
+    <Button variant="contained" color="info" onClick={() => handleNavigate("create")}>
      Add new venue
     </Button>
    </Box>
@@ -52,7 +53,7 @@ const VenueDetails = ({ data }) => {
         name={e.name}
         infoChildren={<Chip label={!status ? "Free" : "rented out"} color={!status ? "success" : "error"} variant="outlined" />}
         buttonChildren={"Manage venue"}
-        buttonAction={() => openVenueManager(e.id)}
+        buttonAction={() => handleNavigate("edit", e.id)}
        />
       </>
      );
