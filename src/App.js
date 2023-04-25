@@ -13,6 +13,7 @@ import "../src/style/defaultStyle.css";
 // Importing context and auth
 import RequireAuth from "./auth/RequireAuth";
 import { AuthProvider } from "./context/AuthProvider";
+import { VenueProvider } from "./context/venueContext";
 
 // Importing components
 
@@ -28,7 +29,7 @@ import RouteNotFound from "./pages/public/404";
 // Private pages
 import Profile from "./pages/private/Profile";
 import PrivVenue from "./pages/private/PrivVenue";
-import { VenueProvider } from "./context/venueContext";
+import CreateVenue from "./pages/private/CreateVenue";
 
 function App() {
  const [theme, colorMode] = useMode();
@@ -53,6 +54,7 @@ function App() {
          <Route element={<RequireAuth />}>
           <Route path="/profile" element={<Profile />} />
           <Route path="/venue/:id/edit" element={<PrivVenue />} />
+          <Route path="/venue/create" element={<CreateVenue />} />
          </Route>
         </Route>
        </Routes>
