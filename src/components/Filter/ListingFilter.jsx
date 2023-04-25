@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Box, Checkbox, FormControl, FormControlLabel, FormGroup, InputLabel, MenuItem, Paper, Select, TextField, Typography } from "@mui/material";
+import { Box, Checkbox, FormControl, FormControlLabel, FormGroup, InputLabel, MenuItem, Paper, Select, Typography } from "@mui/material";
 import MainButton from "../Button/MainButton";
 
 const ListingFilter = () => {
@@ -66,8 +66,7 @@ const ListingFilter = () => {
 
 export default ListingFilter;
 
-{
- /* <FormGroup
+/* <FormGroup
 sx={{
  width: 150,
 }}
@@ -76,4 +75,3 @@ sx={{
  <TextField variant="standard" label={"Search"} name="search" />
 </FormControl>
 </FormGroup> */
-}
