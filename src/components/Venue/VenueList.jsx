@@ -12,7 +12,6 @@ import { venues } from "../../api/constants";
 import VenueCard from "../Cards/VenueCards/VenueCard";
 import UiFeedback from "../../components/UiFeedback/UiFeedback";
 import Loading from "../../components/Loading/Loading";
-import { decodeSearchParams } from "../Filter/searchParams";
 
 const VenueList = ({ params }) => {
  let endpoint = venues + `?_owner=true&_bookings=true`;
