@@ -4,7 +4,10 @@ import React from "react";
 // Importing MUI
 import { Box, Typography } from "@mui/material";
 
+import { updateHead } from "../../js/updateHeader";
+
 const TestingNewComponents = () => {
+ updateHead("Playground");
  return (
   <Box
    sx={{

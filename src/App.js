@@ -31,6 +31,7 @@ import Profile from "./pages/private/Profile";
 import PrivVenue from "./pages/private/PrivVenue";
 import CreateVenue from "./pages/private/CreateVenue";
 import TestingNewComponents from "./pages/private/TestingNewComponents";
+import SearchResult from "./pages/public/SearchResult";
 
 function App() {
  const [theme, colorMode] = useMode();
@@ -49,6 +50,7 @@ function App() {
          <Route path="/login" element={<Login />} />
          <Route path="/register" element={<Register />} />
          <Route path="/venue/:id" element={<Venue />} />
+         <Route path="/search/:params" element={<SearchResult />} />
          <Route path="*" element={<RouteNotFound />} />
 
          {/* Private routes routes */}
