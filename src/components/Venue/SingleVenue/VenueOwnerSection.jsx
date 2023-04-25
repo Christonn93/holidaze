@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Box, Typography } from "@mui/material";
-import UserAvatar from "../../components/UserAvatar/UserAvatar";
+import UserAvatar from "../../../components/UserAvatar/UserAvatar";
 
 const VenueOwnerSection = ({ name, avatar, email }) => {
  return (

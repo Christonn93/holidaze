@@ -11,12 +11,12 @@ import { venues } from "../../api/constants";
 import { updateHead } from "../../js/updateHeader";
 
 // Importing components
-import VenueTitleSection from "../../components/Venue/VenueTitleSection";
-import VenueOwnerSection from "../../components/Venue/VenueOwnerSection";
-import VenueDetailsSection from "../../components/Venue/VenueDetailsSection";
-import VenueMainMedia from "../../components/Venue/VenueMainMedia";
-import VenueMediaGallery from "../../components/Venue/VenueMediaGallery";
-import VenueBookingSection from "../../components/Venue/VenueBookingSection";
+import VenueTitleSection from "../../components/Venue/SingleVenue/VenueTitleSection";
+import VenueOwnerSection from "../../components/Venue/SingleVenue/VenueOwnerSection";
+import VenueDetailsSection from "../../components/Venue/SingleVenue/VenueDetailsSection";
+import VenueMainMedia from "../../components/Venue/SingleVenue/VenueMainMedia";
+import VenueMediaGallery from "../../components/Venue/SingleVenue/VenueMediaGallery";
+import VenueBookingSection from "../../components/Venue/SingleVenue/VenueBookingSection";
 
 const Venue = () => {
  let { id } = useParams();

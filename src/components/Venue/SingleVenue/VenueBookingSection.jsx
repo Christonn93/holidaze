@@ -1,7 +1,7 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import React from "react";
-import { baseUrl, bookings } from "../../api/constants";
-import { headers } from "../../api/auth/headers";
+import { baseUrl, bookings } from "../../../api/constants";
+import { headers } from "../../../api/auth/headers";
 /*
 NOTE: 
 

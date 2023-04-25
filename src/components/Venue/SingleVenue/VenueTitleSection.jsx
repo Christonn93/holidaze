@@ -1,6 +1,6 @@
 import React from "react";
 
-import { changeTimeFormat } from "../../js/changeTimeFormat";
+import { changeTimeFormat } from "../../../js/changeTimeFormat";
 
 import { Box, Typography } from "@mui/material";
 
