@@ -30,6 +30,7 @@ import RouteNotFound from "./pages/public/404";
 import Profile from "./pages/private/Profile";
 import PrivVenue from "./pages/private/PrivVenue";
 import CreateVenue from "./pages/private/CreateVenue";
+import TestingNewComponents from "./pages/private/TestingNewComponents";
 
 function App() {
  const [theme, colorMode] = useMode();
@@ -55,6 +56,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/venue/:id/edit" element={<PrivVenue />} />
           <Route path="/venue/create" element={<CreateVenue />} />
+          <Route path="/testing" element={<TestingNewComponents />} />
          </Route>
         </Route>
        </Routes>

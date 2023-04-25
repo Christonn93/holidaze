@@ -6,10 +6,12 @@ import { useNavigate } from "react-router-dom";
 import { Avatar, Box, Divider, IconButton, ListItemIcon, Menu, MenuItem, Tooltip } from "@mui/material";
 
 import Logout from "@mui/icons-material/Logout";
+import ConstructionIcon from "@mui/icons-material/Construction";
 
 // Importing components
 import { getLocalStorageItem } from "../../js/storage/getItems";
 import { logOutListener } from "../../js/logOut";
+import SearchBar from "../SearchBar/SearchBar";
 
 const Navigation = ({ status }) => {
  const [anchorEl, setAnchorEl] = useState(null);
@@ -26,11 +28,18 @@ const Navigation = ({ status }) => {
   setAnchorEl(event.currentTarget);
  };
 
- const handleNavigate = () => {
-  setAnchorEl(null);
-  navigate("/profile");
+ const handleNavigate = (path) => {
+  if (path === "profile") {
+   navigate("/profile");
+   if (!isLoggedIn) navigate("/login");
+  }
 
-  if (!isLoggedIn) navigate("/login");
+  if (path === "testing") {
+   navigate("/testing");
+   if (!isLoggedIn) navigate("/login");
+  }
+
+  setAnchorEl(null);
  };
 
  const handleLogout = () => {
@@ -45,6 +54,7 @@ const Navigation = ({ status }) => {
  return (
   <React.Fragment>
    <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
+    <SearchBar />
     <Tooltip title="Account">
      <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }} aria-controls={open ? "account-menu" : undefined} aria-haspopup="true" aria-expanded={open ? "true" : undefined}>
       <Avatar sx={{ width: 43, height: 43 }} src={src}></Avatar>
@@ -88,8 +98,11 @@ const Navigation = ({ status }) => {
    >
     {isLoggedIn ? (
      <Box>
-      <MenuItem onClick={handleNavigate}>
+      <MenuItem onClick={() => handleNavigate("profile")}>
        <Avatar src={src} /> Profile
+      </MenuItem>
+      <MenuItem onClick={() => handleNavigate("testing")}>
+       <ConstructionIcon /> Testing components
       </MenuItem>
       <Divider />
       <MenuItem onClick={handleLogout}>
@@ -101,7 +114,7 @@ const Navigation = ({ status }) => {
      </Box>
     ) : (
      <Box>
-      <MenuItem onClick={handleNavigate}>
+      <MenuItem onClick={() => handleNavigate("path")}>
        <Avatar /> Login / register
       </MenuItem>
      </Box>

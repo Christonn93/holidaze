@@ -2,7 +2,7 @@
 import React from "react";
 
 // Importing MUI
-import { Box, TextField, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 
 // Importing hooks and functions
 import useApi from "../../hooks/useApi";
@@ -14,8 +14,6 @@ import VenueCard from "../../components/Cards/VenueCards/VenueCard";
 import ListingFilter from "../../components/Filter/ListingFilter";
 import UiFeedback from "../../components/UiFeedback/UiFeedback";
 import Loading from "../../components/Loading/Loading";
-
-import SearchIcon from "@mui/icons-material/Search";
 
 const Home = () => {
  updateHead("Home");
@@ -35,21 +33,6 @@ const Home = () => {
  return (
   <>
    <h1>Home</h1>
-   <Box
-    sx={{
-     display: "flex",
-     flexDirection: "column",
-     gap: 2,
-     marginTop: 5,
-     marginBottom: 5,
-    }}
-   >
-    <Typography>Testing new components</Typography>
-    <Box>
-     <TextField label={<SearchIcon />} id="search" placeholder="Search.." />
-    </Box>
-   </Box>
-
    <ListingFilter />
    {data.map((venue) => {
     return (
