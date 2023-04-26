@@ -33,7 +33,7 @@ const RegisterUser = () => {
   <>
    <form onSubmit={formSubmit}>
     <TextField
-     variant="standard"
+     variant="outlined"
      margin="normal"
      fullWidth
      id="username"
@@ -46,7 +46,7 @@ const RegisterUser = () => {
      }}
     />
     <TextField
-     variant="standard"
+     variant="outlined"
      margin="normal"
      fullWidth
      id="avatar"
@@ -57,7 +57,7 @@ const RegisterUser = () => {
      onChange={(e) => setAvatar(e.target.value)}
     />
     <TextField
-     variant="standard"
+     variant="outlined"
      margin="normal"
      fullWidth
      id="email"
@@ -68,7 +68,7 @@ const RegisterUser = () => {
      onChange={(e) => setEmail(e.target.value)}
     />
     <TextField
-     variant="standard"
+     variant="outlined"
      margin="normal"
      fullWidth
      id="password"
