@@ -1,8 +1,8 @@
 import React from "react";
 
 import { Typography, Box, Stack } from "@mui/material";
-import { changeTimeFormat } from "../../../js/changeTimeFormat";
-import ListingCards from "../../Cards/ListingCards";
+import { changeTimeFormat } from "../../js/changeTimeFormat";
+import ListingCards from "../Cards/ListingCards";
 
 const BookingsDetails = ({ data }) => {
  console.log("BookingsDetails", data);

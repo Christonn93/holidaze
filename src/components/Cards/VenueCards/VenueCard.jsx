@@ -18,13 +18,16 @@ const VenueCard = ({ data }) => {
  const isMobile = useMediaQuery(device.breakpoints.down("md"));
 
  // Destruction data
- const { name, maxGuests, price, media, meta, id } = data;
+ const { name, maxGuests, price, media, meta, id, location } = data;
 
  // Default image value
  const imageMissing = "https://via.placeholder.com/600x400?text=Image+missing";
 
  // Destructing meta data
  const { wifi, parking, breakfast } = meta;
+
+ // Destructing location data
+ const { address, city, country } = location;
 
  // Capitalize title
  const rawName = name;
@@ -56,7 +59,7 @@ const VenueCard = ({ data }) => {
  return (
   <Card sx={!isMobile ? CardBase : CardBaseMobile}>
    <Box maxWidth={!isMobile ? 350 : 400}>
-    {media ? <CardMedia component="img" image={media[0]} alt="alternative text for image" /> : <CardMedia component="img" image={imageMissing} alt="alternative text for image" />}
+    <CardMedia component="img" image={media[0] ? media[0] : imageMissing} alt={media[0] ? "Main image of venue" : "Image is missing"} />
    </Box>
    <Box
     sx={{
@@ -74,8 +77,17 @@ const VenueCard = ({ data }) => {
       width: "100%",
      }}
     >
-     <Box sx={flexSpaceBetween}>
+     <Box
+      sx={{
+       display: "flex",
+       flexDirection: "column",
+       width: "100%",
+      }}
+     >
       <Typography variant="h3">{fixedName}</Typography>
+      <Typography variant="subtitle2">
+       {address === "Unknown" ? <></> : <>{address},</>} {city === "Unknown" ? <></> : <>{city},</>} {country === "Unknown" ? <></> : <>{country}</>}
+      </Typography>
      </Box>
      <Box sx={flexSpaceBetween}>
       <Chip icon={<GroupsIcon />} label={maxGuests} />

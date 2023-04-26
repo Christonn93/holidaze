@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Box, CardMedia, Typography, useTheme, useMediaQuery, ImageListItem, ImageListItemBar } from "@mui/material";
-import ReplaceUserImage from "../../Dialog/ReplaceUserImage";
+import ReplaceUserImage from "../Dialog/ReplaceUserImage";
 
 const ProfileDetails = ({ name, avatar, venueManager }) => {
  const device = useTheme();
