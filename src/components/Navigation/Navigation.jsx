@@ -10,7 +10,7 @@ import ConstructionIcon from "@mui/icons-material/Construction";
 
 // Importing components
 import { getLocalStorageItem } from "../../js/storage/getItems";
-import { logOutListener } from "../../js/logOut";
+import LogOutUser from "../../js/logOut";
 import SearchBar from "../SearchBar/SearchBar";
 
 const Navigation = ({ status }) => {
@@ -29,22 +29,20 @@ const Navigation = ({ status }) => {
  };
 
  const handleNavigate = (path) => {
+  setAnchorEl(null);
+  if (!isLoggedIn) navigate("/login");
   if (path === "profile") {
    navigate("/profile");
-   if (!isLoggedIn) navigate("/login");
   }
 
   if (path === "testing") {
    navigate("/testing");
-   if (!isLoggedIn) navigate("/login");
   }
-
-  setAnchorEl(null);
  };
 
  const handleLogout = () => {
   setAnchorEl(null);
-  logOutListener();
+  LogOutUser();
  };
 
  const handleClose = () => {
