@@ -84,19 +84,11 @@ const ListingFilter = ({ setParams }) => {
      >
       <FormControl fullWidth>
        <InputLabel id="selectValue">Guests</InputLabel>
-<<<<<<< HEAD
        <Select labelId="selectValue" id="demo-simple-select" value={Guests} label="Guests" name="guests" onChange={handleChange}>
         <MenuItem value={"0-5"}>0-5</MenuItem>
         <MenuItem value={"6-10"}>6-10</MenuItem>
         <MenuItem value={"11-15"}>11-15</MenuItem>
         <MenuItem value={"16+"}>16+</MenuItem>
-=======
-       <Select variant="standard" labelId="selectValue" id="demo-simple-select" value={Guests} label="Guests" onChange={handleChange}>
-        <MenuItem value={1}>0-5</MenuItem>
-        <MenuItem value={2}>6-10</MenuItem>
-        <MenuItem value={3}>11-15</MenuItem>
-        <MenuItem value={4}>16+</MenuItem>
->>>>>>> cc03e88a537014c3197beb85a117130ce57bbc70
        </Select>
       </FormControl>
      </FormGroup>

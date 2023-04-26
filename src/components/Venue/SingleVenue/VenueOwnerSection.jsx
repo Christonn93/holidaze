@@ -3,7 +3,7 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import UserAvatar from "../../../components/UserAvatar/UserAvatar";
 
-import { changeTimeFormat } from "../../js/changeTimeFormat";
+import { changeTimeFormat } from "../../../js/changeTimeFormat";
 
 const VenueOwnerSection = ({ name, avatar, email, created, updated }) => {
  const createdTime = changeTimeFormat(created);
