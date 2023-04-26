@@ -1,16 +1,29 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import { Typography, Box, Stack } from "@mui/material";
 import { changeTimeFormat } from "../../js/changeTimeFormat";
 import ListingCards from "../Cards/ListingCards";
 
+import SettingsIcon from "@mui/icons-material/Settings";
+
 const BookingsDetails = ({ data }) => {
+ const navigate = useNavigate();
  console.log("BookingsDetails", data);
 
  if (!data) {
   console.error(data);
   return <h1>There was no data found</h1>;
  }
+
+ const handleNavigate = (path, id) => {
+  if (path === "create") {
+   navigate(`/booking/create`);
+  }
+  if (path === "edit") {
+   navigate(`/booking/edit/${id}`);
+  }
+ };
 
  return (
   <>
@@ -29,7 +42,7 @@ const BookingsDetails = ({ data }) => {
 
      return (
       <>
-       <ListingCards name={e.venue.name} infoChildren={info} buttonChildren={"Manage booking"} />
+       <ListingCards name={e.venue.name} infoChildren={info} buttonChildren={<SettingsIcon />} buttonAction={() => handleNavigate("edit", e.id)} ToolTipTitle={"Edit Booking"} />
       </>
      );
     })}

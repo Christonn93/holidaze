@@ -5,6 +5,8 @@ import { Box, Button, Chip, Stack } from "@mui/material";
 
 import ListingCards from "../../Cards/ListingCards";
 
+import SettingsIcon from "@mui/icons-material/Settings";
+
 const VenueDetails = ({ data }) => {
  const navigate = useNavigate();
 
@@ -18,7 +20,7 @@ const VenueDetails = ({ data }) => {
    navigate(`/venue/create`);
   }
   if (path === "edit") {
-   navigate(`/venue/${id}/edit`);
+   navigate(`/venue/edit/${id}`);
   }
  };
 
@@ -52,8 +54,9 @@ const VenueDetails = ({ data }) => {
        <ListingCards
         name={e.name}
         infoChildren={<Chip label={!status ? "Free" : "rented out"} color={!status ? "success" : "error"} variant="outlined" />}
-        buttonChildren={"Manage venue"}
+        buttonChildren={<SettingsIcon />}
         buttonAction={() => handleNavigate("edit", e.id)}
+        ToolTipTitle={"Edit venue"}
        />
       </>
      );

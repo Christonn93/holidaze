@@ -33,6 +33,7 @@ import PrivVenue from "./pages/private/PrivVenue";
 import CreateVenue from "./pages/private/CreateVenue";
 import TestingNewComponents from "./pages/private/TestingNewComponents";
 import SearchResult from "./pages/public/SearchResult";
+import Booking from "./pages/private/Booking";
 
 function App() {
  const [theme, colorMode] = useMode();
@@ -58,8 +59,9 @@ function App() {
          {/* Private routes routes */}
          <Route element={<RequireAuth />}>
           <Route path="/profile" element={<Profile />} />
-          <Route path="/venue/:id/edit" element={<PrivVenue />} />
+          <Route path="/venue/edit/:id" element={<PrivVenue />} />
           <Route path="/venue/create" element={<CreateVenue />} />
+          <Route path="/booking/edit/:id" element={<Booking />} />
           <Route path="/testing" element={<TestingNewComponents />} />
          </Route>
         </Route>

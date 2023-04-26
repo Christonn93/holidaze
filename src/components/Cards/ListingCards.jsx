@@ -1,8 +1,8 @@
 import React from "react";
 
-import { Paper, Typography, Button, Box } from "@mui/material";
+import { Paper, Typography, Box, IconButton, Tooltip } from "@mui/material";
 
-const ListingCards = ({ name, infoChildren, buttonChildren, buttonAction }) => {
+const ListingCards = ({ name, infoChildren, buttonChildren, buttonAction, ToolTipTitle }) => {
  return (
   <>
    <Paper
@@ -24,9 +24,11 @@ const ListingCards = ({ name, infoChildren, buttonChildren, buttonAction }) => {
       justifyContent: "end",
      }}
     >
-     <Button variant="outlined" color="primary" onClick={buttonAction}>
-      {buttonChildren}
-     </Button>
+     <Tooltip title={ToolTipTitle}>
+      <IconButton variant="outlined" color="primary" onClick={buttonAction}>
+       {buttonChildren}
+      </IconButton>
+     </Tooltip>
     </Box>
    </Paper>
   </>
