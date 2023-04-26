@@ -3,7 +3,12 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import UserAvatar from "../../../components/UserAvatar/UserAvatar";
 
-const VenueOwnerSection = ({ name, avatar, email }) => {
+import { changeTimeFormat } from "../../js/changeTimeFormat";
+
+const VenueOwnerSection = ({ name, avatar, email, created, updated }) => {
+ const createdTime = changeTimeFormat(created);
+ const updatedTime = changeTimeFormat(updated);
+
  return (
   <>
    <Box>
@@ -18,6 +23,15 @@ const VenueOwnerSection = ({ name, avatar, email }) => {
      <Typography variant="h4">{name}</Typography>
     </Box>
     <Typography variant="body2">Contact: {email}</Typography>
+    <Box
+     sx={{
+      display: "flex",
+      gap: 2,
+     }}
+    >
+     <Typography variant="subtitle2">Created: {createdTime}</Typography>
+     <Typography variant="subtitle2">Updated: {updatedTime}</Typography>
+    </Box>
    </Box>
   </>
  );

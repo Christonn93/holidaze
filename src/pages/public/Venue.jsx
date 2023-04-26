@@ -54,7 +54,7 @@ const Venue = () => {
     }}
    >
     <Box>
-     <VenueTitleSection name={name} created={created} updated={updated} />
+     <VenueTitleSection name={name} />
      <VenueMainMedia media={media} />
     </Box>
     <Box>
@@ -79,7 +79,7 @@ const Venue = () => {
      <Typography variant="h4" marginBottom={1}>
       Owner details
      </Typography>
-     <VenueOwnerSection name={ownerName} avatar={avatar} email={email} />
+     <VenueOwnerSection name={ownerName} avatar={avatar} email={email} created={created} updated={updated} />
     </Box>
    </Box>
   </>

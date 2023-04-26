@@ -3,16 +3,19 @@ import React, { useState } from "react";
 
 // Importing MUI
 import { Box, Tabs, Tab, Button } from "@mui/material";
+import { Logout } from "@mui/icons-material";
+
+// Importing functions
+import useApi from "../../hooks/useApi";
+import { profiles } from "../../api/constants";
+import LogOutUser from "../../js/logOut";
+import { updateHead } from "../../js/updateHeader";
 
 // Importing components
 import { TabPanel } from "../Tab/TabPanel";
-import ProfileDetails from "./User/ProfileDetails";
-import VenueDetails from "./User/VenueDetails";
-import BookingsDetails from "./User/BookingsDetails";
-import useApi from "../../hooks/useApi";
-import { profiles } from "../../api/constants";
-import { logOutListener } from "../../js/logOut";
-import { updateHead } from "../../js/updateHeader";
+import ProfileDetails from "./ProfileDetails";
+import VenueDetails from "./Manager/VenueDetails";
+import BookingsDetails from "./BookingsDetails";
 
 const Dashboard = ({ status }) => {
  const [value, setValue] = useState(0);
@@ -48,11 +51,6 @@ const Dashboard = ({ status }) => {
 
  if (isError) console.log(isError);
 
- const logOutUser = () => {
-  logOutListener();
-  alert("logging out");
- };
-
  return (
   <>
    <Box
@@ -63,14 +61,9 @@ const Dashboard = ({ status }) => {
     }}
    >
     <h1>Dashboard</h1>
-    <Button
-     variant="contained"
-     color="error"
-     onClick={() => {
-      logOutUser();
-     }}
-    >
-     Log out
+    <Button variant="outlined" color="error" onClick={LogOutUser}>
+     <Logout fontSize="small" />
+     Logout
     </Button>
    </Box>
    <Box sx={{ flexGrow: 1, bgcolor: "background.paper", display: "flex", flexDirection: "column" }}>
