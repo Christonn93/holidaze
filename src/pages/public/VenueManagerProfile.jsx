@@ -40,7 +40,7 @@ const VenueManagerProfile = () => {
     <Typography variant="body1">Hi, my name is {fixedName}. I'm a venue manager and have some good quality venues for you to visit.</Typography>
     <Typography variant="body1">
      If you want more information about my venues, feel free to contact me on{" "}
-     <a href={`mailto:${data.email}`} target="_blank">
+     <a href={`mailto:${data.email}`} target="_blank"  rel="noreferrer">
       email
      </a>
     </Typography>

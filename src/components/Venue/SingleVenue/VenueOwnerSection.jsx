@@ -38,7 +38,7 @@ const VenueOwnerSection = ({ name, avatar, email, created, updated }) => {
     </Box>
     <Typography variant="body2">
      Contact:{" "}
-     <a href={`mailto:${email}`} target="_blank">
+     <a href={`mailto:${email}`} target="_blank" rel="noreferrer">
       {email}
      </a>
     </Typography>
