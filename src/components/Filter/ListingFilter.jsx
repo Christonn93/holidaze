@@ -57,7 +57,7 @@ const ListingFilter = ({ setParams }) => {
      <FilterAltIcon />
     </IconButton>
 
-    <Popper open={open} anchorEl={anchorRef.current} role={undefined} placement="bottom-start" transition disablePortal>
+    <Popper open={open} anchorEl={anchorRef.current} role={undefined} placement="bottom-end" transition disablePortal className="filterBox">
      {({ TransitionProps, placement }) => (
       <Grow
        {...TransitionProps}
@@ -67,7 +67,7 @@ const ListingFilter = ({ setParams }) => {
       >
        <Paper>
         <ClickAwayListener onClickAway={handleClose}>
-         <MenuList autoFocusItem={open} id="composition-menu" aria-labelledby="composition-button" onKeyDown={handleListKeyDown} className="filterBox">
+         <MenuList autoFocusItem={open} id="composition-menu" aria-labelledby="composition-button" onKeyDown={handleListKeyDown}>
           <MenuItem
            onClick={() => {
             handleClick("price", "asc");
