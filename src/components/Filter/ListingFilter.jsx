@@ -65,13 +65,9 @@ const ListingFilter = ({ setParams }) => {
         transformOrigin: placement === "bottom-start" ? "left top" : "left bottom",
        }}
       >
-       <Paper
-        sx={{
-         zIndex: "tooltip",
-        }}
-       >
+       <Paper>
         <ClickAwayListener onClickAway={handleClose}>
-         <MenuList autoFocusItem={open} id="composition-menu" aria-labelledby="composition-button" onKeyDown={handleListKeyDown}>
+         <MenuList autoFocusItem={open} id="composition-menu" aria-labelledby="composition-button" onKeyDown={handleListKeyDown} className="filterBox">
           <MenuItem
            onClick={() => {
             handleClick("price", "asc");
