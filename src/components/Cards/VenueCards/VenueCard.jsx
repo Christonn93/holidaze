@@ -32,21 +32,35 @@ const VenueCard = ({ data }) => {
  // Destructing location data
  const { address, city, country } = location;
 
+ if ((!address && !city && !country === "Unknown") || "") return null;
+
+ if (location) {
+  if (!address && !city && !country) return <></>;
+
+  // const LocationDisplay = (
+  //  <Typography variant="subtitle2">
+  //   {address}, {city}, {country}
+  //  </Typography>
+  // );
+ }
+
  // Capitalize title
  const rawName = name;
  const fixedName = rawName.charAt(0).toUpperCase() + rawName.slice(1);
 
+ //  console.log("location", location);
+
  return (
   <Card sx={!isMobile ? CardBase : CardBaseMobile}>
    <Box maxWidth={!isMobile ? 350 : 400}>
-    <CardMedia component="img" image={imageCheck ? media[0] : imageMissing} alt={media[0] ? "Main image of venue" : "Image is missing"} />
+    <CardMedia src="image" component="img" image={imageCheck ? media[0] : imageMissing} alt={media[0] ? "Main image of venue" : "Image is missing"} />
    </Box>
    <Box
     sx={{
      display: "flex",
      flexDirection: "column",
      justifyContent: "space-between",
-     width: "100%",
+     width: 2 / 2,
     }}
    >
     <CardContent
@@ -72,7 +86,7 @@ const VenueCard = ({ data }) => {
      <Box sx={flexSpaceBetween}>
       <Chip icon={<GroupsIcon />} label={maxGuests} />
 
-      <Typography variant="body2">Price: {price} NOK</Typography>
+      <Typography variant="body2">{price} NOK pr night</Typography>
      </Box>
     </CardContent>
     <CardContent sx={flexSpaceBetween}>

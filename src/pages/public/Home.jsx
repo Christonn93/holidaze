@@ -13,8 +13,8 @@ import ListingFilter from "../../components/Filter/ListingFilter";
 import VenueList from "../../components/Venue/VenueList";
 
 const Home = () => {
- const [params, setParams] = useSearchParams();
- const filterOption = params.get("filter");
+ console.clear();
+ let [searchParams, setSearchParams] = useSearchParams();
 
  // Updating head section of the page
  updateHead("Home");
@@ -23,10 +23,10 @@ const Home = () => {
   <>
    <h1>Home</h1>
    <Box>
-    <ListingFilter setParams={setParams} />
+    <ListingFilter setParams={setSearchParams} />
    </Box>
    <Box>
-    <VenueList params={filterOption} />
+    <VenueList params={searchParams} />
    </Box>
   </>
  );

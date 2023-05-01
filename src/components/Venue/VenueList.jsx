@@ -1,5 +1,6 @@
 // Importing React
 import React from "react";
+import { useSearchParams } from "react-router-dom";
 
 // Importing MUI
 import { Box } from "@mui/material";
@@ -13,8 +14,15 @@ import VenueCard from "../Cards/VenueCards/VenueCard";
 import UiFeedback from "../../components/UiFeedback/UiFeedback";
 import Loading from "../../components/Loading/Loading";
 
-const VenueList = ({ params }) => {
- let endpoint = venues + `?_owner=true&_bookings=true`;
+const VenueList = () => {
+ let [searchParams] = useSearchParams();
+ let limit = 50;
+ let endpoint = venues + `?_owner=true&_bookings=true&limit=${limit}`;
+
+ // eslint-disable-next-line
+ const [key, value] = searchParams.entries();
+ if (key) endpoint = venues + `?_owner=true&_bookings=true&limit=${limit}&sort=${key[0]}&sortOrder=${key[1]}`;
+ if (key === "search") endpoint = venues + `?_owner=true&_bookings=true&limit=${limit}`;
 
  const method = "GET";
 
@@ -27,36 +35,30 @@ const VenueList = ({ params }) => {
   return <UiFeedback severity="error" title={"An unexpected error have accrued"} message={"Please refresh the page"} />;
  }
 
- console.log(data);
-
- const paramsArray = [];
-
- if (params) {
-  paramsArray.push(JSON.parse(params));
-  console.log("paramsArray", paramsArray);
+ if (!data.map) {
+  console.log(data);
+  return <UiFeedback severity="error" title={"An unexpected error have accrued"} message={"Please refresh the page"} />;
  }
+
+ //  console.log("endpoint", endpoint);
+ // console.log("Data", data);
+ // console.log("Params", params);
 
  return (
   <>
-   {data
-    .filter((venue) => {
-     // console.log("Filtered Venue list params", params);
-     return venue;
-    })
-    .map((venue) => {
-     // console.log("Full venue list", venue);
-
-     return (
-      <Box
-       key={venue.id}
-       sx={{
-        marginTop: 2,
-       }}
-      >
-       <VenueCard data={venue} />
-      </Box>
-     );
-    })}
+   {data.map((venue) => {
+    // console.log("Full venue list", venue);
+    return (
+     <Box
+      key={venue.id}
+      sx={{
+       marginTop: 2,
+      }}
+     >
+      <VenueCard data={venue} />
+     </Box>
+    );
+   })}
   </>
  );
 };

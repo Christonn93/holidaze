@@ -25,7 +25,7 @@ const TestingNewComponents = () => {
  const [blockedValue, setBlockedValue] = useState([
   {
    startDate: new Date(),
-   endDate: null,
+   endDate: new Date(),
    key: "selection",
   },
  ]);
@@ -37,12 +37,16 @@ const TestingNewComponents = () => {
   },
  ]);
 
+ //  useEffect(() => {
+ //   setBlockedValue(
+ //    data.map((e) => {
+ //     return getDatesBetween(new Date(e.dateFrom), new Date(e.dateTo));
+ //    })
+ //   );
+ //  }, []);
+
  useEffect(() => {
-  setBlockedValue(
-   data.map((e) => {
-    return getDatesBetween(new Date(e.dateFrom), new Date(e.dateTo));
-   })
-  );
+  data.forEach((e) => setBlockedValue(getDatesBetween(new Date(e.dateFrom), new Date(e.dateTo))));
  }, []);
 
  console.log("Blocked Value", blockedValue);

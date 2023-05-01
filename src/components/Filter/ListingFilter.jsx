@@ -1,125 +1,128 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
-import { Box, Button, Checkbox, FormControl, FormControlLabel, FormGroup, InputLabel, MenuItem, Paper, Select, Typography } from "@mui/material";
-import { encodeSearchParams } from "./searchParams";
+import { Box, ClickAwayListener, Grow, IconButton, MenuItem, MenuList, Paper, Popper } from "@mui/material";
+
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
 
 const ListingFilter = ({ setParams }) => {
- const [Guests, setGuests] = useState("");
- const [checkState, setCheckState] = useState("");
+ const [open, setOpen] = useState(false);
+ const anchorRef = useRef(null);
 
- const handleChange = (event) => {
-  setGuests(event.target.value);
+ const handleClick = (option, direction) => {
+  const filters = { [option]: direction };
+
+  if (option === "price") setParams(filters);
+  if (option === "maxGuests") setParams(filters);
+  if (option === "rating") setParams(filters);
+
+  setOpen(false);
  };
 
- const checkStatus = (e) => {
-  if (e.target.name !== "") {
-   const value = e.target.value;
+ const handleToggle = () => {
+  setOpen((prevOpen) => !prevOpen);
+ };
 
-   if (e.target.checked) {
-    setCheckState({
-     ...checkState,
-     [e.target.name]: e.target.checked,
-    });
-   } else {
-    setCheckState({
-     ...checkState,
-     [e.target.name]: value,
-    });
-   }
+ const handleClose = () => {
+  setOpen(false);
+ };
+
+ function handleListKeyDown(event) {
+  if (event.key === "Tab") {
+   event.preventDefault();
+   setOpen(false);
+  } else if (event.key === "Escape") {
+   setOpen(false);
   }
- };
+ }
 
- const handleSubmit = (e) => {
-  e.preventDefault();
+ // return focus to the button when we transitioned from !open -> open
+ const prevOpen = React.useRef(open);
+ React.useEffect(() => {
+  if (prevOpen.current === true && open === false) {
+   anchorRef.current.focus();
+  }
 
-  const form = e.target;
-  const guests = form.guests.value || "all";
-  const wifi = form.wifi.value;
-  const pets = form.pets.value;
-  const parking = form.parking.value;
-  const breakfast = form.breakfast.value;
-
-  const filters = JSON.stringify({
-   guests: guests,
-   wifi: wifi,
-   pets: pets,
-   parking: parking,
-   breakfast: breakfast,
-  });
-
-  const params = {
-   filter: filters,
-  };
-
-  setParams(encodeSearchParams(params));
- };
+  prevOpen.current = open;
+ }, [open]);
 
  return (
   <>
-   <Paper
+   <Box
     sx={{
-     padding: 2,
+     display: "flex",
+     justifyContent: "flex-end",
     }}
    >
-    <Typography variant="h6" marginBottom={1}>
-     Find your next venue
-    </Typography>
+    <IconButton ref={anchorRef} id="composition-button" aria-controls={open ? "composition-menu" : undefined} aria-expanded={open ? "true" : undefined} aria-haspopup="true" onClick={handleToggle}>
+     <FilterAltIcon />
+    </IconButton>
 
-    <Box
-     component="form"
-     sx={{
-      display: "flex",
-      gap: 3,
-      justifyContent: "space-between",
-      alignItems: "center",
-      alignContent: "flex-start",
-      flexWrap: "wrap",
-     }}
-     onSubmit={handleSubmit}
-    >
-     <FormGroup
-      sx={{
-       width: 150,
-      }}
-     >
-      <FormControl fullWidth>
-       <InputLabel id="selectValue">Guests</InputLabel>
-       <Select labelId="selectValue" id="demo-simple-select" value={Guests} label="Guests" name="guests" onChange={handleChange}>
-        <MenuItem value={"0-5"}>0-5</MenuItem>
-        <MenuItem value={"6-10"}>6-10</MenuItem>
-        <MenuItem value={"11-15"}>11-15</MenuItem>
-        <MenuItem value={"16+"}>16+</MenuItem>
-       </Select>
-      </FormControl>
-     </FormGroup>
-     <FormGroup>
-      <Typography>Accommodations</Typography>
-      <FormGroup row>
-       <FormControlLabel control={<Checkbox checked={setCheckState["wifi"]} onChange={checkStatus} name="wifi" />} label="Wifi" />
-       <FormControlLabel control={<Checkbox checked={setCheckState["pets"]} onChange={checkStatus} name="pets" />} label="Pets" />
-       <FormControlLabel control={<Checkbox checked={setCheckState["parking"]} onChange={checkStatus} name="parking" />} label="Parking" />
-       <FormControlLabel control={<Checkbox checked={setCheckState["breakfast"]} onChange={checkStatus} name="breakfast" />} label="Breakfast" />
-      </FormGroup>
-     </FormGroup>
-     <FormGroup>
-      <Button type="submit" variant="outlined" color="success">
-       Filter venues
-      </Button>
-     </FormGroup>
-    </Box>
-   </Paper>
+    <Popper open={open} anchorEl={anchorRef.current} role={undefined} placement="bottom-start" transition disablePortal>
+     {({ TransitionProps, placement }) => (
+      <Grow
+       {...TransitionProps}
+       style={{
+        transformOrigin: placement === "bottom-start" ? "left top" : "left bottom",
+       }}
+      >
+       <Paper
+        sx={{
+         zIndex: "tooltip",
+        }}
+       >
+        <ClickAwayListener onClickAway={handleClose}>
+         <MenuList autoFocusItem={open} id="composition-menu" aria-labelledby="composition-button" onKeyDown={handleListKeyDown}>
+          <MenuItem
+           onClick={() => {
+            handleClick("price", "asc");
+           }}
+          >
+           Price Low-High
+          </MenuItem>
+          <MenuItem
+           onClick={() => {
+            handleClick("price", "desc");
+           }}
+          >
+           Price High-Low
+          </MenuItem>
+          <MenuItem
+           onClick={() => {
+            handleClick("rating", "asc");
+           }}
+          >
+           Rating Low-High
+          </MenuItem>
+          <MenuItem
+           onClick={() => {
+            handleClick("rating", "desc");
+           }}
+          >
+           Rating High-Low
+          </MenuItem>
+          <MenuItem
+           onClick={() => {
+            handleClick("maxGuests", "asc");
+           }}
+          >
+           Guests Low-High
+          </MenuItem>
+          <MenuItem
+           onClick={() => {
+            handleClick("maxGuests", "desc");
+           }}
+          >
+           Guests High-Low
+          </MenuItem>
+         </MenuList>
+        </ClickAwayListener>
+       </Paper>
+      </Grow>
+     )}
+    </Popper>
+   </Box>
   </>
  );
 };
 
 export default ListingFilter;
-
-/* <FormGroup
-sx={{
- width: 150,
-}}
->
-<FormControl>
- <TextField variant="standard" label={"Search"} name="search" />
-</FormControl>
-</FormGroup> */

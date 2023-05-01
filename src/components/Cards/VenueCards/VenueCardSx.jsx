@@ -3,7 +3,7 @@ export const CardBase = {
  flexDirection: "row",
  gap: 2,
  maxWidth: 1150,
- maxHeight: 250,
+ maxHeight: 350,
 };
 
 export const CardBaseMobile = {
