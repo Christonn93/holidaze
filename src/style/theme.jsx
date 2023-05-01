@@ -272,6 +272,15 @@ export const themeSettings = (mode) => {
    marginTop: 0,
    fontWeight: 500,
   },
+  components: {
+   MuiDatePicker: {
+    styleOverrides: {
+     root: {
+      backgroundColor: "#f25f5c",
+     },
+    },
+   },
+  },
  };
 };
 
@@ -281,7 +290,7 @@ export const ColorModeContext = createContext({
 });
 
 export const useMode = () => {
- const [mode, setMode] = useState("dark");
+ const [mode, setMode] = useState("light");
 
  const colorMode = useMemo(
   () => ({

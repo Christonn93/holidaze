@@ -10,6 +10,10 @@ import Layout from "./layout/BaseLayout";
 import { ColorModeContext, useMode } from "../src/style/theme";
 import "../src/style/defaultStyle.css";
 
+// Calender style
+import "react-date-range/dist/styles.css"; // main style file
+import "react-date-range/dist/theme/default.css"; // theme css file
+
 // Importing context and auth
 import RequireAuth from "./auth/RequireAuth";
 import { AuthProvider } from "./context/AuthProvider";
