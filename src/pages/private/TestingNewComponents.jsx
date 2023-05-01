@@ -17,16 +17,18 @@ import { getDatesBetween } from "../../js/getDatesBetween";
 console.log(data);
 
 const TestingNewComponents = () => {
+ // eslint-disable-line no-console
+ console.clear();
+ updateHead("Playground");
+
  // eslint-disable-next-line
- const [blockedValue, setBlockedValue] = useState(
-  data.map((e) => {
-   return {
-    startDate: new Date(e.dateFrom),
-    endDate: new Date(e.dateTo),
-    disabled: true,
-   };
-  })
- );
+ const [blockedValue, setBlockedValue] = useState([
+  {
+   startDate: new Date(),
+   endDate: null,
+   key: "selection",
+  },
+ ]);
  const [inputValue, setInputValue] = useState([
   {
    startDate: new Date(),
@@ -35,41 +37,16 @@ const TestingNewComponents = () => {
   },
  ]);
 
- // Doing useEffect with forEach
  useEffect(() => {
-  data.forEach((e) => {
-   let dateFrom = e.dateFrom;
-   let dateTo = e.dateTo;
-   return setBlockedValue(getDatesBetween(new Date(dateFrom), new Date(dateTo)));
-  });
+  setBlockedValue(
+   data.map((e) => {
+    return getDatesBetween(new Date(e.dateFrom), new Date(e.dateTo));
+   })
+  );
  }, []);
 
- // Doing useEffect with just return
- //  useEffect(() => {
- //   setBlockedValue(getDatesBetween(new Date(data.dateFrom), new Date(data.dateTo)));
- //  }, []);
+ console.log("Blocked Value", blockedValue);
 
- // Doing useEffect with map
- //  useEffect(() => {
- //   data.map((e) => {
- //    let dateFrom = e.dateFrom;
- //    let dateTo = e.dateTo;
- //    return setBlockedValue(getDatesBetween(new Date(dateFrom), new Date(dateTo)));
- //   });
- //  }, []);
-
- // Doing useEffect with forLoop
- //  useEffect(() => {
- //   for (let i = 0; i < data.length; i++) {
- //    let dateFrom = data[i].dateFrom;
- //    let dateTo = data[i].dateTo;
- //    return setBlockedValue(getDatesBetween(new Date(dateFrom), new Date(dateTo)));
- //   }
- //  }, []);
-
- updateHead("Playground");
-
- console.log(blockedValue);
  return (
   <Box
    sx={{
@@ -94,7 +71,7 @@ const TestingNewComponents = () => {
      editableDateInputs={true}
      onChange={(item) => {
       setInputValue([item.selection]);
-      console.log([item.selection]);
+      // console.log([item.selection]);
      }}
      moveRangeOnFirstSelection={false}
      ranges={inputValue}
@@ -107,3 +84,44 @@ const TestingNewComponents = () => {
 };
 
 export default TestingNewComponents;
+
+// Doing useEffect with forEach
+//  useEffect(() => {
+//   data.forEach((e) => {
+//    let dateFrom = e.dateFrom;
+//    let dateTo = e.dateTo;
+//    return setBlockedValue(getDatesBetween(new Date(dateFrom), new Date(dateTo)));
+//   });
+//  }, []);
+
+//  useEffect(() => {
+//   setBlockedValue(
+//    data.map((e) => {
+//     let dateFrom = e.dateFrom;
+//     let dateTo = e.dateTo;
+//     return {
+//      startDate: new Date(dateFrom),
+//      endDate: new Date(dateTo),
+//      disabled: true,
+//     };
+//    })
+//   );
+//  }, []);
+
+// Doing useEffect with map
+//  useEffect(() => {
+//   data.map((e) => {
+//    let dateFrom = e.dateFrom;
+//    let dateTo = e.dateTo;
+//    return setBlockedValue(getDatesBetween(new Date(dateFrom), new Date(dateTo)));
+//   });
+//  }, []);
+
+// Doing useEffect with forLoop
+//  useEffect(() => {
+//   for (let i = 0; i < data.length; i++) {
+//    let dateFrom = data[i].dateFrom;
+//    let dateTo = data[i].dateTo;
+//    return setBlockedValue(getDatesBetween(new Date(dateFrom), new Date(dateTo)));
+//   }
+//  }, []);
