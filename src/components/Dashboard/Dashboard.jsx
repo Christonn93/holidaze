@@ -35,18 +35,6 @@ const Dashboard = ({ status }) => {
 
  const { data, isLoading, isError } = useApi(endpoint, method);
 
- console.log("Dashboard", data.venues);
-
- const userData = {
-  name: data.name,
-  avatar: data.avatar,
-  venueManager: data.venueManager,
- };
-
- if (!userData) {
-  return;
- }
-
  if (isLoading) return <h1>Loading....</h1>;
 
  if (isError) console.log(isError);

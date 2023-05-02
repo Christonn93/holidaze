@@ -3,7 +3,10 @@ import * as React from "react";
 import { Button, TextField, Dialog, DialogContent, DialogContentText, DialogTitle, IconButton } from "@mui/material";
 import { PhotoCamera } from "@mui/icons-material";
 
-const ReplaceUserImage = () => {
+import { headers } from "../../api/auth/headers";
+import { profiles } from "../../api/constants";
+
+const ReplaceUserImage = ({ name }) => {
  const [open, setOpen] = React.useState(false);
 
  const handleClickOpen = () => {
@@ -16,6 +19,35 @@ const ReplaceUserImage = () => {
 
  const handleRequest = (e) => {
   e.preventDefault();
+
+  const form = e.target;
+  const formData = new FormData(form);
+  const avatar = formData.get("avatar");
+
+  // Variables for request
+  const Url = "https://api.noroff.dev/api/v1/holidaze";
+  const endPoint = profiles + `/${name}/media`;
+  const body = { avatar: avatar };
+
+  fetch(Url + endPoint, {
+   headers: headers("application/json"),
+   method: "PUT",
+   body: JSON.stringify(body),
+  })
+   .then((response) => {
+    if (!response.ok) {
+     throw new Error("Failed to submit form");
+    }
+    return response.json();
+   })
+   .then((data) => {
+    // Handle successful response from API
+    console.log(data);
+   })
+   .catch((error) => {
+    // Handle error
+    console.error(error);
+   });
  };
 
  return (

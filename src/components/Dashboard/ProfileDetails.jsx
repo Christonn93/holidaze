@@ -38,7 +38,7 @@ const ProfileDetails = ({ name, avatar, venueManager }) => {
         background: "transparent",
        }}
        position="top"
-       actionIcon={<ReplaceUserImage />}
+       actionIcon={<ReplaceUserImage name={name} />}
        actionPosition="left"
       />
      </ImageListItem>
