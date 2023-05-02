@@ -65,7 +65,7 @@ const Venue = () => {
      <Typography variant="h4" marginBottom={1}>
       Book your stay!
      </Typography>
-     <VenueBookingSection id={venueId} />
+     <VenueBookingSection data={bookings} id={venueId} />
     </Box>
 
     <Box>

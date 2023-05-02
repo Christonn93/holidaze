@@ -3,9 +3,11 @@ import React, { useRef, useState } from "react";
 import { Box, ClickAwayListener, Grow, IconButton, MenuItem, MenuList, Paper, Popper } from "@mui/material";
 
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
+import FilterAltOffIcon from "@mui/icons-material/FilterAltOff";
 
 const ListingFilter = ({ setParams }) => {
  const [open, setOpen] = useState(false);
+ const [filterOpen, setFilterOpen] = useState(false);
  const anchorRef = useRef(null);
 
  const handleClick = (option, direction) => {
@@ -15,6 +17,7 @@ const ListingFilter = ({ setParams }) => {
   if (option === "maxGuests") setParams(filters);
   if (option === "rating") setParams(filters);
 
+  setFilterOpen(true);
   setOpen(false);
  };
 
@@ -45,6 +48,10 @@ const ListingFilter = ({ setParams }) => {
   prevOpen.current = open;
  }, [open]);
 
+ const clearFilter = () => {
+  setParams(null);
+ };
+
  return (
   <>
    <Box
@@ -53,9 +60,15 @@ const ListingFilter = ({ setParams }) => {
      justifyContent: "flex-end",
     }}
    >
-    <IconButton ref={anchorRef} id="composition-button" aria-controls={open ? "composition-menu" : undefined} aria-expanded={open ? "true" : undefined} aria-haspopup="true" onClick={handleToggle}>
-     <FilterAltIcon />
-    </IconButton>
+    {!filterOpen ? (
+     <IconButton ref={anchorRef} id="composition-button" aria-controls={open ? "composition-menu" : undefined} aria-expanded={open ? "true" : undefined} aria-haspopup="true" onClick={handleToggle}>
+      <FilterAltIcon />
+     </IconButton>
+    ) : (
+     <IconButton ref={anchorRef} id="composition-button" aria-controls={open ? "composition-menu" : undefined} aria-expanded={open ? "true" : undefined} aria-haspopup="true" onClick={clearFilter}>
+      <FilterAltOffIcon />
+     </IconButton>
+    )}
 
     <Popper open={open} anchorEl={anchorRef.current} role={undefined} placement="bottom-end" transition disablePortal className="filterBox">
      {({ TransitionProps, placement }) => (

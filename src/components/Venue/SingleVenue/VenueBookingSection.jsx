@@ -2,6 +2,7 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 import React from "react";
 import { baseUrl, bookings } from "../../../api/constants";
 import { headers } from "../../../api/auth/headers";
+import BookingCalender from "../../Calender/BookingCalender";
 /*
 NOTE: 
 
@@ -16,7 +17,7 @@ API request body:
 
 */
 
-const VenueBookingSection = ({ id }) => {
+const VenueBookingSection = ({ data, id }) => {
  const handleSubmit = (e) => {
   e.preventDefault();
 
@@ -59,23 +60,19 @@ const VenueBookingSection = ({ id }) => {
   flexDirection: "column",
  };
 
+ if (!data) return;
+
  return (
   <>
    <form onSubmit={handleSubmit}>
     <Box sx={boxSx}>
-     <Box sx={boxSx}>
-      <Typography variant="caption">From</Typography>
-      <TextField type="date" name="dateFrom" id="dateFrom" required />
-     </Box>
-     <Box sx={boxSx}>
-      <Typography variant="caption">To</Typography>
-      <TextField type="date" name="dateTo" id="dateTo" required />
+     <Box>
+      <BookingCalender data={data} />
      </Box>
      <Box sx={boxSx}>
       <Typography variant="caption">Guests</Typography>
       <TextField type="number" name="guests" id="guests" required />
      </Box>
-
      <Button variant="contained" type="submit">
       Submit
      </Button>

@@ -23,6 +23,7 @@ const VenueCard = ({ data }) => {
  const { name, maxGuests, price, media, meta, id, location } = data;
 
  // Default image value if image is not matching
+ // eslint-disable-next-line
  const imageCheck = /\.(jpg|jpeg|png|webp|avif|gif)$/i.test(media[0]);
  const imageMissing = "https://via.placeholder.com/600x400?text=Image+missing";
 
@@ -36,24 +37,16 @@ const VenueCard = ({ data }) => {
 
  if (location) {
   if (!address && !city && !country) return <></>;
-
-  // const LocationDisplay = (
-  //  <Typography variant="subtitle2">
-  //   {address}, {city}, {country}
-  //  </Typography>
-  // );
  }
 
  // Capitalize title
  const rawName = name;
  const fixedName = rawName.charAt(0).toUpperCase() + rawName.slice(1);
 
- //  console.log("location", location);
-
  return (
   <Card sx={!isMobile ? CardBase : CardBaseMobile}>
-   <Box maxWidth={!isMobile ? 350 : 400}>
-    <CardMedia src="image" component="img" image={imageCheck ? media[0] : imageMissing} alt={media[0] ? "Main image of venue" : "Image is missing"} />
+   <Box maxWidth={!isMobile ? 350 : 400} width={2 / 2}>
+    <CardMedia src="image" component="img" image={media[0] ? media[0] : imageMissing} alt={media[0] ? "Main image of venue" : "Image is missing"} />
    </Box>
    <Box
     sx={{
@@ -96,31 +89,9 @@ const VenueCard = ({ data }) => {
        gap: 2,
       }}
      >
-      {wifi ? (
-       <>
-        <WifiIcon />
-       </>
-      ) : (
-       <>
-        <WifiOffIcon />
-       </>
-      )}
-      {breakfast ? (
-       <>
-        <RestaurantIcon />
-       </>
-      ) : (
-       <>
-        <NoMealsIcon />
-       </>
-      )}
-      {parking ? (
-       <>
-        <LocalParkingIcon />
-       </>
-      ) : (
-       <></>
-      )}
+      {wifi ? <WifiIcon /> : <WifiOffIcon />}
+      {breakfast ? <RestaurantIcon /> : <NoMealsIcon />}
+      {parking ? <LocalParkingIcon /> : <></>}
      </Box>
      <Link to={`/venue/${id}`}>
       <Button variant="contained">Book now</Button>

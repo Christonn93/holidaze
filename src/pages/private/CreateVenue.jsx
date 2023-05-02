@@ -1,7 +1,19 @@
+// Importing React
 import React from "react";
 
+// Importing Components
+import HeroCreateNewListing from "../../components/Hero/HeroCreateNewListing";
+import CreateNewVenue from "../../components/Form/CreateNewVenue";
+
 const CreateVenue = () => {
- return <div>CreateVenue</div>;
+ console.clear();
+
+ return (
+  <>
+   <HeroCreateNewListing />
+   <CreateNewVenue />
+  </>
+ );
 };
 
 export default CreateVenue;
