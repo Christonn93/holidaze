@@ -11,7 +11,6 @@ import ConstructionIcon from "@mui/icons-material/Construction";
 // Importing components
 import { getLocalStorageItem } from "../../js/storage/getItems";
 import LogOutUser from "../../js/logOut";
-import SearchBar from "../SearchBar/SearchBar";
 
 const Navigation = ({ status }) => {
  const [anchorEl, setAnchorEl] = useState(null);
@@ -52,7 +51,6 @@ const Navigation = ({ status }) => {
  return (
   <React.Fragment>
    <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
-    <SearchBar />
     <Tooltip title="Account">
      <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }} aria-controls={open ? "account-menu" : undefined} aria-haspopup="true" aria-expanded={open ? "true" : undefined}>
       <Avatar sx={{ width: 43, height: 43 }} src={src}></Avatar>

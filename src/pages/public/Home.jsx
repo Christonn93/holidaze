@@ -3,7 +3,7 @@ import React from "react";
 import { useSearchParams } from "react-router-dom";
 
 // Importing MUI
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 
 // Importing hooks and functions
 import { updateHead } from "../../js/updateHeader";
@@ -30,7 +30,6 @@ const Home = () => {
     }}
    >
     <HeroLandingPage />
-    <Typography variant="h3">Our venues</Typography>
     <Box>
      <ListingFilter setParams={setSearchParams} />
     </Box>

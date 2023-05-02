@@ -4,10 +4,6 @@ import { useSearchParams } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import { IconButton, TextField } from "@mui/material";
 
-// Importing api fetch
-
-// Importing components
-
 const searchField = {};
 
 const SearchBar = () => {

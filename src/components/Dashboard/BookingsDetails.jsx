@@ -25,6 +25,11 @@ const BookingsDetails = ({ data }) => {
   }
  };
 
+ //  const today = new Date();
+ //  .filter((e) => {
+ //   if (today >= e.dateTo) return e;
+ //  })
+
  return (
   <>
    <h2>Here will your bookings be displayed</h2>

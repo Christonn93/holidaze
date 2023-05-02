@@ -1,14 +1,19 @@
 import React, { useRef, useState } from "react";
 
-import { Box, ClickAwayListener, Grow, IconButton, MenuItem, MenuList, Paper, Popper } from "@mui/material";
+import { Box, ClickAwayListener, Grow, IconButton, MenuItem, MenuList, Paper, Popper, Typography } from "@mui/material";
 
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import FilterAltOffIcon from "@mui/icons-material/FilterAltOff";
+
+import SearchBar from "../SearchBar/SearchBar";
+import { useNavigate } from "react-router-dom";
 
 const ListingFilter = ({ setParams }) => {
  const [open, setOpen] = useState(false);
  const [filterOpen, setFilterOpen] = useState(false);
  const anchorRef = useRef(null);
+
+ const navigate = useNavigate();
 
  const handleClick = (option, direction) => {
   const filters = { [option]: direction };
@@ -49,7 +54,8 @@ const ListingFilter = ({ setParams }) => {
  }, [open]);
 
  const clearFilter = () => {
-  setParams(null);
+  setFilterOpen(false);
+  navigate("/");
  };
 
  return (
@@ -57,78 +63,87 @@ const ListingFilter = ({ setParams }) => {
    <Box
     sx={{
      display: "flex",
-     justifyContent: "flex-end",
+     justifyContent: "space-between",
     }}
    >
-    {!filterOpen ? (
-     <IconButton ref={anchorRef} id="composition-button" aria-controls={open ? "composition-menu" : undefined} aria-expanded={open ? "true" : undefined} aria-haspopup="true" onClick={handleToggle}>
-      <FilterAltIcon />
-     </IconButton>
-    ) : (
-     <IconButton ref={anchorRef} id="composition-button" aria-controls={open ? "composition-menu" : undefined} aria-expanded={open ? "true" : undefined} aria-haspopup="true" onClick={clearFilter}>
-      <FilterAltOffIcon />
-     </IconButton>
-    )}
-
-    <Popper open={open} anchorEl={anchorRef.current} role={undefined} placement="bottom-end" transition disablePortal className="filterBox">
-     {({ TransitionProps, placement }) => (
-      <Grow
-       {...TransitionProps}
-       style={{
-        transformOrigin: placement === "bottom-start" ? "left top" : "left bottom",
-       }}
-      >
-       <Paper>
-        <ClickAwayListener onClickAway={handleClose}>
-         <MenuList autoFocusItem={open} id="composition-menu" aria-labelledby="composition-button" onKeyDown={handleListKeyDown}>
-          <MenuItem
-           onClick={() => {
-            handleClick("price", "asc");
-           }}
-          >
-           Price Low-High
-          </MenuItem>
-          <MenuItem
-           onClick={() => {
-            handleClick("price", "desc");
-           }}
-          >
-           Price High-Low
-          </MenuItem>
-          <MenuItem
-           onClick={() => {
-            handleClick("rating", "asc");
-           }}
-          >
-           Rating Low-High
-          </MenuItem>
-          <MenuItem
-           onClick={() => {
-            handleClick("rating", "desc");
-           }}
-          >
-           Rating High-Low
-          </MenuItem>
-          <MenuItem
-           onClick={() => {
-            handleClick("maxGuests", "asc");
-           }}
-          >
-           Guests Low-High
-          </MenuItem>
-          <MenuItem
-           onClick={() => {
-            handleClick("maxGuests", "desc");
-           }}
-          >
-           Guests High-Low
-          </MenuItem>
-         </MenuList>
-        </ClickAwayListener>
-       </Paper>
-      </Grow>
+    <Typography variant="h3">Our venues</Typography>
+    <Box
+     sx={{
+      display: "flex",
+      justifyContent: "flex-end",
+     }}
+    >
+     <SearchBar />
+     {!filterOpen ? (
+      <IconButton ref={anchorRef} id="composition-button" aria-controls={open ? "composition-menu" : undefined} aria-expanded={open ? "true" : undefined} aria-haspopup="true" onClick={handleToggle}>
+       <FilterAltIcon />
+      </IconButton>
+     ) : (
+      <IconButton ref={anchorRef} id="composition-button" aria-controls={open ? "composition-menu" : undefined} aria-expanded={open ? "true" : undefined} aria-haspopup="true" onClick={clearFilter}>
+       <FilterAltOffIcon />
+      </IconButton>
      )}
-    </Popper>
+
+     <Popper open={open} anchorEl={anchorRef.current} role={undefined} placement="bottom-end" transition disablePortal className="filterBox">
+      {({ TransitionProps, placement }) => (
+       <Grow
+        {...TransitionProps}
+        style={{
+         transformOrigin: placement === "bottom-start" ? "left top" : "left bottom",
+        }}
+       >
+        <Paper>
+         <ClickAwayListener onClickAway={handleClose}>
+          <MenuList autoFocusItem={open} id="composition-menu" aria-labelledby="composition-button" onKeyDown={handleListKeyDown}>
+           <MenuItem
+            onClick={() => {
+             handleClick("price", "asc");
+            }}
+           >
+            Price Low-High
+           </MenuItem>
+           <MenuItem
+            onClick={() => {
+             handleClick("price", "desc");
+            }}
+           >
+            Price High-Low
+           </MenuItem>
+           <MenuItem
+            onClick={() => {
+             handleClick("rating", "asc");
+            }}
+           >
+            Rating Low-High
+           </MenuItem>
+           <MenuItem
+            onClick={() => {
+             handleClick("rating", "desc");
+            }}
+           >
+            Rating High-Low
+           </MenuItem>
+           <MenuItem
+            onClick={() => {
+             handleClick("maxGuests", "asc");
+            }}
+           >
+            Guests Low-High
+           </MenuItem>
+           <MenuItem
+            onClick={() => {
+             handleClick("maxGuests", "desc");
+            }}
+           >
+            Guests High-Low
+           </MenuItem>
+          </MenuList>
+         </ClickAwayListener>
+        </Paper>
+       </Grow>
+      )}
+     </Popper>
+    </Box>
    </Box>
   </>
  );

@@ -85,5 +85,6 @@ There are two aspects to this brief: the customer-facing side of the website whe
 ## References
 
 [React login example](https://javascript.plainenglish.io/basic-react-login-using-external-api-e33322e480cd)
+[Dynamic form fields](https://www.freecodecamp.org/news/build-dynamic-forms-in-react/)
 
 ## Author
