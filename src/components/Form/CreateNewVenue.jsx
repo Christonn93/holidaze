@@ -20,8 +20,10 @@ const CreateNewVenue = () => {
 
  const formSubmit = (values, submitProps) => {
   console.log("Form data", values);
-  console.log("submitProps", submitProps);
-  submitProps.setSubmitting(false);
+
+  setFormValues(values);
+  // console.log("submitProps", submitProps);
+  // submitProps.setSubmitting(false);
  };
 
  const formSx = {
@@ -33,25 +35,20 @@ const CreateNewVenue = () => {
  const initialValues = {
   name: "", // Required
   description: "", // Required
-  media: [""], // Optional
+  media: [], // Optional
   price: 0, // Required
   maxGuests: 0, // Required
-  rating: 0, // Optional (default: 0)
-  meta: {
-   wifi: "", // Optional (default: false)
-   parking: "", // Optional (default: false)
-   breakfast: "", // Optional (default: false)
-   pets: "", // Optional (default: false)
-  },
-  location: {
-   address: "", // Optional (default: "Unknown")
-   city: "", // Optional (default: "Unknown")
-   zip: "", // Optional (default: "Unknown")
-   country: "", // Optional (default: "Unknown")
-   continent: "", // Optional (default: "Unknown")
-   lat: 0, // Optional (default: 0)
-   lng: 0, // Optional (default: 0)
-  },
+  wifi: false, // Optional (default: false)
+  parking: false, // Optional (default: false)
+  breakfast: false, // Optional (default: false)
+  pets: false, // Optional (default: false)
+  address: "", // Optional (default: "Unknown")
+  city: "", // Optional (default: "Unknown")
+  zip: "", // Optional (default: "Unknown")
+  country: "", // Optional (default: "Unknown")
+  continent: "", // Optional (default: "Unknown")
+  lat: 0, // Optional (default: 0)
+  lng: 0, // Optional (default: 0)
  };
 
  const checkoutSchema = yup.object().shape({});
@@ -163,8 +160,6 @@ const CreateNewVenue = () => {
           }}
          >
           {media.map((media, index) => {
-           let url;
-
            return (
             <>
              <Box
@@ -181,16 +176,17 @@ const CreateNewVenue = () => {
                key={index}
                id={`media[${index}]`}
                name={`media[${index}]`}
-               value={url}
                type="url"
                label="Venue image"
                onBlur={handleBlur}
                error={!!touched.image && !!errors.image}
                helperText={touched.image && errors.image}
               />
-              <IconButton type="button" color="error" onClick={() => remove(index)}>
-               <DisabledByDefaultIcon />
-              </IconButton>
+              {index > 0 && (
+               <IconButton type="button" color="error" onClick={() => remove(index)}>
+                <DisabledByDefaultIcon />
+               </IconButton>
+              )}
               <IconButton type="button" color="success" onClick={() => push("")}>
                <AddBoxIcon />
               </IconButton>
@@ -281,7 +277,7 @@ const CreateNewVenue = () => {
       <Button variant="contained" color="warning" onClick={() => {}}>
        Preview post
       </Button>
-      <Button type="submit" variant="contained" color="success" onClick={() => setFormValues()}>
+      <Button type="submit" variant="contained" color="success" onClick={() => {}}>
        Post new venue
       </Button>
      </Box>
