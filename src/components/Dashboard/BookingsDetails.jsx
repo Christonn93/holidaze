@@ -9,7 +9,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 
 const BookingsDetails = ({ data }) => {
  const navigate = useNavigate();
- console.log("BookingsDetails", data);
+ //  console.log("BookingsDetails", data);
 
  if (!data) {
   console.error(data);
@@ -47,7 +47,7 @@ const BookingsDetails = ({ data }) => {
 
      return (
       <>
-       <ListingCards name={e.venue.name} infoChildren={info} buttonChildren={<SettingsIcon />} buttonAction={() => handleNavigate("edit", e.id)} ToolTipTitle={"Edit Booking"} />
+       <ListingCards key={e.id} name={e.venue.name} infoChildren={info} buttonChildren={<SettingsIcon />} buttonAction={() => handleNavigate("edit", e.id)} ToolTipTitle={"Edit Booking"} />
       </>
      );
     })}

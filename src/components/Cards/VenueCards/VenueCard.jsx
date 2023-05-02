@@ -94,7 +94,7 @@ const VenueCard = ({ data }) => {
       {parking ? <LocalParkingIcon /> : <></>}
      </Box>
      <Link to={`/venue/${id}`}>
-      <Button variant="contained">Book now</Button>
+      <Button variant="contained">Read more</Button>
      </Link>
     </CardContent>
    </Box>

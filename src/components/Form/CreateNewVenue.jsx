@@ -2,36 +2,26 @@
 import React, { useState } from "react";
 
 // Importing Formik
-import { Formik } from "formik";
+import { Formik, FieldArray } from "formik";
 import * as yup from "yup";
 
 // Importing MUI
-import { Box, Button, Checkbox, FormControlLabel, FormGroup, TextField, Typography } from "@mui/material";
+import { Box, Button, Checkbox, FormControlLabel, FormGroup, IconButton, TextField, Typography } from "@mui/material";
+import AddBoxIcon from "@mui/icons-material/AddBox";
+import DisabledByDefaultIcon from "@mui/icons-material/DisabledByDefault";
 
 const CreateNewVenue = () => {
  // eslint-disable-next-line
- const [formSubmitted, setFormSubmitted] = useState(false);
+ const [formValues, setFormValues] = useState(null);
  const [value1, setValue1] = useState(false);
  const [value2, setValue2] = useState(false);
  const [value3, setValue3] = useState(false);
  const [value4, setValue4] = useState(false);
- const [imageInput, setImageInput] = useState([{ venueImage: "" }]);
 
- // Media inputs
- const handleFormChange = (index, event) => {
-  let data = [...imageInput];
-  data[index][event.target.name] = event.target.value;
-  setImageInput(data);
- };
-
- const addFields = () => {
-  let newImage = { venueImage: "" };
-  setImageInput([...imageInput, newImage]);
- };
-
- const formSubmit = (values) => {
-  console.log(values);
-  setFormSubmitted(true);
+ const formSubmit = (values, submitProps) => {
+  console.log("Form data", values);
+  console.log("submitProps", submitProps);
+  submitProps.setSubmitting(false);
  };
 
  const formSx = {
@@ -69,9 +59,9 @@ const CreateNewVenue = () => {
  console.clear();
 
  return (
-  <Formik onSubmit={formSubmit} initialValues={initialValues} validationSchema={checkoutSchema}>
+  <Formik onSubmit={formSubmit} initialValues={formValues || initialValues} validationSchema={checkoutSchema}>
    {({ values, errors, touched, handleBlur, handleSubmit, handleChange }) => (
-    <Box component="form" sx={formSx} onSubmit={handleSubmit}>
+    <Box component="form" sx={formSx} onSubmit={handleSubmit} autoComplete="off">
      <Typography variant="h3" gutterBottom>
       New venue form
      </Typography>
@@ -97,36 +87,6 @@ const CreateNewVenue = () => {
       error={!!touched.description && !!errors.description}
       helperText={touched.description && errors.description}
      />
-     <Box
-      sx={{
-       display: "flex",
-       flexDirection: "column",
-       gap: 2,
-      }}
-     >
-      {imageInput.map((input, index, id) => {
-       return (
-        <TextField
-         fullWidth
-         key={index}
-         id="venueImage"
-         name="media"
-         type="url"
-         label="Venue image"
-         value={values.image}
-         onBlur={handleBlur}
-         onChange={(event) => handleFormChange(index, event)}
-         error={!!touched.image && !!errors.image}
-         helperText={touched.image && errors.image}
-        />
-       );
-      })}
-      <Box>
-       <Button onClick={addFields} variant="outlined" color="success">
-        Add Image
-       </Button>
-      </Box>
-     </Box>
      <Box>
       <Typography variant="body2">Venue includes?</Typography>
       <FormGroup row>
@@ -184,6 +144,65 @@ const CreateNewVenue = () => {
        />
       </FormGroup>
      </Box>
+
+     <Box>
+      <Typography variant="body2" gutterBottom>
+       Add images
+      </Typography>
+      <FieldArray name="media">
+       {(FiledArrayProps) => {
+        const { push, remove, form } = FiledArrayProps;
+        const { values } = form;
+        const { media } = values;
+        return (
+         <Box
+          sx={{
+           display: "flex",
+           flexDirection: "column",
+           gap: 2,
+          }}
+         >
+          {media.map((media, index) => {
+           let url;
+
+           return (
+            <>
+             <Box
+              key={index}
+              sx={{
+               display: "flex",
+               flexDirection: "row",
+               alignItems: "center",
+               gap: 2,
+              }}
+             >
+              <TextField
+               fullWidth
+               key={index}
+               id={`media[${index}]`}
+               name={`media[${index}]`}
+               value={url}
+               type="url"
+               label="Venue image"
+               onBlur={handleBlur}
+               error={!!touched.image && !!errors.image}
+               helperText={touched.image && errors.image}
+              />
+              <IconButton type="button" color="error" onClick={() => remove(index)}>
+               <DisabledByDefaultIcon />
+              </IconButton>
+              <IconButton type="button" color="success" onClick={() => push("")}>
+               <AddBoxIcon />
+              </IconButton>
+             </Box>
+            </>
+           );
+          })}
+         </Box>
+        );
+       }}
+      </FieldArray>
+     </Box>
      <Typography variant="body2">Location</Typography>
      <Box
       sx={{
@@ -224,6 +243,33 @@ const CreateNewVenue = () => {
        helperText={touched.continent && errors.continent}
       />
      </Box>
+
+     <Typography variant="body2">Other specifications</Typography>
+     <Box>
+      <TextField
+       name="price"
+       id="price"
+       label="Price"
+       type="number"
+       value={values.price}
+       onBlur={handleBlur}
+       onChange={handleChange}
+       error={!!touched.price && !!errors.price}
+       helperText={touched.price && errors.price}
+      />
+      <TextField
+       name="maxGuests"
+       id="maxGuests"
+       label="Guests"
+       type="number"
+       value={values.maxGuests}
+       onBlur={handleBlur}
+       onChange={handleChange}
+       error={!!touched.maxGuests && !!errors.maxGuests}
+       helperText={touched.maxGuests && errors.maxGuests}
+      />
+     </Box>
+
      <Box
       sx={{
        display: "flex",
@@ -235,7 +281,7 @@ const CreateNewVenue = () => {
       <Button variant="contained" color="warning" onClick={() => {}}>
        Preview post
       </Button>
-      <Button variant="contained" color="success" onClick={() => {}}>
+      <Button type="submit" variant="contained" color="success" onClick={() => setFormValues()}>
        Post new venue
       </Button>
      </Box>

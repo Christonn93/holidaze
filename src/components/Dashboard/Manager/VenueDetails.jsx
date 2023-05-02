@@ -24,7 +24,7 @@ const VenueDetails = ({ data }) => {
   }
  };
 
- console.log("VenueDetails", data);
+ //  console.log("VenueDetails", data);
 
  return (
   <>
@@ -52,6 +52,7 @@ const VenueDetails = ({ data }) => {
      return (
       <>
        <ListingCards
+        key={e.id}
         name={e.name}
         infoChildren={<Chip label={!status ? "Free" : "rented out"} color={!status ? "success" : "error"} variant="outlined" />}
         buttonChildren={<SettingsIcon />}
