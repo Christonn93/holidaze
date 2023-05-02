@@ -2,10 +2,20 @@
 import React from "react";
 
 // Importing MUI
-import { CircularProgress } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 
 const Loading = () => {
- return <CircularProgress />;
+ return (
+  <Box
+   sx={{
+    display: "flex",
+    justifyContent: "center",
+    marginTop: 4,
+   }}
+  >
+   <CircularProgress />
+  </Box>
+ );
 };
 
 export default Loading;
