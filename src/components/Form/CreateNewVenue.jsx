@@ -12,11 +12,11 @@ import DisabledByDefaultIcon from "@mui/icons-material/DisabledByDefault";
 
 const CreateNewVenue = () => {
  // eslint-disable-next-line
- const [formValues, setFormValues] = useState(null);
- const [value1, setValue1] = useState(false);
- const [value2, setValue2] = useState(false);
- const [value3, setValue3] = useState(false);
- const [value4, setValue4] = useState(false);
+ const [formValues, setFormValues] = useState();
+ const [value1, setValue1] = useState();
+ const [value2, setValue2] = useState();
+ const [value3, setValue3] = useState();
+ const [value4, setValue4] = useState();
 
  const formSubmit = (values, submitProps) => {
   console.log("Form data", values);
@@ -35,7 +35,7 @@ const CreateNewVenue = () => {
  const initialValues = {
   name: "", // Required
   description: "", // Required
-  media: [], // Optional
+  media: [""], // Optional
   price: 0, // Required
   maxGuests: 0, // Required
   wifi: false, // Optional (default: false)
@@ -87,58 +87,10 @@ const CreateNewVenue = () => {
      <Box>
       <Typography variant="body2">Venue includes?</Typography>
       <FormGroup row>
-       <FormControlLabel
-        control={
-         <Checkbox
-          onChange={() => {
-           setValue1(true);
-          }}
-          value={value1}
-          name="wifi"
-          id="wifiCheck"
-         />
-        }
-        label="Wifi"
-       />
-       <FormControlLabel
-        control={
-         <Checkbox
-          onChange={() => {
-           setValue2(true);
-          }}
-          value={value2}
-          name="parking"
-          id="parkingCheck"
-         />
-        }
-        label="Parking"
-       />
-       <FormControlLabel
-        control={
-         <Checkbox
-          onChange={() => {
-           setValue3(true);
-          }}
-          value={value3}
-          name="breakfast"
-          id="breakfastCheck"
-         />
-        }
-        label="Breakfast"
-       />
-       <FormControlLabel
-        control={
-         <Checkbox
-          onChange={() => {
-           setValue4(true);
-          }}
-          value={value4}
-          name="pets"
-          id="petsCheck"
-         />
-        }
-        label="Pets"
-       />
+       <FormControlLabel control={<Checkbox onClick={() => setValue1(true)} value={value1} name="wifi" id="wifiCheck" />} label="Wifi" />
+       <FormControlLabel control={<Checkbox onClick={() => setValue2(true)} value={value2} name="parking" id="parkingCheck" />} label="Parking" />
+       <FormControlLabel control={<Checkbox onClick={() => setValue3(true)} value={value3} name="breakfast" id="breakfastCheck" />} label="Breakfast" />
+       <FormControlLabel control={<Checkbox onClick={() => setValue4(true)} value={value4} name="pets" id="petsCheck" />} label="Pets" />
       </FormGroup>
      </Box>
 
