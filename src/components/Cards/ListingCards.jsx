@@ -3,7 +3,7 @@ import React from "react";
 import { Paper, Typography, Box, IconButton, Tooltip } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-const ListingCards = ({ name, id, infoChildren, buttonChildren, buttonAction, ToolTipTitle, location }) => {
+const ListingCards = ({ name, id, infoChildren, buttonChildren, buttonAction, ToolTipTitle, location, button }) => {
  const navigate = useNavigate();
 
  const displayVenue = () => {
