@@ -1,7 +1,7 @@
 import React from "react";
 import Carousel from "react-material-ui-carousel";
 
-import { ImageListItem } from "@mui/material";
+import { CardMedia, ImageListItem } from "@mui/material";
 
 const ImageCarousel = ({ media }) => {
  return (
@@ -10,6 +10,7 @@ const ImageCarousel = ({ media }) => {
     maxWidth: 800,
     maxHeight: 500,
    }}
+   indicators={false}
   >
    {media.map((item, i) => (
     <ImageListItem
@@ -18,7 +19,7 @@ const ImageCarousel = ({ media }) => {
       maxHeight: 500,
      }}
     >
-     <img src={item} key={item} alt={item} loading="lazy" />
+     <CardMedia src="image" component="img" image={item} key={item} alt={item} />
     </ImageListItem>
    ))}
   </Carousel>
