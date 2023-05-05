@@ -28,25 +28,29 @@ const BookingsDetails = ({ data }) => {
  return (
   <>
    <h2>Here will your bookings be displayed</h2>
-   <Stack spacing={2}>
-    {data.map((e) => {
-     const starts = changeTimeFormat(e.dateFrom);
-     const ends = changeTimeFormat(e.dateTo);
+   {data === 0 ? (
+    <Stack spacing={2}>
+     {data.map((e) => {
+      const starts = changeTimeFormat(e.dateFrom);
+      const ends = changeTimeFormat(e.dateTo);
 
-     const info = (
-      <Box key={e.id}>
-       <Typography>Check in: {starts}</Typography>
-       <Typography>Check out: {ends}</Typography>
-      </Box>
-     );
+      const info = (
+       <Box key={e.id}>
+        <Typography>Check in: {starts}</Typography>
+        <Typography>Check out: {ends}</Typography>
+       </Box>
+      );
 
-     return (
-      <>
-       <ListingCards key={e.id} id={e.venue.id} name={e.venue.name} infoChildren={info} />
-      </>
-     );
-    })}
-   </Stack>
+      return (
+       <>
+        <ListingCards key={e.id} id={e.venue.id} name={e.venue.name} infoChildren={info} />
+       </>
+      );
+     })}
+    </Stack>
+   ) : (
+    <Typography variant="body1">You have no bookings</Typography>
+   )}
   </>
  );
 };

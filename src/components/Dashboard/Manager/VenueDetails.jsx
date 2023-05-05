@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Box, Button, Chip, Stack } from "@mui/material";
+import { Box, Button, Chip, Stack, Typography } from "@mui/material";
 
 import ListingCards from "../../Cards/ListingCards";
 
@@ -24,8 +24,6 @@ const VenueDetails = ({ data }) => {
   }
  };
 
- //  console.log("VenueDetails", data);
-
  return (
   <>
    <Box
@@ -40,31 +38,35 @@ const VenueDetails = ({ data }) => {
      Add new venue
     </Button>
    </Box>
-   <Stack
-    spacing={2}
-    sx={{
-     marginTop: 2,
-    }}
-   >
-    {data.map((e) => {
-     const status = false;
+   {data.length >= 0 ? (
+    <Stack
+     spacing={2}
+     sx={{
+      marginTop: 2,
+     }}
+    >
+     {data.map((e) => {
+      const status = false;
 
-     return (
-      <>
-       <ListingCards
-        key={e.id}
-        id={e.id}
-        location={"venue"}
-        name={e.name}
-        infoChildren={<Chip label={!status ? "Free" : "rented out"} color={!status ? "success" : "error"} variant="outlined" />}
-        buttonChildren={<SettingsIcon />}
-        buttonAction={() => handleNavigate("edit", e.id)}
-        ToolTipTitle={"Edit venue"}
-       />
-      </>
-     );
-    })}
-   </Stack>
+      return (
+       <>
+        <ListingCards
+         key={e.id}
+         id={e.id}
+         location={"venue"}
+         name={e.name}
+         infoChildren={<Chip label={!status ? "Free" : "rented out"} color={!status ? "success" : "error"} variant="outlined" />}
+         buttonChildren={<SettingsIcon />}
+         buttonAction={() => handleNavigate("edit", e.id)}
+         ToolTipTitle={"Edit venue"}
+        />
+       </>
+      );
+     })}
+    </Stack>
+   ) : (
+    <Typography variant="body1">You have no venue listed</Typography>
+   )}
   </>
  );
 };
