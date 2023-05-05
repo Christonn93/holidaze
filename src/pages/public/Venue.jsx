@@ -14,7 +14,6 @@ import { updateHead } from "../../js/updateHeader";
 import VenueTitleSection from "../../components/Venue/SingleVenue/VenueTitleSection";
 import VenueOwnerSection from "../../components/Venue/SingleVenue/VenueOwnerSection";
 import VenueDetailsSection from "../../components/Venue/SingleVenue/VenueDetailsSection";
-import VenueBookingSection from "../../components/Venue/SingleVenue/VenueBookingSection";
 import ImageCarousel from "../../components/Carousel/ImageCarousel";
 import BookingForm from "../../components/Form/BookingForm";
 import SiteCrumbs from "../../components/Breadcrumbs/SiteCrumbs";

@@ -2,7 +2,7 @@
 import React from "react";
 
 // Importing MUI
-import { Box, IconButton, Typography } from "@mui/material";
+import { IconButton } from "@mui/material";
 
 // Importing MUI Icons
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
