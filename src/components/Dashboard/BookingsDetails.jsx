@@ -28,7 +28,7 @@ const BookingsDetails = ({ data }) => {
  return (
   <>
    <h2>Here will your bookings be displayed</h2>
-   {data === 0 ? (
+   {data.length >= 0 ? (
     <Stack spacing={2}>
      {data.map((e) => {
       const starts = changeTimeFormat(e.dateFrom);
