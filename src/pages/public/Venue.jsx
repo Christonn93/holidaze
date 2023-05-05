@@ -42,6 +42,15 @@ const Venue = () => {
  // Destructing owner data
  const { name: ownerName, email, avatar } = owner;
 
+ const storedData = localStorage.getItem("UserData");
+
+ const storedName = JSON.parse(storedData).name;
+
+ let manager = false;
+ if (ownerName === storedName) {
+  manager = true;
+ }
+
  updateHead(name, description);
 
  return (
@@ -54,7 +63,7 @@ const Venue = () => {
     }}
    >
     <Box>
-     <VenueTitleSection name={name} />
+     <VenueTitleSection name={name} manager={manager} id={venueId} />
      <VenueMainMedia media={media} />
     </Box>
     <Box>

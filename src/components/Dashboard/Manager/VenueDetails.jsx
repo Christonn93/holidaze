@@ -53,6 +53,8 @@ const VenueDetails = ({ data }) => {
       <>
        <ListingCards
         key={e.id}
+        id={e.id}
+        location={"venue"}
         name={e.name}
         infoChildren={<Chip label={!status ? "Free" : "rented out"} color={!status ? "success" : "error"} variant="outlined" />}
         buttonChildren={<SettingsIcon />}

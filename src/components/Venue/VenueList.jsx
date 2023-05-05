@@ -47,7 +47,7 @@ const VenueList = () => {
   return <UiFeedback severity="error" title={"An unexpected error have accrued"} message={"Please refresh the page"} />;
  }
 
- console.log("Data", data);
+ //  console.log("Data", data);
  //  console.log("endpoint", endpoint);
  // console.log("Params", params);
 

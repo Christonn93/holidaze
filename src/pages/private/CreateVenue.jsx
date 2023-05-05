@@ -3,7 +3,7 @@ import React from "react";
 
 // Importing Components
 import HeroCreateNewListing from "../../components/Hero/HeroCreateNewListing";
-import CreateNewVenue from "../../components/Form/CreateNewVenue";
+import VenueForm from "../../components/Form/VenueForm";
 
 const CreateVenue = () => {
  console.clear();
@@ -11,7 +11,7 @@ const CreateVenue = () => {
  return (
   <>
    <HeroCreateNewListing />
-   <CreateNewVenue />
+   <VenueForm state={"new"} />
   </>
  );
 };

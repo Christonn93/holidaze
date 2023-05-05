@@ -33,7 +33,7 @@ import VenueManagerProfile from "./pages/public/VenueManagerProfile";
 
 // Private pages
 import Profile from "./pages/private/Profile";
-import PrivVenue from "./pages/private/PrivVenue";
+import EditVenue from "./pages/private/EditVenue";
 import CreateVenue from "./pages/private/CreateVenue";
 import TestingNewComponents from "./pages/private/TestingNewComponents";
 import SearchResult from "./pages/public/SearchResult";
@@ -63,7 +63,7 @@ function App() {
          {/* Private routes routes */}
          <Route element={<RequireAuth />}>
           <Route path="/profile" element={<Profile />} />
-          <Route path="/venue/edit/:id" element={<PrivVenue />} />
+          <Route path="/venue/edit/:id" element={<EditVenue />} />
           <Route path="/venue/create" element={<CreateVenue />} />
           <Route path="/booking/edit/:id" element={<Booking />} />
           <Route path="/testing" element={<TestingNewComponents />} />

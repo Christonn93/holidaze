@@ -1,8 +1,15 @@
 import React from "react";
 
 import { Paper, Typography, Box, IconButton, Tooltip } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
-const ListingCards = ({ name, infoChildren, buttonChildren, buttonAction, ToolTipTitle }) => {
+const ListingCards = ({ name, id, infoChildren, buttonChildren, buttonAction, ToolTipTitle, location }) => {
+ const navigate = useNavigate();
+
+ const displayVenue = () => {
+  navigate(`/venue/${id}`);
+ };
+
  return (
   <>
    <Paper
@@ -15,7 +22,17 @@ const ListingCards = ({ name, infoChildren, buttonChildren, buttonAction, ToolTi
     key={name}
    >
     <Box>
-     <Typography variant="h5">{name}</Typography>
+     {location === "venue" ? (
+      <>
+       <Typography variant="h5" onClick={displayVenue}>
+        {name}
+       </Typography>
+      </>
+     ) : (
+      <>
+       <Typography variant="h5">{name}</Typography>
+      </>
+     )}
     </Box>
     <Box>{infoChildren}</Box>
     <Box
