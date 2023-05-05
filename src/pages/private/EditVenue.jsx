@@ -13,6 +13,7 @@ import DisabledByDefaultIcon from "@mui/icons-material/DisabledByDefault";
 
 // Importing Components
 import MainButton from "../../components/Button/MainButton";
+import PreviewListing from "../../components/Dialog/PreviewListing";
 
 // Importing functions
 import useApi from "../../hooks/useApi";
@@ -264,6 +265,7 @@ const EditVenue = () => {
        <Box
         sx={{
          display: "flex",
+         flexWrap: "wrap",
          gap: 2,
         }}
        >
@@ -311,7 +313,13 @@ const EditVenue = () => {
        </Box>
 
        <Typography variant="body2">Other specifications</Typography>
-       <Box>
+       <Box
+        sx={{
+         display: "flex",
+         flexWrap: "wrap",
+         gap: 2,
+        }}
+       >
         <TextField
          name="price"
          id="price"
@@ -344,11 +352,9 @@ const EditVenue = () => {
          marginTop: 2,
         }}
        >
-        <Button variant="contained" color="warning" onClick={() => {}}>
-         Preview post
-        </Button>
+        <PreviewListing data={initialValues} />
         <Button type="submit" variant="contained" color="success" onClick={() => {}}>
-         Post new venue
+         Edit venue
         </Button>
        </Box>
       </Box>

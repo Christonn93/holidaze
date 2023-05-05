@@ -23,9 +23,6 @@ const BookingCalender = ({ data }) => {
   setBlockedValue(allBlockedDates);
  }, [data]);
 
- //  console.clear();
- //  console.log("Blocked Value", blockedValue);
-
  return (
   <DateRange
    disabledDates={blockedValue}

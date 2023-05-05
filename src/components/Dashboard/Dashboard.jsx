@@ -16,6 +16,7 @@ import { TabPanel } from "../Tab/TabPanel";
 import ProfileDetails from "./ProfileDetails";
 import VenueDetails from "./Manager/VenueDetails";
 import BookingsDetails from "./BookingsDetails";
+import SiteCrumbs from "../Breadcrumbs/SiteCrumbs";
 
 const Dashboard = ({ status }) => {
  const [value, setValue] = useState(0);
@@ -40,8 +41,10 @@ const Dashboard = ({ status }) => {
  if (isError) console.log(isError);
 
  console.clear();
+
  return (
   <>
+   <SiteCrumbs firstStep={"Dashboard"} />
    <Box
     sx={{
      display: "flex",

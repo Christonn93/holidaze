@@ -5,15 +5,11 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 
 // Importing Component
-import BookingCalender from "../../components/Calender/BookingCalender";
+import BookingForm from "../../components/Form/BookingForm";
 
 // Importing functions
 import { updateHead } from "../../js/updateHeader";
-
-// Getting mock data
-import { data } from "../../js/mockData";
-
-console.log(data);
+import { mockDataVenue } from "../../js/mockDataVenue";
 
 const TestingNewComponents = () => {
  // eslint-disable-line no-console
@@ -32,7 +28,7 @@ const TestingNewComponents = () => {
   >
    <Typography>Testing new components</Typography>
    <Box>
-    <BookingCalender data={data} />
+    <BookingForm data={mockDataVenue} />
    </Box>
   </Box>
  );

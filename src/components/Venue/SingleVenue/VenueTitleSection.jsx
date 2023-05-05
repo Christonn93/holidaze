@@ -19,6 +19,7 @@ const VenueTitleSection = ({ name, manager, id }) => {
       sx={{
        display: "flex",
        justifyContent: "space-between",
+       alignItems: "center",
       }}
      >
       <Typography variant="h1" marginBottom={1}>

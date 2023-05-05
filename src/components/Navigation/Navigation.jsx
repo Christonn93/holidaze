@@ -95,10 +95,16 @@ const Navigation = ({ status }) => {
     {isLoggedIn ? (
      <Box>
       <MenuItem onClick={() => handleNavigate("profile")}>
-       <Avatar src={src} /> Profile
+       <ListItemIcon>
+        <Avatar src={src} fontSize="small" />
+       </ListItemIcon>
+       Profile
       </MenuItem>
       <MenuItem onClick={() => handleNavigate("testing")}>
-       <ConstructionIcon /> Testing components
+       <ListItemIcon>
+        <ConstructionIcon fontSize="small" />
+       </ListItemIcon>
+       Testing components
       </MenuItem>
       <Divider />
       <MenuItem onClick={handleLogout}>

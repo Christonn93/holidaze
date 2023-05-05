@@ -58,10 +58,7 @@ const Footer = () => {
         gap: 1,
        }}
       >
-       <Stack>
-        <Link>Link</Link>
-        <Link>link 2</Link>
-       </Stack>
+       <Stack></Stack>
       </Grid>
      </Grid>
     </Box>

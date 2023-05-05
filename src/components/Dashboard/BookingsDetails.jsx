@@ -23,6 +23,8 @@ const BookingsDetails = ({ data }) => {
 
  console.clear();
 
+ console.log(data);
+
  return (
   <>
    <h2>Here will your bookings be displayed</h2>
@@ -40,7 +42,7 @@ const BookingsDetails = ({ data }) => {
 
      return (
       <>
-       <ListingCards key={e.id} name={e.venue.name} infoChildren={info} />
+       <ListingCards key={e.id} id={e.venue.id} name={e.venue.name} infoChildren={info} />
       </>
      );
     })}

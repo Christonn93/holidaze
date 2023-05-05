@@ -1,9 +1,9 @@
 // Importing React
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
 // Importing MUI
-import { Box, Toolbar } from "@mui/material";
+import { Box, Toolbar, useTheme } from "@mui/material";
 
 // Importing images
 import Logo from "../../assets/Images/logo.png";
@@ -11,8 +11,15 @@ import Logo from "../../assets/Images/logo.png";
 // Importing components
 import Image from "../../components/Image/Image";
 import Navigation from "../Navigation/Navigation";
+import ThemeSwitch from "../Switch/ThemeSwitch";
+
+// Import context
+import { ColorModeContext } from "../../style/theme";
 
 const Header = () => {
+ const theme = useTheme();
+ const colorMode = useContext(ColorModeContext);
+
  return (
   <header>
    <Box
@@ -37,9 +44,9 @@ const Header = () => {
       sx={{
        display: "flex",
        alignItems: "center",
-       gap: 2,
       }}
      >
+      <ThemeSwitch theme={theme} colorMode={colorMode} />
       <Navigation />
      </Box>
     </Toolbar>

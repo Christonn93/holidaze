@@ -13,6 +13,7 @@ import { initialValues } from "./VenueFormValues";
 import { Alert, Box, Button, Checkbox, FormControlLabel, FormGroup, IconButton, TextField, Typography } from "@mui/material";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import DisabledByDefaultIcon from "@mui/icons-material/DisabledByDefault";
+import PreviewListing from "../Dialog/PreviewListing";
 
 /**
  *
@@ -216,6 +217,7 @@ const VenueForm = ({ state, data }) => {
        <Box
         sx={{
          display: "flex",
+         flexWrap: "wrap",
          gap: 2,
         }}
        >
@@ -263,7 +265,13 @@ const VenueForm = ({ state, data }) => {
        </Box>
 
        <Typography variant="body2">Other specifications</Typography>
-       <Box>
+       <Box
+        sx={{
+         display: "flex",
+         flexWrap: "wrap",
+         gap: 2,
+        }}
+       >
         <TextField
          name="price"
          id="price"
@@ -296,11 +304,9 @@ const VenueForm = ({ state, data }) => {
          marginTop: 2,
         }}
        >
-        <Button variant="contained" color="warning" onClick={() => {}}>
-         Preview post
-        </Button>
+        <PreviewListing data={values} />
         <Button type="submit" variant="contained" color="success" onClick={() => {}}>
-         Post new venue
+         Post venue
         </Button>
        </Box>
       </Box>

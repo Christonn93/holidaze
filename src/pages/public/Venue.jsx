@@ -14,9 +14,10 @@ import { updateHead } from "../../js/updateHeader";
 import VenueTitleSection from "../../components/Venue/SingleVenue/VenueTitleSection";
 import VenueOwnerSection from "../../components/Venue/SingleVenue/VenueOwnerSection";
 import VenueDetailsSection from "../../components/Venue/SingleVenue/VenueDetailsSection";
-import VenueMainMedia from "../../components/Venue/SingleVenue/VenueMainMedia";
-import VenueMediaGallery from "../../components/Venue/SingleVenue/VenueMediaGallery";
 import VenueBookingSection from "../../components/Venue/SingleVenue/VenueBookingSection";
+import ImageCarousel from "../../components/Carousel/ImageCarousel";
+import BookingForm from "../../components/Form/BookingForm";
+import SiteCrumbs from "../../components/Breadcrumbs/SiteCrumbs";
 
 const Venue = () => {
  console.clear();
@@ -63,9 +64,10 @@ const Venue = () => {
      flexDirection: "column",
     }}
    >
+    <SiteCrumbs firstStep={"Venues"} secondStep={name} />
     <Box>
      <VenueTitleSection name={name} manager={manager} id={venueId} />
-     <VenueMainMedia media={media} />
+     <ImageCarousel media={media} />
     </Box>
     <Box>
      <VenueDetailsSection venueDescription={description} maxGuests={maxGuests} price={price} wifi={wifi} breakfast={breakfast} parking={parking} pets={pets} />
@@ -75,14 +77,7 @@ const Venue = () => {
      <Typography variant="h4" marginBottom={1}>
       Book your stay!
      </Typography>
-     <VenueBookingSection data={bookings} id={venueId} />
-    </Box>
-
-    <Box>
-     <Typography variant="h4" marginBottom={1}>
-      Photos
-     </Typography>
-     <VenueMediaGallery media={media} />
+     <BookingForm data={data} id={venueId} />
     </Box>
 
     <Box>

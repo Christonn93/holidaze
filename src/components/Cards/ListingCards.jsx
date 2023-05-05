@@ -46,17 +46,18 @@ const ListingCards = ({ name, id, infoChildren, buttonChildren, buttonAction, To
    <Paper key={name}>
     <Stack direction={"row"} spacing={2} sx={isMobile ? mobileLayout : desktopLayout}>
      <Box>
-      {location === "venue" ? (
-       <>
-        <Typography variant="h5" onClick={displayVenue}>
-         {name}
-        </Typography>
-       </>
-      ) : (
-       <>
-        <Typography variant="h5">{name}</Typography>
-       </>
-      )}
+      <Typography
+       variant="h5"
+       onClick={displayVenue}
+       sx={{
+        "&:hover": {
+         cursor: "pointer",
+         textShadow: "1px 1px 2px white",
+        },
+       }}
+      >
+       {name}
+      </Typography>
      </Box>
      <Box>{infoChildren}</Box>
      <Box
