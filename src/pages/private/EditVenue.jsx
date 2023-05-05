@@ -2,22 +2,29 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-// importing MUi
-import { Alert, Box, Checkbox, FormControlLabel, FormGroup, TextField, Typography } from "@mui/material";
+// Importing Formik
+import { Formik, FieldArray, Field } from "formik";
+import * as yup from "yup";
 
-// Importing components
+// Importing MUI
+import { Alert, Box, Button, Checkbox, FormControlLabel, FormGroup, IconButton, TextField, Typography } from "@mui/material";
+import AddBoxIcon from "@mui/icons-material/AddBox";
+import DisabledByDefaultIcon from "@mui/icons-material/DisabledByDefault";
+
+// Importing Components
 import MainButton from "../../components/Button/MainButton";
 
 // Importing functions
 import useApi from "../../hooks/useApi";
 import { venues } from "../../api/constants";
 import { updateHead } from "../../js/updateHeader";
-import ManageVenueImages from "../../components/Venue/EditVenue/ManageVenueImages";
+import { deleteVenue } from "../../js/FormSubmit/deleteVenue";
 
 const EditVenue = () => {
  let { id } = useParams();
  const [alert, setAlert] = useState(false);
  const [alertContent, setAlertContent] = useState("");
+ const [formValues, setFormValues] = useState();
 
  const navigate = useNavigate();
  const endpoint = venues + `/${id}?_owner=true&_bookings=true`;
@@ -30,22 +37,48 @@ const EditVenue = () => {
  if (isError) console.error(isError);
 
  // Destructing venue data
- const { name, description, media, price, maxGuests, meta } = data;
+ const { name, description, meta } = data;
 
  if (!meta) {
   return null;
  }
 
- // Destructing meta data
- const { wifi, parking, breakfast, pets } = meta;
-
  updateHead(name, description);
 
- /**
-  *
-  * @param {id} venueId For deleting venue
-  */
- const deleteVenue = (id) => {
+ const formSubmit = (values, submitProps) => {
+  console.log("Form data", values);
+
+  // eslint-disable-next-line
+  const { name, description, media, price, maxGuests, wifi, parking, breakfast, pets, address, city, zip, country, continent, lat, lng } = values;
+
+  if (!media) {
+   return null;
+  }
+
+  const body = {
+   name: name,
+   description: description,
+   media: [...media],
+   price: price,
+   maxGuests: maxGuests,
+   rating: 0,
+   meta: {
+    wifi: wifi,
+    parking: parking,
+    breakfast: breakfast,
+    pets: pets,
+   },
+   location: {
+    address: address,
+    city: city,
+    zip: zip,
+    country: country,
+    continent: continent,
+    lat: lat,
+    lng: lng,
+   },
+  };
+
   const Url = `https://api.noroff.dev/api/v1/holidaze/venues/${id}`;
   const token = localStorage.getItem("ApiToken");
   fetch(Url, {
@@ -53,121 +86,274 @@ const EditVenue = () => {
     "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,
    },
-   method: "DELETE",
+   method: "PUT",
+   body: JSON.stringify(body),
   })
    .then((response) => {
     if (!response.ok) {
      throw new Error("Failed to submit form");
     }
-    setAlertContent("Venue deleted");
-    setAlert(true);
-    setTimeout(() => {
-     navigate("/profile");
-    }, 2000);
     return response.json();
    })
    .then((data) => {
     // Handle successful response from API
     console.log(data);
+    setAlertContent("Venue is updated");
+    setAlert(true);
+    setTimeout(() => {
+     navigate(`/venue/${data.id}`);
+    }, 2000);
    })
    .catch((error) => {
     // Handle error
     console.error(error);
    });
+
+  console.log(body);
+
+  setFormValues(values);
  };
+
+ const initialValues = {
+  name: data.name,
+  description: data.description,
+  media: data.media,
+  price: data.price,
+  maxGuests: data.maxGuests,
+  wifi: data.meta.wifi,
+  parking: data.meta.parking,
+  breakfast: data.meta.breakfast,
+  pets: data.meta.pets,
+  address: data.location.address,
+  city: data.location.city,
+  zip: data.location.zip,
+  country: data.location.country,
+  continent: data.location.continent,
+  lat: data.location.lat,
+  lng: data.location.lng,
+ };
+
+ const checkoutSchema = yup.object().shape({});
 
  return (
   <>
    {alert ? (
-    <Alert variant="outlined" severity="info">
+    <Alert variant="filled" severity="success">
      {alertContent}
     </Alert>
    ) : (
-    <>
-     <Box
-      sx={{
-       display: "flex",
-       gap: 2,
-       flexDirection: "column",
-      }}
-     >
+    <Formik onSubmit={formSubmit} initialValues={initialValues || formValues} validationSchema={checkoutSchema}>
+     {({ values, errors, touched, handleBlur, handleSubmit, handleChange, setFieldValue }) => (
       <Box
+       component="form"
        sx={{
         display: "flex",
+        flexDirection: "column",
         gap: 2,
-        justifyContent: "space-between",
-        alignItems: "center",
        }}
+       onSubmit={handleSubmit}
+       autoComplete="off"
       >
-       <Typography variant="h1" marginBottom={1} marginTop={1}>
-        Edit venue
-       </Typography>
-       <MainButton color={"error"} variant={"contained"} buttonAction={() => deleteVenue(data.id)} text={"Delete venue"} id={id} />
-      </Box>
-
-      <Box>
-       <Typography variant="h4" marginBottom={1} marginTop={1}>
-        Title
-       </Typography>
-       <TextField id="title" name="title" variant="outlined" defaultValue={name} fullWidth />
-      </Box>
-
-      <Box>
-       <Typography variant="h4" marginBottom={1} marginTop={1}>
-        Description
-       </Typography>
-       <TextField id="description" name="description" variant="outlined" defaultValue={description} multiline rows={5} fullWidth />
-      </Box>
-
-      <Box>
-       <Typography variant="h4" marginBottom={1} marginTop={1}>
-        Venue details
-       </Typography>
-       <FormGroup
-        row
+       <Box
         sx={{
+         display: "flex",
+         justifyContent: "space-between",
+         alignContent: "center",
+         alignItems: "center",
+         gap: 5,
+        }}
+       >
+        <Typography variant="h3" gutterBottom>
+         Edit venue
+        </Typography>
+        <MainButton color={"error"} variant={"contained"} buttonAction={() => deleteVenue(data.id, setAlertContent, setAlert, navigate)} text={"Delete venue"} id={id} />
+       </Box>
+       <TextField
+        fullWidth
+        id="venueName"
+        name="name"
+        label="Venue name"
+        value={values.name}
+        onBlur={handleBlur}
+        onChange={handleChange}
+        error={!!touched.name && !!errors.name}
+        helperText={touched.name && errors.name}
+       />
+
+       <TextField
+        id="venueDescription"
+        name="description"
+        label="Venue description"
+        multiline
+        rows={4}
+        value={values.description}
+        onBlur={handleBlur}
+        onChange={handleChange}
+        error={!!touched.description && !!errors.description}
+        helperText={touched.description && errors.description}
+       />
+       <Box>
+        <Typography variant="body2">Venue includes?</Typography>
+        <FormGroup row>
+         <FormControlLabel control={<Checkbox onClick={() => setFieldValue("wifi", !values.wifi)} checked={values.wifi} value={values.wifi} name="wifi" id="wifiCheck" />} label="Wifi" />
+         <FormControlLabel
+          control={<Checkbox onClick={() => setFieldValue("parking", !values.parking)} checked={values.parking} value={values.parking} name="parking" id="parkingCheck" />}
+          label="Parking"
+         />
+         <FormControlLabel
+          control={<Checkbox onClick={() => setFieldValue("breakfast", !values.breakfast)} checked={values.breakfast} value={values.breakfast} name="breakfast" id="breakfastCheck" />}
+          label="Breakfast"
+         />
+         <FormControlLabel control={<Checkbox onClick={() => setFieldValue("pets", !values.pets)} checked={values.pets} value={values.pets} name="pets" id="petsCheck" />} label="Pets" />
+        </FormGroup>
+       </Box>
+
+       <Box>
+        <Typography variant="body2" gutterBottom>
+         Add images
+        </Typography>
+        <FieldArray name="media">
+         {(FiledArrayProps) => {
+          let { push, remove, form } = FiledArrayProps;
+          const { values } = form;
+          const { media } = values;
+          return (
+           <Box
+            sx={{
+             display: "flex",
+             flexDirection: "column",
+             gap: 2,
+            }}
+           >
+            {media.map((media, index) => (
+             <Box
+              key={index}
+              sx={{
+               display: "flex",
+               flexDirection: "row",
+               alignItems: "center",
+               gap: 2,
+              }}
+             >
+              <Field
+               name={`media.${index}`}
+               type="url"
+               onBlur={handleBlur}
+               error={!!touched.media && !!errors.media}
+               helperText={touched.media && errors.media}
+               label="Venue image"
+               fullWidth
+               as={TextField}
+              />
+              {index > 0 && (
+               <IconButton type="button" color="error" onClick={() => remove(index)}>
+                <DisabledByDefaultIcon />
+               </IconButton>
+              )}
+              <IconButton type="button" color="success" onClick={() => push("")}>
+               <AddBoxIcon />
+              </IconButton>
+             </Box>
+            ))}
+           </Box>
+          );
+         }}
+        </FieldArray>
+       </Box>
+       <Typography variant="body2">Location</Typography>
+       <Box
+        sx={{
+         display: "flex",
          gap: 2,
-         marginBottom: 2,
+        }}
+       >
+        <TextField
+         name="address"
+         id="address"
+         label="Address"
+         value={values.address}
+         onBlur={handleBlur}
+         onChange={handleChange}
+         error={!!touched.address && !!errors.address}
+         helperText={touched.address && errors.address}
+        />
+        <TextField
+         name="city"
+         id="city"
+         label="city"
+         value={values.city}
+         onBlur={handleBlur}
+         onChange={handleChange}
+         error={!!touched.city && !!errors.city}
+         helperText={touched.city && errors.city}
+        />
+        <TextField name="zip" id="zip" label="zip" value={values.zip} onBlur={handleBlur} onChange={handleChange} error={!!touched.zip && !!errors.zip} helperText={touched.zip && errors.zip} />
+        <TextField
+         name="country"
+         id="country"
+         label="country"
+         value={values.country}
+         onBlur={handleBlur}
+         onChange={handleChange}
+         error={!!touched.country && !!errors.country}
+         helperText={touched.country && errors.country}
+        />
+        <TextField
+         name="continent"
+         id="continent"
+         label="continent"
+         value={values.continent}
+         onBlur={handleBlur}
+         onChange={handleChange}
+         error={!!touched.continent && !!errors.continent}
+         helperText={touched.continent && errors.continent}
+        />
+       </Box>
+
+       <Typography variant="body2">Other specifications</Typography>
+       <Box>
+        <TextField
+         name="price"
+         id="price"
+         label="Price"
+         type="number"
+         value={values.price}
+         onBlur={handleBlur}
+         onChange={handleChange}
+         error={!!touched.price && !!errors.price}
+         helperText={touched.price && errors.price}
+        />
+        <TextField
+         name="maxGuests"
+         id="maxGuests"
+         label="Guests"
+         type="number"
+         value={values.maxGuests}
+         onBlur={handleBlur}
+         onChange={handleChange}
+         error={!!touched.maxGuests && !!errors.maxGuests}
+         helperText={touched.maxGuests && errors.maxGuests}
+        />
+       </Box>
+
+       <Box
+        sx={{
+         display: "flex",
+         gap: 2,
+         justifyContent: "flex-end",
          marginTop: 2,
         }}
        >
-        <TextField label={"Max guests"} id="maxGuests" name="maxGuests" type="number" variant="outlined" defaultValue={maxGuests} />
-        <TextField label={"Price"} id="price" name="price" type="number" variant="outlined" defaultValue={price} />
-       </FormGroup>
-
-       <FormGroup
-        row
-        sx={{
-         gap: 2,
-         marginBottom: 2,
-        }}
-       >
-        <FormControlLabel control={<Checkbox checked={wifi} />} label="Wifi" />
-        <FormControlLabel control={<Checkbox checked={parking} />} label="Parking" />
-        <FormControlLabel control={<Checkbox checked={breakfast} />} label="Breakfast" />
-        <FormControlLabel control={<Checkbox checked={pets} />} label="Pets" />
-       </FormGroup>
+        <Button variant="contained" color="warning" onClick={() => {}}>
+         Preview post
+        </Button>
+        <Button type="submit" variant="contained" color="success" onClick={() => {}}>
+         Post new venue
+        </Button>
+       </Box>
       </Box>
-
-      <Box>
-       <Typography variant="h4" marginBottom={1} marginTop={1}>
-        Photos
-       </Typography>
-       <ManageVenueImages imageArray={media} />
-      </Box>
-
-      <Box
-       sx={{
-        display: "flex",
-        gap: 2,
-        justifyContent: "flex-end",
-       }}
-      >
-       <MainButton color={"success"} variant={"contained"} buttonAction={() => {}} text={"Update venue"} id={id} />
-       <MainButton color={"warning"} variant={"outlined"} buttonAction={() => {}} text={"Abort edit"} id={id} />
-      </Box>
-     </Box>
-    </>
+     )}
+    </Formik>
    )}
   </>
  );

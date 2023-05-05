@@ -25,11 +25,6 @@ const BookingsDetails = ({ data }) => {
   }
  };
 
- //  const today = new Date();
- //  .filter((e) => {
- //   if (today >= e.dateTo) return e;
- //  })
-
  return (
   <>
    <h2>Here will your bookings be displayed</h2>
@@ -39,7 +34,7 @@ const BookingsDetails = ({ data }) => {
      const ends = changeTimeFormat(e.dateTo);
 
      const info = (
-      <Box>
+      <Box key={e.id}>
        <Typography>Check in: {starts}</Typography>
        <Typography>Check out: {ends}</Typography>
       </Box>

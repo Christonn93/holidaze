@@ -16,7 +16,8 @@ import DisabledByDefaultIcon from "@mui/icons-material/DisabledByDefault";
 
 /**
  *
- * @param {*} param0
+ * @param {state} state
+ * @param {data} data
  * @returns
  */
 const VenueForm = ({ state, data }) => {
