@@ -1,8 +1,19 @@
+// Importing React
 import React from "react";
 
+// Importing MUI
 import { Box, CardMedia, Typography, useTheme, useMediaQuery, ImageListItem, ImageListItemBar } from "@mui/material";
+
+// Importing Functions
 import ReplaceUserImage from "../Dialog/ReplaceUserImage";
 
+/**
+ *
+ * @param {name} name
+ * @param {avatar} avatar
+ * @param {venueManager} venueManager
+ * @returns
+ */
 const ProfileDetails = ({ name, avatar, venueManager }) => {
  const device = useTheme();
  const isMobile = useMediaQuery(device.breakpoints.down("md"));
@@ -27,6 +38,7 @@ const ProfileDetails = ({ name, avatar, venueManager }) => {
   gap: 3,
  };
 
+ console.clear();
  return (
   <>
    <Box sx={!isMobile ? layoutDesktop : layoutMobile}>

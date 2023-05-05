@@ -19,6 +19,7 @@ import VenueMediaGallery from "../../components/Venue/SingleVenue/VenueMediaGall
 import VenueBookingSection from "../../components/Venue/SingleVenue/VenueBookingSection";
 
 const Venue = () => {
+ console.clear();
  let { id } = useParams();
  const endpoint = venues + `/${id}?_owner=true&_bookings=true`;
  const method = "GET";

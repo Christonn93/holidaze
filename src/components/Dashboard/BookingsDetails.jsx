@@ -1,44 +1,27 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// Importing React
+import React from "react";
 
-import { Typography, Box, Stack, MenuItem } from "@mui/material";
-import { changeTimeFormat } from "../../js/changeTimeFormat";
+// Importing MUI
+import { Typography, Box, Stack } from "@mui/material";
+
+// Importing Components
 import ListingCards from "../Cards/ListingCards";
 
-import SettingsIcon from "@mui/icons-material/Settings";
-import BookingDetailsMenu from "../Menu/BookingDetailsMenu";
+// Importing functions
+import { changeTimeFormat } from "../../js/changeTimeFormat";
 
+/**
+ *
+ * @param {data} data
+ * @returns
+ */
 const BookingsDetails = ({ data }) => {
- // eslint-disable-next-line
- const [open, setOpen] = useState(false);
- const navigate = useNavigate();
-
  if (!data) {
   console.error(data);
   return <h1>There was no data found</h1>;
  }
 
- const handleNavigate = (path, id) => {
-  if (path === "create") {
-   navigate(`/booking/create`);
-   setOpen(false);
-  }
-  if (path === "edit") {
-   navigate(`/booking/edit/${id}`);
-   setOpen(false);
-  }
- };
-
- const menuContent = (
-  <>
-   <MenuItem disabled onClick={handleNavigate}>
-    Edit
-   </MenuItem>
-   <MenuItem disabled onClick={handleNavigate}>
-    Delete
-   </MenuItem>
-  </>
- );
+ console.clear();
 
  return (
   <>
@@ -57,7 +40,7 @@ const BookingsDetails = ({ data }) => {
 
      return (
       <>
-       <ListingCards key={e.id} name={e.venue.name} infoChildren={info} buttonChildren={<BookingDetailsMenu icon={<SettingsIcon />} ToolTipTitle={"edit booking"} menuContent={menuContent} />} />
+       <ListingCards key={e.id} name={e.venue.name} infoChildren={info} />
       </>
      );
     })}

@@ -9,6 +9,7 @@ import RegisterUser from "../../feature/Register/RegisterUser";
 import Link from "../../components/Link/Link";
 
 const Register = () => {
+ console.clear();
  return (
   <Container>
    <Typography variant="h1" margin={1}>

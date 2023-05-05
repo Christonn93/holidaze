@@ -39,6 +39,7 @@ const Dashboard = ({ status }) => {
 
  if (isError) console.log(isError);
 
+ console.clear();
  return (
   <>
    <Box

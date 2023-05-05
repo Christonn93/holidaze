@@ -9,6 +9,7 @@ import LogIn from "../../feature/Login/LogIn";
 import Link from "../../components/Link/Link";
 
 const Login = () => {
+ console.clear();
  return (
   <Container>
    <Typography variant="h1" margin={1}>
