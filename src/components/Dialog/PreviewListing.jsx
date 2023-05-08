@@ -2,15 +2,16 @@
 import React, { useState } from "react";
 
 // Importing MUI
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from "@mui/material";
+import { Box, Button, Card, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from "@mui/material";
 
 // Importing components
 import VenueTitleSection from "../../components/Venue/SingleVenue/VenueTitleSection";
 import VenueOwnerSection from "../../components/Venue/SingleVenue/VenueOwnerSection";
-import VenueDetailsSection from "../../components/Venue/SingleVenue/VenueDetailsSection";
-import VenueMainMedia from "../../components/Venue/SingleVenue/VenueMainMedia";
-import VenueMediaGallery from "../../components/Venue/SingleVenue/VenueMediaGallery";
-import VenueBookingSection from "../../components/Venue/SingleVenue/VenueBookingSection";
+import VenueDescription from "../../components/Venue/SingleVenue/VenueDescription";
+import VenueDetails from "../../components/Venue/SingleVenue/VenueDetails";
+import ImageCarousel from "../../components/Carousel/ImageCarousel";
+import BookingForm from "../../components/Form/BookingForm";
+import SiteCrumbs from "../../components/Breadcrumbs/SiteCrumbs";
 
 /**
  *
@@ -65,33 +66,53 @@ const PreviewListing = ({ data }) => {
        flexDirection: "column",
       }}
      >
+      <SiteCrumbs firstStep={"Venues"} secondStep={name} />
       <Box>
-       <VenueTitleSection name={name} manager={manager} id={venueId} />
-       <VenueMainMedia media={media} />
-      </Box>
-      <Box>
-       <VenueDetailsSection venueDescription={description} maxGuests={maxGuests} price={price} wifi={wifi} breakfast={breakfast} parking={parking} pets={pets} />
+       <VenueTitleSection name={name} manager={manager} id={venueId} created={created} updated={updated} />
+       <ImageCarousel media={media} />
       </Box>
 
-      <Box>
-       <Typography variant="h4" marginBottom={1}>
-        Book your stay!
-       </Typography>
-       <VenueBookingSection data={bookings} id={venueId} />
+      <Box
+       sx={{
+        display: "flex",
+        gap: 3,
+       }}
+      >
+       <VenueDescription venueDescription={description} />
+       <Box>
+        <Typography variant="h4" marginBottom={1}>
+         Book your stay!
+        </Typography>
+        <Card
+         sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          gap: 2,
+          padding: 2,
+          maxWidth: 350,
+         }}
+        >
+         <VenueDetails maxGuests={maxGuests} wifi={wifi} breakfast={breakfast} parking={parking} pets={pets} />
+         <Typography variant="h5">{price} ,- night guests</Typography>
+         <BookingForm data={data} id={venueId} />
+        </Card>
+       </Box>
       </Box>
 
-      <Box>
-       <Typography variant="h4" marginBottom={1}>
-        Photos
-       </Typography>
-       <VenueMediaGallery media={media} />
-      </Box>
-
-      <Box>
+      <Box
+       sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        gap: 2,
+        padding: 2,
+       }}
+      >
        <Typography variant="h4" marginBottom={1}>
         Owner details
        </Typography>
-       <VenueOwnerSection name={ownerName} avatar={avatar} email={email} created={created} updated={updated} />
+       <VenueOwnerSection name={ownerName} avatar={avatar} email={email} />
       </Box>
      </Box>
     </DialogContent>

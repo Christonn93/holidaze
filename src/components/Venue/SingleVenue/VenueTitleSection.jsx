@@ -4,11 +4,16 @@ import { useNavigate } from "react-router-dom";
 import { Box, IconButton, Tooltip, Typography } from "@mui/material";
 import SettingsIcon from "@mui/icons-material/Settings";
 
-const VenueTitleSection = ({ name, manager, id }) => {
+import { changeTimeFormat } from "../../../js/changeTimeFormat";
+
+const VenueTitleSection = ({ name, manager, id, created, updated }) => {
  const navigate = useNavigate();
  const buttonAction = () => {
   navigate(`/venue/edit/${id}`);
  };
+
+ const createdTime = changeTimeFormat(created);
+ const updatedTime = changeTimeFormat(updated);
 
  return (
   <>
@@ -31,6 +36,16 @@ const VenueTitleSection = ({ name, manager, id }) => {
        </IconButton>
       </Tooltip>
      </Box>
+     <Box
+      sx={{
+       display: "flex",
+       gap: 2,
+       flexWrap: "wrap",
+      }}
+     >
+      <Typography variant="subtitle2">Created: {createdTime}</Typography>
+      <Typography variant="subtitle2">Updated: {updatedTime}</Typography>
+     </Box>
     </>
    ) : (
     <>
@@ -38,6 +53,16 @@ const VenueTitleSection = ({ name, manager, id }) => {
       <Typography variant="h1" marginBottom={1}>
        {name}
       </Typography>
+     </Box>
+     <Box
+      sx={{
+       display: "flex",
+       gap: 2,
+       flexWrap: "wrap",
+      }}
+     >
+      <Typography variant="subtitle2">Created: {createdTime}</Typography>
+      <Typography variant="subtitle2">Updated: {updatedTime}</Typography>
      </Box>
     </>
    )}
