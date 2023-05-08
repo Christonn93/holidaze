@@ -21,14 +21,14 @@ import PreviewListing from "../Dialog/PreviewListing";
  * @param {data} data
  * @returns
  */
-const VenueForm = ({ state, data }) => {
+const VenueForm = () => {
  // eslint-disable-next-line
  const [formValues, setFormValues] = useState();
  const [alert, setAlert] = useState(false);
  const [alertContent, setAlertContent] = useState("");
  const navigate = useNavigate();
 
- const formSubmit = (values, submitProps) => {
+ const formSubmit = (values) => {
   console.log("Form data", values);
 
   // eslint-disable-next-line

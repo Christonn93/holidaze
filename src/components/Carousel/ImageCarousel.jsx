@@ -12,7 +12,7 @@ const ImageCarousel = ({ media }) => {
    }}
    indicators={false}
   >
-   {media.map((item, i) => (
+   {media.map((item) => (
     <ImageListItem
      sx={{
       maxWidth: 800,

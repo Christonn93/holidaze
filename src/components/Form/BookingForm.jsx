@@ -48,7 +48,7 @@ const BookingForm = ({ data, id }) => {
   guests: "",
  };
 
- const formSubmit = (values, submitProps) => {
+ const formSubmit = (values) => {
   inputValue.map((e) => Object.assign(values, { dateFrom: e.startDate.toISOString() }));
   inputValue.map((e) => Object.assign(values, { dateTo: e.endDate.toISOString() }));
   console.log("Form data", values);
@@ -97,7 +97,7 @@ const BookingForm = ({ data, id }) => {
  return (
   <>
    <Formik onSubmit={formSubmit} initialValues={initialValues || formValues} validationSchema={checkoutSchema}>
-    {({ values, errors, touched, handleBlur, handleSubmit, handleChange, setFieldValue }) => (
+    {({ values, errors, touched, handleBlur, handleSubmit, handleChange }) => (
      <>
       <Box
        component="form"

@@ -46,7 +46,7 @@ const EditVenue = () => {
 
  updateHead(name, description);
 
- const formSubmit = (values, submitProps) => {
+ const formSubmit = (values) => {
   console.log("Form data", values);
 
   // eslint-disable-next-line

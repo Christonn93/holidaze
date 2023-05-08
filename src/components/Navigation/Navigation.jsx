@@ -12,7 +12,7 @@ import ConstructionIcon from "@mui/icons-material/Construction";
 import { getLocalStorageItem } from "../../js/storage/getItems";
 import LogOutUser from "../../js/logOut";
 
-const Navigation = ({ status }) => {
+const Navigation = () => {
  const [anchorEl, setAnchorEl] = useState(null);
 
  const navigate = useNavigate();

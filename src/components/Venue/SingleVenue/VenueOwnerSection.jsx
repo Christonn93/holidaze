@@ -5,7 +5,7 @@ import UserAvatar from "../../../components/UserAvatar/UserAvatar";
 
 import { useNavigate } from "react-router-dom";
 
-const VenueOwnerSection = ({ name, avatar, email }) => {
+const VenueOwnerSection = ({ name, avatar }) => {
  const navigate = useNavigate();
 
  const handleClick = () => {
