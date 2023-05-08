@@ -13,10 +13,9 @@ import { Paper, Typography, Box, IconButton, Tooltip, useTheme, useMediaQuery, S
  * @param {buttonChildren} buttonChildren
  * @param {buttonAction} buttonAction
  * @param {ToolTipTitle} ToolTipTitle
- * @param {location} location
  * @returns
  */
-const ListingCards = ({ name, id, infoChildren, buttonChildren, buttonAction, ToolTipTitle, location }) => {
+const ListingCards = ({ name, id, infoChildren, buttonChildren, buttonAction, ToolTipTitle }) => {
  const device = useTheme();
  const isMobile = useMediaQuery(device.breakpoints.down("md"));
  const navigate = useNavigate();
