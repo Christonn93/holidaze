@@ -76,7 +76,6 @@ const Venue = () => {
       justifyContent: "space-between",
       flexWrap: "wrap",
       gap: 3,
-      maxWidth: 1150,
      }}
     >
      <VenueDescription venueDescription={description} />
@@ -91,7 +90,7 @@ const Venue = () => {
         justifyContent: "center",
         gap: 2,
         padding: 2,
-        maxWidth: 350,
+        maxWidth: 400,
        }}
       >
        <VenueDetails maxGuests={maxGuests} wifi={wifi} breakfast={breakfast} parking={parking} pets={pets} />

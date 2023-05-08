@@ -109,30 +109,6 @@ const BookingForm = ({ data, id }) => {
         maxWidth: 350,
        }}
       >
-       <DateRange
-        disabledDates={blockedValue}
-        editableDateInputs={true}
-        onChange={(item) => {
-         setInputValue([item.selection]);
-        }}
-        name="date"
-        moveRangeOnFirstSelection={false}
-        ranges={inputValue}
-       />
-       <TextField
-        id="guests"
-        name="guests"
-        label="Guests"
-        type="number"
-        value={values.guests}
-        onBlur={handleBlur}
-        onChange={handleChange}
-        error={!!touched.guests && !!errors.guests}
-        helperText={touched.guests && errors.guests}
-       />
-       <Button type="submit" variant="outlined" color="success">
-        Book your stay
-       </Button>
        {success ? (
         <Collapse in={open}>
          <Alert
@@ -183,7 +159,32 @@ const BookingForm = ({ data, id }) => {
          </Alert>
         </Collapse>
        ) : (
-        <></>
+        <>
+         <DateRange
+          disabledDates={blockedValue}
+          editableDateInputs={true}
+          onChange={(item) => {
+           setInputValue([item.selection]);
+          }}
+          name="date"
+          moveRangeOnFirstSelection={false}
+          ranges={inputValue}
+         />
+         <TextField
+          id="guests"
+          name="guests"
+          label="Guests"
+          type="number"
+          value={values.guests}
+          onBlur={handleBlur}
+          onChange={handleChange}
+          error={!!touched.guests && !!errors.guests}
+          helperText={touched.guests && errors.guests}
+         />
+         <Button type="submit" variant="outlined" color="success">
+          Book your stay
+         </Button>
+        </>
        )}
       </Box>
      </>

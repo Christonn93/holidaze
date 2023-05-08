@@ -18,7 +18,7 @@ const VenueDescription = ({ venueDescription }) => {
     display: "flex",
     flexDirection: "column",
     gap: 2,
-    maxWidth: 750,
+    maxWidth: 650,
    }}
   >
    <Box>

@@ -1,9 +1,9 @@
 // Importing React
-import React from "react";
+import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 // Importing MUI
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 
 // Importing hooks and functions
 import useApi from "../../hooks/useApi";
@@ -15,15 +15,19 @@ import UiFeedback from "../../components/UiFeedback/UiFeedback";
 import Loading from "../../components/Loading/Loading";
 
 const VenueList = () => {
+ let [offset, setOffset] = useState(20);
+ let [limit, setLimit] = useState(20);
  let [searchParams] = useSearchParams();
- let limit = 50;
- let search = "";
- let endpoint = venues + `?_owner=true&_bookings=true&limit=${limit}`;
-
  // eslint-disable-next-line
  let [key, value] = searchParams.entries();
 
- //
+ // Empty search value
+ let search = "";
+
+ // Fetch endpoint
+ let endpoint = venues + `?_owner=true&_bookings=true&limit=${limit}&offset=${offset}`;
+
+ // Setting url key for filtering options
  if (key === undefined) key = "";
  if (key) endpoint = venues + `?_owner=true&_bookings=true&limit=${limit}&sort=${key[0]}&sortOrder=${key[1]}`;
  if (key[0] === "search") {
@@ -31,26 +35,28 @@ const VenueList = () => {
   search = key[1];
  }
 
+ // Setting method for the fetch
  const method = "GET";
 
+ // Making the fetch call
  const { data, isLoading, isError } = useApi(endpoint, method);
 
+ // Setting up loading option
  if (isLoading) return <Loading />;
 
+ // Setting up error option
  if (isError) {
   console.error(isError);
   return <UiFeedback severity="error" title={"An unexpected error have accrued"} message={"Please refresh the page"} />;
  }
 
+ // If data value is empty
  if (!data.map) {
   console.log(data);
   return <UiFeedback severity="error" title={"An unexpected error have accrued"} message={"Please refresh the page"} />;
  }
 
- //  console.log("Data", data);
- //  console.log("endpoint", endpoint);
- // console.log("Params", params);
-
+ // Setting up feedback if search is empty
  const EmptyResults = (
   <>
    <Box>
@@ -58,6 +64,12 @@ const VenueList = () => {
    </Box>
   </>
  );
+
+ const loadMoreVenues = () => {
+  setOffset(offset + 10);
+  setLimit(limit + 10);
+  return console.log("Clicked");
+ };
 
  return (
   <>
@@ -71,7 +83,6 @@ const VenueList = () => {
      );
     })
     .map((venue) => {
-     // console.log("Full venue list", venue);
      return (
       <Box
        key={venue.id}
@@ -83,14 +94,20 @@ const VenueList = () => {
       </Box>
      );
     })}
+   <Box
+    sx={{
+     display: "flex",
+     justifyContent: "center",
+     alignContent: "center",
+     margin: 2,
+    }}
+   >
+    <Button variant="contained" color="success" onClick={() => loadMoreVenues()}>
+     View more
+    </Button>
+   </Box>
   </>
  );
 };
 
 export default VenueList;
-
-// search.toLowerCase() === venue.name.toLowerCase()
-// ? venue
-// : venue.name.toLowerCase().includes(search)
-
-// return search.toLowerCase() === venue.name.toLowerCase() ? venue : venue.name.toLowerCase().includes(search);

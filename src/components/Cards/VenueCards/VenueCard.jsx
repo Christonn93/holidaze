@@ -30,8 +30,6 @@ const VenueCard = ({ data }) => {
  const { name, maxGuests, price, media, meta, id, location } = data;
 
  // Default image value if image is not matching
- // eslint-disable-next-line
- const imageCheck = /\.(jpg|jpeg|png|webp|avif|gif)$/i.test(media[0]);
  const imageMissing = "https://via.placeholder.com/600x400?text=Image+missing";
 
  // Destructing meta data
@@ -53,7 +51,7 @@ const VenueCard = ({ data }) => {
  return (
   <Card sx={!isMobile ? CardBase : CardBaseMobile} onClick={() => navigate(`/venue/${id}`)}>
    <Box maxWidth={!isMobile ? 350 : 400} width={2 / 2}>
-    <CardMedia src="image" component="img" image={media[0] ? media[0] : imageMissing} alt={media[0] ? "Main image of venue" : "Image is missing"} />
+    <CardMedia height="250" src="image" component="img" image={media[0] ? media[0] : imageMissing} alt={media[0] ? "Main image of venue" : "Image is missing"} />
    </Box>
    <Box
     sx={{
@@ -112,3 +110,6 @@ const VenueCard = ({ data }) => {
 };
 
 export default VenueCard;
+
+// eslint-disable-next-line
+//  const imageCheck = /\.(jpg|jpeg|png|webp|avif|gif)$/i.test(media[0]);
