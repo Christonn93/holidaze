@@ -36,7 +36,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cypress-test": "npm run test-e2e",
+    "test-e2e": "cypress open"
   },
   "eslintConfig": {
     "extends": [
@@ -60,5 +62,9 @@
     "whitelist": [
       "API_BASEURL"
     ]
+  },
+  "devDependencies": {
+    "cypress": "^12.11.0",
+    "eslint-plugin-cypress": "^2.13.3"
   }
 }
