@@ -78,6 +78,15 @@ There are two aspects to this brief: the customer-facing side of the website whe
 
 ## End to end testing
 
+The project have cypress with end 2 end testing.
+
+```md
+Start the test
+
+npx cypress open
+
+```
+
 ## Acknowledgements
 
 - Alexander Barrett [Github](https://github.com/Anclagen)

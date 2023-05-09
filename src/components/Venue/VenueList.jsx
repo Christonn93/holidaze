@@ -65,10 +65,10 @@ const VenueList = () => {
   </>
  );
 
- const loadMoreVenues = () => {
+ const loadMoreVenues = (e) => {
+  e.preventDefault();
   setOffset(offset + 10);
   setLimit(limit + 10);
-  return console.log("Clicked");
  };
 
  return (
@@ -102,7 +102,7 @@ const VenueList = () => {
      margin: 2,
     }}
    >
-    <Button variant="contained" color="success" onClick={() => loadMoreVenues()}>
+    <Button variant="contained" color="success" type="submit" onClick={loadMoreVenues}>
      View more
     </Button>
    </Box>

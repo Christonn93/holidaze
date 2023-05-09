@@ -12,6 +12,7 @@ import { updateHead } from "../../js/updateHeader";
 import ListingFilter from "../../components/Filter/ListingFilter";
 import VenueList from "../../components/Venue/VenueList";
 import HeroLandingPage from "../../components/Hero/HeroLandingPage";
+import ScrollToTopButton from "../../components/Button/ScrollToTopButton";
 
 const Home = () => {
  console.clear();
@@ -37,6 +38,7 @@ const Home = () => {
      <VenueList params={searchParams} />
     </Box>
    </Box>
+   <ScrollToTopButton />
   </>
  );
 };
