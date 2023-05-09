@@ -51,7 +51,7 @@ const Navigation = () => {
  return (
   <React.Fragment>
    <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
-    <Tooltip title="Account">
+    <Tooltip title="Account" id="dropDownNavigation" data-cy="navigation-icon-button">
      <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }} aria-controls={open ? "account-menu" : undefined} aria-haspopup="true" aria-expanded={open ? "true" : undefined}>
       <Avatar sx={{ width: 43, height: 43 }} src={src}></Avatar>
      </IconButton>
@@ -93,8 +93,8 @@ const Navigation = () => {
     anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
    >
     {isLoggedIn ? (
-     <Box>
-      <MenuItem onClick={() => handleNavigate("profile")}>
+     <Box data-cy="dropdown-menu">
+      <MenuItem onClick={() => handleNavigate("profile")} data-cy="navigate-to-profile">
        <ListItemIcon>
         <Avatar src={src} fontSize="small" />
        </ListItemIcon>
@@ -115,8 +115,8 @@ const Navigation = () => {
       </MenuItem>
      </Box>
     ) : (
-     <Box>
-      <MenuItem onClick={() => handleNavigate("path")}>
+     <Box data-cy="dropdown-menu">
+      <MenuItem onClick={() => handleNavigate("path")} data-cy="login-button">
        <Avatar /> Login / register
       </MenuItem>
      </Box>

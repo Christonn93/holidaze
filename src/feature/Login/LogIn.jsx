@@ -40,8 +40,19 @@ const LogIn = () => {
  return (
   <>
    <form noValidate onSubmit={formSubmit}>
-    <TextField variant="outlined" margin="normal" required fullWidth id="email" name="email" label="Email Address" onChange={(e) => setEmail(e.target.value)} />
-    <TextField variant="outlined" margin="normal" required fullWidth id="password" name="password" label="Password" type="password" onChange={(e) => setUserPassword(e.target.value)} />
+    <TextField data-cy="email-input" variant="outlined" margin="normal" required fullWidth id="email" name="email" label="Email Address" onChange={(e) => setEmail(e.target.value)} />
+    <TextField
+     data-cy="password-input"
+     variant="outlined"
+     margin="normal"
+     required
+     fullWidth
+     id="password"
+     name="password"
+     label="Password"
+     type="password"
+     onChange={(e) => setUserPassword(e.target.value)}
+    />
     <Button
      type="submit"
      fullWidth
@@ -50,6 +61,7 @@ const LogIn = () => {
      onClick={() => {
       auth.storeUserData();
      }}
+     data-cy="login-button"
     >
      Sign In
     </Button>

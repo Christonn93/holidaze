@@ -18,6 +18,8 @@ import VenueDetails from "../../components/Venue/SingleVenue/VenueDetails";
 import ImageCarousel from "../../components/Carousel/ImageCarousel";
 import BookingForm from "../../components/Form/BookingForm";
 import SiteCrumbs from "../../components/Breadcrumbs/SiteCrumbs";
+// eslint-disable-next-line
+import VenueMainMedia from "../../components/Venue/SingleVenue/VenueMainMedia";
 
 const Venue = () => {
  console.clear();
@@ -67,6 +69,7 @@ const Venue = () => {
     <SiteCrumbs firstStep={"Venues"} secondStep={name} />
     <Box>
      <VenueTitleSection name={name} manager={manager} id={venueId} created={created} updated={updated} />
+
      <ImageCarousel media={media} />
     </Box>
 

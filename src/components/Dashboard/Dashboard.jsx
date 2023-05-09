@@ -53,7 +53,7 @@ const Dashboard = ({ status }) => {
     }}
    >
     <h1>Dashboard</h1>
-    <Button variant="outlined" color="error" onClick={LogOutUser}>
+    <Button variant="outlined" color="error" onClick={LogOutUser} data-cy="logout-button">
      <Logout fontSize="small" />
      Logout
     </Button>
@@ -64,13 +64,13 @@ const Dashboard = ({ status }) => {
      <Tab label="Bookings" />
      {status ? <Tab label="Your Venues" /> : <></>}
     </Tabs>
-    <TabPanel value={value} index={0}>
+    <TabPanel value={value} index={0} data-cy="profile-tab">
      <ProfileDetails name={data.name} avatar={data.avatar} venueManager={data.venueManager} />
     </TabPanel>
-    <TabPanel value={value} index={1}>
+    <TabPanel value={value} index={1} data-cy="booking-tap">
      <BookingsDetails data={data.bookings} />
     </TabPanel>
-    <TabPanel value={value} index={2}>
+    <TabPanel value={value} index={2} data-cy="venue-tab">
      <VenueDetails data={data.venues} />
     </TabPanel>
    </Box>
