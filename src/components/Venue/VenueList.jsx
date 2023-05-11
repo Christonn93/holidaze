@@ -25,7 +25,7 @@ const VenueList = () => {
  let search = "";
 
  // Fetch endpoint
- let endpoint = venues + `?_owner=true&_bookings=true&limit=${limit}&offset=${offset}`;
+ let endpoint = venues + `?_owner=true&_bookings=true&limit=${limit}`;
 
  // Setting url key for filtering options
  if (key === undefined) key = "";

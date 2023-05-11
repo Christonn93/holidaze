@@ -48,11 +48,13 @@ const Venue = () => {
 
  const storedData = localStorage.getItem("UserData");
 
- const storedName = JSON.parse(storedData).name;
-
  let manager = false;
- if (ownerName === storedName) {
-  manager = true;
+
+ if (storedData) {
+  const storedName = JSON.parse(storedData).name;
+  if (ownerName === storedName) {
+   return (manager = true);
+  }
  }
 
  updateHead(name, description);
