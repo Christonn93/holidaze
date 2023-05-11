@@ -16,7 +16,7 @@ const Login = () => {
     Log in
    </Typography>
    <Typography variant="body1" margin={1}>
-    Not a user yet? Register a new user <Link route="/register" children={"here"} />
+    Not a user yet? Register a new user <Link route="/register" color="primary" children={"here"} />
    </Typography>
    <LogIn />
   </Container>

@@ -40,44 +40,13 @@ const RegisterUser = () => {
      name="name"
      label="User name"
      type="text"
-     sx={{ "& .MuiInputLabel-root": { color: theme.palette.mode === "dark" ? "#4cceac" : "#000914" } }}
      onChange={(e) => {
       setUsername(e.target.value);
      }}
     />
-    <TextField
-     variant="outlined"
-     margin="normal"
-     fullWidth
-     id="avatar"
-     name="avatar"
-     label="Profile image"
-     type="url"
-     sx={{ "& .MuiInputLabel-root": { color: theme.palette.mode === "dark" ? "#4cceac" : "#000914" } }}
-     onChange={(e) => setAvatar(e.target.value)}
-    />
-    <TextField
-     variant="outlined"
-     margin="normal"
-     fullWidth
-     id="email"
-     name="email"
-     label="Email Address"
-     type="email"
-     sx={{ "& .MuiInputLabel-root": { color: theme.palette.mode === "dark" ? "#4cceac" : "#000914" } }}
-     onChange={(e) => setEmail(e.target.value)}
-    />
-    <TextField
-     variant="outlined"
-     margin="normal"
-     fullWidth
-     id="password"
-     name="password"
-     label="Password"
-     type="password"
-     sx={{ "& .MuiInputLabel-root": { color: theme.palette.mode === "dark" ? "#4cceac" : "#000914" } }}
-     onChange={(e) => setUserPassword(e.target.value)}
-    />
+    <TextField variant="outlined" margin="normal" fullWidth id="avatar" name="avatar" label="Profile image" type="url" onChange={(e) => setAvatar(e.target.value)} />
+    <TextField variant="outlined" margin="normal" fullWidth id="email" name="email" label="Email Address" type="email" onChange={(e) => setEmail(e.target.value)} />
+    <TextField variant="outlined" margin="normal" fullWidth id="password" name="password" label="Password" type="password" onChange={(e) => setUserPassword(e.target.value)} />
     <FormControlLabel control={<Checkbox onChange={(e) => setManager(e.target.checked)} sx={{ color: theme.palette.mode === "dark" ? "#4cceac" : "#000914" }} />} label="Venue manager?" />
 
     <Box display="flex" justifyContent="end" mt="20px">

@@ -16,7 +16,7 @@ const Register = () => {
     Register user
    </Typography>
    <Typography variant="body1" margin={1}>
-    Already a user? Log in <Link route="/login" children={"here"} />
+    Already a user? Log in <Link route="/login" color="primary" children={"here"} />
    </Typography>
    <RegisterUser />
   </Container>
