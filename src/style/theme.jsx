@@ -221,7 +221,7 @@ export const themeSettings = (mode) => {
         light: colors.grey[100],
        },
        background: {
-        default: " #FDFFFC",
+        default: "#FDFFFC",
        },
        primaryButton: {
         main: colors.primary[500],

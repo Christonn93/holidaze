@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Box, IconButton, Tooltip, Typography } from "@mui/material";
@@ -6,7 +6,13 @@ import SettingsIcon from "@mui/icons-material/Settings";
 
 import { changeTimeFormat } from "../../../js/changeTimeFormat";
 
-const VenueTitleSection = ({ name, manager, id, created, updated }) => {
+const VenueTitleSection = ({ name, venueOwner, id, created, updated }) => {
+ const [isManager] = useState(() => {
+  const storedData = localStorage.getItem("UserData");
+  const parseStoredData = JSON.parse(storedData);
+  const managerName = parseStoredData.name;
+  if (venueOwner === managerName) return parseStoredData.venueManager;
+ });
  const navigate = useNavigate();
  const buttonAction = () => {
   navigate(`/venue/edit/${id}`);
@@ -17,7 +23,7 @@ const VenueTitleSection = ({ name, manager, id, created, updated }) => {
 
  return (
   <>
-   {manager ? (
+   {isManager ? (
     <>
      <Box
       marginBottom={1}

@@ -22,7 +22,6 @@ import SiteCrumbs from "../../components/Breadcrumbs/SiteCrumbs";
 import VenueMainMedia from "../../components/Venue/SingleVenue/VenueMainMedia";
 
 const Venue = () => {
- console.clear();
  let { id } = useParams();
  const endpoint = venues + `/${id}?_owner=true&_bookings=true`;
  const method = "GET";
@@ -46,17 +45,6 @@ const Venue = () => {
  // Destructing owner data
  const { name: ownerName, email, avatar } = owner;
 
- const storedData = localStorage.getItem("UserData");
-
- let manager = false;
-
- if (storedData) {
-  const storedName = JSON.parse(storedData).name;
-  if (ownerName === storedName) {
-   return (manager = true);
-  }
- }
-
  updateHead(name, description);
 
  return (
@@ -70,7 +58,7 @@ const Venue = () => {
    >
     <SiteCrumbs firstStep={"Venues"} secondStep={name} />
     <Box>
-     <VenueTitleSection name={name} manager={manager} id={venueId} created={created} updated={updated} />
+     <VenueTitleSection name={name} venueOwner={ownerName} id={venueId} created={created} updated={updated} />
 
      <ImageCarousel media={media} />
     </Box>
