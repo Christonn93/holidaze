@@ -15,7 +15,6 @@ import UiFeedback from "../../components/UiFeedback/UiFeedback";
 import Loading from "../../components/Loading/Loading";
 
 const VenueList = () => {
- let [offset, setOffset] = useState(20);
  let [limit, setLimit] = useState(20);
  let [searchParams] = useSearchParams();
  // eslint-disable-next-line
@@ -65,9 +64,7 @@ const VenueList = () => {
   </>
  );
 
- const loadMoreVenues = (e) => {
-  e.preventDefault();
-  setOffset(offset + 10);
+ const loadMoreVenues = () => {
   setLimit(limit + 10);
  };
 
