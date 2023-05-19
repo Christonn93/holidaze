@@ -31,6 +31,7 @@ const Home = () => {
     }}
    >
     <HeroLandingPage />
+
     <Box>
      <ListingFilter setParams={setSearchParams} />
     </Box>

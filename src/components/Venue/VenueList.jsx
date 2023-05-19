@@ -1,5 +1,5 @@
 // Importing React
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
 // Importing MUI
@@ -41,7 +41,9 @@ const VenueList = () => {
  const { data, isLoading, isError } = useApi(endpoint, method);
 
  // Setting up loading option
- if (isLoading) return <Loading />;
+ useEffect(() => {
+  if (isLoading) return <Loading />;
+ }, []);
 
  // Setting up error option
  if (isError) {
