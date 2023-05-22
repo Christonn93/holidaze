@@ -11,9 +11,13 @@ import { initialValues } from "./VenueFormValues";
 
 // Importing MUI
 import { Alert, Box, Button, Checkbox, FormControlLabel, FormGroup, IconButton, TextField, Typography } from "@mui/material";
+
+// Importing MUI Icons
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import DisabledByDefaultIcon from "@mui/icons-material/DisabledByDefault";
-import PreviewListing from "../Dialog/PreviewListing";
+
+// Importing components
+import UiFeedback from "../../components/UiFeedback/UiFeedback";
 
 /**
  *
@@ -26,6 +30,10 @@ const VenueForm = () => {
  const [formValues, setFormValues] = useState();
  const [alert, setAlert] = useState(false);
  const [alertContent, setAlertContent] = useState("");
+ // eslint-disable-next-line
+ const [errorAlert, setErrorAlert] = useState(false);
+ // eslint-disable-next-line
+ const [responseCode, setResponseCode] = useState("");
  const navigate = useNavigate();
 
  const formSubmit = (values) => {
@@ -73,14 +81,17 @@ const VenueForm = () => {
    body: JSON.stringify(body),
   })
    .then((response) => {
+    console.log("response 1", response);
     if (!response.ok) {
+     console.log("response 2", response);
+
      throw new Error("Failed to submit form");
     }
     return response.json();
    })
    .then((data) => {
     // Handle successful response from API
-    console.log(data);
+    console.log("Data", data);
     setAlertContent("Venue created");
     setAlert(true);
     setTimeout(() => {
@@ -91,13 +102,20 @@ const VenueForm = () => {
     // Handle error
     console.error(error);
    });
-
-  console.log(body);
-
   setFormValues(values);
  };
 
- const checkoutSchema = yup.object().shape({});
+ const checkoutSchema = yup.object().shape({
+  name: yup.string().required("Venue name is missing"),
+  description: yup.string().required("Venue description is missing"),
+  address: yup.string().required("Address is missing"),
+  city: yup.string().required("City is missing"),
+  zip: yup.string().required("Zip is missing"),
+  country: yup.string().required("Country is missing"),
+  continent: yup.string().required("Continent is missing"),
+  price: yup.string().required("Price is missing"),
+  maxGuests: yup.string().required("Guests amount is missing"),
+ });
 
  console.clear();
 
@@ -304,11 +322,19 @@ const VenueForm = () => {
          marginTop: 2,
         }}
        >
-        <PreviewListing data={values} />
         <Button type="submit" variant="contained" color="success" onClick={() => {}}>
          Post venue
         </Button>
        </Box>
+       {errorAlert ? (
+        <>
+         <Box marginTop={2} marginBottom={2}>
+          <UiFeedback severity={"error"} title={"Error" + " " + responseCode} message={errorAlert + "." + " " + "Please try again"} />
+         </Box>
+        </>
+       ) : (
+        <></>
+       )}
       </Box>
      )}
     </Formik>

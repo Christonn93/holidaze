@@ -23,8 +23,8 @@ export const initialValues = {
  name: "", // Required
  description: "", // Required
  media: [""], // Optional
- price: 0, // Required
- maxGuests: 0, // Required
+ price: null, // Required
+ maxGuests: null, // Required
  wifi: false, // Optional (default: false)
  parking: false, // Optional (default: false)
  breakfast: false, // Optional (default: false)

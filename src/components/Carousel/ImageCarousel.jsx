@@ -7,19 +7,14 @@ const ImageCarousel = ({ media }) => {
  return (
   <Carousel
    sx={{
-    maxWidth: 800,
+    maxWidth: 750,
     maxHeight: 500,
    }}
    indicators={false}
   >
    {media.map((item) => (
-    <ImageListItem
-     sx={{
-      maxWidth: 800,
-      maxHeight: 500,
-     }}
-    >
-     <CardMedia src="image" component="img" image={item} key={item} alt={item} />
+    <ImageListItem>
+     <CardMedia src="image" component="img" image={item} key={item} alt={item} sx={{ height: 500 }} />
     </ImageListItem>
    ))}
   </Carousel>

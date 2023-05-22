@@ -17,6 +17,7 @@ import ProfileDetails from "./ProfileDetails";
 import VenueDetails from "./Manager/VenueDetails";
 import BookingsDetails from "./BookingsDetails";
 import SiteCrumbs from "../Breadcrumbs/SiteCrumbs";
+import Loading from "../Loading/Loading";
 
 const Dashboard = ({ status }) => {
  const [value, setValue] = useState(0);
@@ -38,7 +39,7 @@ const Dashboard = ({ status }) => {
  const { data, isLoading, isError } = useApi(endpoint, method);
  const { data: venueData } = useApi(endpointVenues, method);
 
- if (isLoading) return <h1>Loading....</h1>;
+ if (isLoading) return <Loading />;
 
  if (isError) console.log(isError);
 
