@@ -38,7 +38,6 @@ const ProfileDetails = ({ name, avatar, venueManager }) => {
   gap: 3,
  };
 
- console.clear();
  return (
   <>
    <Box sx={!isMobile ? layoutDesktop : layoutMobile}>

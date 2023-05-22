@@ -32,9 +32,11 @@ const Dashboard = ({ status }) => {
  const userName = parsedLocalData.name;
 
  const endpoint = profiles + `/${userName}?_venues=true&_bookings=true`;
+ const endpointVenues = profiles + `/${userName}/venues?_bookings=true`;
  const method = "GET";
 
  const { data, isLoading, isError } = useApi(endpoint, method);
+ const { data: venueData } = useApi(endpointVenues, method);
 
  if (isLoading) return <h1>Loading....</h1>;
 
@@ -71,7 +73,7 @@ const Dashboard = ({ status }) => {
      <BookingsDetails data={data.bookings} />
     </TabPanel>
     <TabPanel value={value} index={2} data-cy="venue-tab">
-     <VenueDetails data={data.venues} />
+     <VenueDetails data={venueData} />
     </TabPanel>
    </Box>
   </>

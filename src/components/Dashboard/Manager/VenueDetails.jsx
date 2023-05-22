@@ -1,11 +1,13 @@
+// eslint-disable-next-line
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Box, Button, Chip, Stack, Typography } from "@mui/material";
+import { Box, Button, IconButton, Stack, Typography, Paper } from "@mui/material";
 
-import ListingCards from "../../Cards/ListingCards";
+import BuildIcon from "@mui/icons-material/Build";
 
-import SettingsIcon from "@mui/icons-material/Settings";
+// Importing functions
+import ManageVenueChip from "../../Chip/ManageVenueChip";
 
 const VenueDetails = ({ data }) => {
  const navigate = useNavigate();
@@ -26,47 +28,60 @@ const VenueDetails = ({ data }) => {
 
  return (
   <>
-   <Box
-    sx={{
-     display: "flex",
-     justifyContent: "space-between",
-     alignItems: "center",
-    }}
-   >
-    <h2>Venues you manage</h2>
-    <Button variant="contained" color="info" onClick={() => handleNavigate("create")}>
-     Add new venue
-    </Button>
-   </Box>
-   {data.length >= 0 ? (
-    <Stack
-     spacing={2}
+   <Box>
+    <Box
      sx={{
-      marginTop: 2,
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      marginBottom: 2,
      }}
     >
-     {data.map((e) => {
-      const status = false;
-
-      return (
-       <>
-        <ListingCards
-         key={e.id}
-         id={e.id}
-         location={"venue"}
-         name={e.name}
-         infoChildren={<Chip label={!status ? "Free" : "rented out"} color={!status ? "success" : "error"} variant="outlined" />}
-         buttonChildren={<SettingsIcon />}
-         buttonAction={() => handleNavigate("edit", e.id)}
-         ToolTipTitle={"Edit venue"}
-        />
-       </>
-      );
-     })}
-    </Stack>
-   ) : (
-    <Typography variant="body1">You have no venue listed</Typography>
-   )}
+     <Typography variant="h2">Venues you manage</Typography>
+     <Button variant="contained" color="info" onClick={() => handleNavigate("create")}>
+      Add new venue
+     </Button>
+    </Box>
+    {!data.length >= 0 ? (
+     <>
+      <Stack spacing={2}>
+       {data.map((venue) => {
+        return (
+         <Paper
+          key={venue.id}
+          sx={{
+           display: "flex",
+           flexDirection: "column",
+           gap: 1,
+           padding: 1,
+          }}
+         >
+          <Box>
+           <ManageVenueChip venue={venue} />
+          </Box>
+          <Box
+           sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+           }}
+          >
+           <Typography variant="subtitle1">{venue.name}</Typography>
+           <IconButton aria-label="edit venue" size="medium" onClick={() => handleNavigate("edit", venue.id)}>
+            <BuildIcon fontSize="inherit" />
+           </IconButton>
+          </Box>
+         </Paper>
+        );
+       })}
+      </Stack>
+     </>
+    ) : (
+     <>
+      <Typography variant="h4">You have no venues listed</Typography>
+     </>
+    )}
+   </Box>
   </>
  );
 };
