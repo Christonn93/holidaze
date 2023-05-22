@@ -20,6 +20,7 @@ import SiteCrumbs from "../Breadcrumbs/SiteCrumbs";
 import Loading from "../Loading/Loading";
 
 const Dashboard = ({ status }) => {
+ console.clear();
  const [value, setValue] = useState(0);
 
  updateHead("Dashboard");
@@ -43,8 +44,6 @@ const Dashboard = ({ status }) => {
 
  if (isError) console.log(isError);
 
- console.clear();
-
  return (
   <>
    <SiteCrumbs firstStep={"Dashboard"} />
@@ -65,7 +64,7 @@ const Dashboard = ({ status }) => {
     <Tabs value={value} onChange={handleChange} aria-label="Dashboard tabs" sx={{ borderBottom: 1, borderColor: "divider", height: "100%" }}>
      <Tab label="Profile" />
      <Tab label="Bookings" />
-     {status ? <Tab label="Your Venues" /> : <></>}
+     {status === "manager" ? <Tab label="Your Venues" /> : null}
     </Tabs>
     <TabPanel value={value} index={0} data-cy="profile-tab">
      <ProfileDetails name={data.name} avatar={data.avatar} venueManager={data.venueManager} />

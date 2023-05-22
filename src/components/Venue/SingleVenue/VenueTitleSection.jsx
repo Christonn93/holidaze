@@ -10,6 +10,8 @@ const VenueTitleSection = ({ name, venueOwner, id, created, updated }) => {
  const [isManager] = useState(() => {
   const storedData = localStorage.getItem("UserData");
   const parseStoredData = JSON.parse(storedData);
+  if (!parseStoredData) return;
+
   const managerName = parseStoredData.name;
   if (venueOwner === managerName) return parseStoredData.venueManager;
  });

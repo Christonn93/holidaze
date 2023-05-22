@@ -59,7 +59,6 @@ const Venue = () => {
     <SiteCrumbs firstStep={"Venues"} secondStep={name} />
     <Box>
      <VenueTitleSection name={name} venueOwner={ownerName} id={venueId} created={created} updated={updated} />
-
      <ImageCarousel media={media} />
     </Box>
 

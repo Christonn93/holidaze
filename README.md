@@ -13,6 +13,9 @@
 
 ## Introduction
 
+- [Live site](https://holidaze-ex.netlify.app/)
+- [KanBoard](https://github.com/users/Christonn93/projects/8/views/1)
+- [Gant chart](https://github.com/users/Christonn93/projects/8/views/4)
 - [Style tile](https://xd.adobe.com/view/9dea87d3-870f-4cb6-bdc4-ead0088a65c6-c8b9/)
 - [Prototype Desktop](https://xd.adobe.com/view/b8f06851-3275-4470-86a2-606f44983f53-eda3/)
 - [Prototype Mobile](https://xd.adobe.com/view/4fb74c05-a32b-422d-a0df-db3dea40a13d-1ae4/)

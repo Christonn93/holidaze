@@ -42,7 +42,8 @@ const ReplaceUserImage = ({ name }) => {
    })
    .then((data) => {
     // Handle successful response from API
-    console.log(data);
+
+    console.log("data", data);
    })
    .catch((error) => {
     // Handle error

@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { Avatar, Box, Divider, IconButton, ListItemIcon, Menu, MenuItem, Tooltip } from "@mui/material";
 
 import Logout from "@mui/icons-material/Logout";
-import ConstructionIcon from "@mui/icons-material/Construction";
 
 // Importing components
 import { getLocalStorageItem } from "../../js/storage/getItems";
@@ -99,12 +98,6 @@ const Navigation = () => {
         <Avatar src={src} fontSize="small" />
        </ListItemIcon>
        Profile
-      </MenuItem>
-      <MenuItem onClick={() => handleNavigate("testing")}>
-       <ListItemIcon>
-        <ConstructionIcon fontSize="small" />
-       </ListItemIcon>
-       Testing components
       </MenuItem>
       <Divider />
       <MenuItem onClick={handleLogout}>
