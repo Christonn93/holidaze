@@ -1,9 +1,9 @@
 // Importing React
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 // Importing MUI
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button } from "@mui/material";
 
 // Importing hooks and functions
 import useApi from "../../hooks/useApi";
@@ -40,11 +40,6 @@ const VenueList = () => {
  // Making the fetch call
  const { data, isLoading, isError } = useApi(endpoint, method);
 
- // Setting up loading option
- useEffect(() => {
-  if (isLoading) return <Loading />;
- }, []);
-
  // Setting up error option
  if (isError) {
   console.error(isError);
@@ -56,15 +51,6 @@ const VenueList = () => {
   console.log(data);
   return <UiFeedback severity="error" title={"An unexpected error have accrued"} message={"Please refresh the page"} />;
  }
-
- // Setting up feedback if search is empty
- const EmptyResults = (
-  <>
-   <Box>
-    <Typography variant="body1">There is no match to your search</Typography>
-   </Box>
-  </>
- );
 
  const loadMoreVenues = () => {
   setLimit(limit + 10);
@@ -89,7 +75,13 @@ const VenueList = () => {
         marginTop: 2,
        }}
       >
-       {!venue ? <EmptyResults /> : <VenueCard data={venue} />}
+       {isLoading && data.length === 0 ? (
+        <Loading />
+       ) : isError ? (
+        <UiFeedback severity="error" title={"An unexpected error have accrued"} message={"Please refresh the page"} />
+       ) : (
+        <VenueCard data={venue} />
+       )}
       </Box>
      );
     })}

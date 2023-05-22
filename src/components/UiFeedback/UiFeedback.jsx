@@ -11,10 +11,10 @@ import { Alert, AlertTitle } from "@mui/material";
  * @param {message} Message  Set the message for the user to receive on the feedback
  * @returns
  */
-const UiFeedback = ({ severity, title, message }) => {
+const UiFeedback = ({ variant, severity, title, message }) => {
  return (
   <>
-   <Alert severity={severity}>
+   <Alert severity={severity} variant={variant}>
     <AlertTitle>{title}</AlertTitle>
     {message}
    </Alert>
