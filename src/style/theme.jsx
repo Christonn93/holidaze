@@ -207,6 +207,9 @@ export const themeSettings = (mode) => {
        NavigationLink: {
         main: colors.secondary[500],
        },
+       TextError: {
+        main: colors.redAccent[500],
+       },
       }
     : {
        primary: {
@@ -231,6 +234,9 @@ export const themeSettings = (mode) => {
        },
        NavigationLink: {
         main: colors.secondary[500],
+       },
+       TextError: {
+        main: colors.redAccent[500],
        },
       }),
   },

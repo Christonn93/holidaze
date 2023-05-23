@@ -100,7 +100,7 @@ const Navigation = () => {
        Profile
       </MenuItem>
       <Divider />
-      <MenuItem onClick={handleLogout}>
+      <MenuItem onClick={handleLogout} color="error">
        <ListItemIcon>
         <Logout fontSize="small" />
        </ListItemIcon>

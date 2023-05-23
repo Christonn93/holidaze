@@ -2,13 +2,12 @@
 import React, { useState } from "react";
 
 // Importing MUI
-import { Box, Tabs, Tab, Button } from "@mui/material";
-import { Logout } from "@mui/icons-material";
+import { Box, Tabs, Tab } from "@mui/material";
 
 // Importing functions
 import useApi from "../../hooks/useApi";
 import { profiles } from "../../api/constants";
-import LogOutUser from "../../js/logOut";
+
 import { updateHead } from "../../js/updateHeader";
 
 // Importing components
@@ -19,6 +18,7 @@ import BookingsDetails from "./BookingsDetails";
 import SiteCrumbs from "../Breadcrumbs/SiteCrumbs";
 import Loading from "../Loading/Loading";
 import Alert from "../Alert/Alert";
+import LogoutDialog from "../Dialog/LogoutDialog";
 
 const Dashboard = ({ status }) => {
  console.clear();
@@ -59,10 +59,7 @@ const Dashboard = ({ status }) => {
     }}
    >
     <h1>Dashboard</h1>
-    <Button variant="outlined" color="error" onClick={LogOutUser} data-cy="logout-button">
-     <Logout fontSize="small" />
-     Logout
-    </Button>
+    <LogoutDialog location={"Dashboard"} />
    </Box>
    <Box sx={{ flexGrow: 1, bgcolor: "background.paper", display: "flex", flexDirection: "column" }}>
     <Tabs value={value} onChange={handleChange} aria-label="Dashboard tabs" sx={{ borderBottom: 1, borderColor: "divider", height: "100%" }}>

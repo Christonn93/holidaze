@@ -8,8 +8,13 @@ import { Container, Typography } from "@mui/material";
 import RegisterUser from "../../components/Form/Register/RegisterUser";
 import Link from "../../components/Link/Link";
 
+// Importing hooks and functions
+import { updateHead } from "../../js/updateHeader";
+
 const Register = () => {
- console.clear();
+ // Updating head section of the page
+ updateHead("Register new user");
+
  return (
   <Container>
    <Typography variant="h1" margin={1}>

@@ -8,8 +8,13 @@ import { Container, Typography } from "@mui/material";
 import LogIn from "../../components/Form/Login/LogIn";
 import Link from "../../components/Link/Link";
 
+// Importing hooks and functions
+import { updateHead } from "../../js/updateHeader";
+
 const Login = () => {
- console.clear();
+ // Updating head section of the page
+ updateHead("Login user");
+
  return (
   <Container>
    <Typography variant="h1" margin={1}>
