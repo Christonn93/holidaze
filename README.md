@@ -234,7 +234,20 @@ npm run test-e2e
 
 ## Author
 
-<div style="display: flex; gap: 20px; align-items: center;">
-<img src="https://i.ibb.co/wKLknRh/153684720-10158795395525490-149819903027147096-n.jpg" alt="Author" style="width:150px;height:150px; border-radius: 50%;">
+<div class="author-wrapper">
+<img src="https://i.ibb.co/wKLknRh/153684720-10158795395525490-149819903027147096-n.jpg" alt="Author">
 <h3>Christopher Tønnesland</h3>
 </div>
+
+<style>
+.author-wrapper {
+ display: flex;
+ gap: 20px;
+ align-items: center;
+}
+.author-wrapper > img {
+ width:150px;
+ height:150px;
+ border-radius: 50%;
+}
+</style>
