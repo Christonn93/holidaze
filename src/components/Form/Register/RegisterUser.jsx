@@ -32,20 +32,31 @@ const RegisterUser = () => {
  const navigation = useNavigate();
 
  const formSubmit = async () => {
-  const resp = await registerUser({ name, email, avatar, manager, password });
+  try {
+   const resp = await registerUser({ name, email, avatar, manager, password });
+   console.log("Response from the request", resp);
 
-  if ("accessToken" in resp) {
-   localStorage.setItem("ApiToken", resp["accessToken"]);
-   localStorage.setItem("UserData", JSON.stringify(resp));
-   setRegisterStatus(true);
-   setResponseMessage("Your profile is created. You will now be taken to the login page");
-   setTimeout(() => {
-    navigation("/login");
-   }, "2000");
-  } else {
+   if (resp) {
+    setRegisterStatus(true);
+    setResponseMessage("Your profile is created. You will now be taken to the login page");
+    setTimeout(() => {
+     navigation("/login");
+    }, 2000);
+   } else {
+    setRegisterStatus(false);
+    if (resp.errors && resp.errors.length > 0) {
+     setResponseMessage(resp.errors[0].message);
+    } else {
+     console.error("Request error", resp); // Log any errors for further inspection
+     setResponseMessage("An error occurred in else statement. Please try again.");
+    }
+    setResponseCode(resp.statusCode);
+   }
+  } catch (error) {
+   console.error("Request error", error); // Log any errors for further inspection
    setRegisterStatus(false);
-   setResponseMessage(resp.errors[0].message);
-   setResponseCode(resp.statusCode);
+   setResponseMessage("An error occurred in catch. Please try again.");
+   setResponseCode(500); // Assuming 500 as the default status code for server errors
   }
  };
 
@@ -110,7 +121,7 @@ const RegisterUser = () => {
    {registerStatus === false ? (
     <>
      <Box marginTop={2} marginBottom={2}>
-      <UiFeedback severity={"error"} title={"Error" + " " + responseCode} message={responseMessage + "." + " " + "Please try again"} />
+      <UiFeedback severity={"error"} title={"Error" + " " + responseCode} message={responseMessage} />
      </Box>
     </>
    ) : registerStatus === true ? (
