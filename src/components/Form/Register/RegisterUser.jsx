@@ -41,7 +41,7 @@ const RegisterUser = () => {
     setResponseMessage("Your profile is created. You will now be taken to the login page");
     setTimeout(() => {
      navigation("/login");
-    }, 2000);
+    }, 5000);
    } else {
     setRegisterStatus(false);
     if (resp.errors && resp.errors.length > 0) {

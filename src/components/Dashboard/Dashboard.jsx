@@ -18,6 +18,7 @@ import VenueDetails from "./Manager/VenueDetails";
 import BookingsDetails from "./BookingsDetails";
 import SiteCrumbs from "../Breadcrumbs/SiteCrumbs";
 import Loading from "../Loading/Loading";
+import Alert from "../Alert/Alert";
 
 const Dashboard = ({ status }) => {
  console.clear();
@@ -42,7 +43,10 @@ const Dashboard = ({ status }) => {
 
  if (isLoading) return <Loading />;
 
- if (isError) console.log(isError);
+ if (isError) {
+  console.error(isError);
+  return <Alert variant={"filled"} severity={"error"} title={"Oh no!"} text={"Looks like we are having some issues"} buttons={false} />;
+ }
 
  return (
   <>

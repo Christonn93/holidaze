@@ -205,7 +205,7 @@ export const themeSettings = (mode) => {
         main: colors.secondary[500],
        },
        NavigationLink: {
-        main: colors.secondary[900],
+        main: colors.secondary[500],
        },
       }
     : {
@@ -230,7 +230,7 @@ export const themeSettings = (mode) => {
         main: colors.secondary[500],
        },
        NavigationLink: {
-        main: colors.secondary[900],
+        main: colors.secondary[500],
        },
       }),
   },
@@ -275,6 +275,42 @@ export const themeSettings = (mode) => {
     styleOverrides: {
      root: {
       backgroundColor: "#f25f5c",
+     },
+    },
+   },
+   MuiTextField: {
+    styleOverrides: {
+     root: {
+      borderColor: colors.primary[500],
+      "& .MuiOutlinedInput-root": {
+       "& fieldset": {
+        borderColor: colors.primary[500],
+       },
+       "&:hover fieldset": {
+        borderColor: colors.greenAccent[500],
+       },
+       "&.Mui-focused fieldset": {
+        borderColor: colors.primary[500],
+       },
+      },
+     },
+    },
+   },
+   MuiCheckbox: {
+    styleOverrides: {
+     root: {
+      borderColor: colors.primary[500],
+      "& .MuiCheckbox-root": {
+       "& fieldset": {
+        borderColor: colors.primary[500],
+       },
+       "&:hover fieldset": {
+        borderColor: colors.greenAccent[500],
+       },
+       "&.Mui-focused fieldset": {
+        borderColor: colors.secondary[500],
+       },
+      },
      },
     },
    },
