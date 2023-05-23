@@ -1,24 +1,3 @@
-// const data = {};
-
-// export const formEditValues = {
-//  name: data.name,
-//  description: data.description,
-//  media: data.media,
-//  price: data.price,
-//  maxGuests: data.maxGuests,
-//  wifi: data.meta.wifi,
-//  parking: data.meta.parking,
-//  breakfast: data.meta.breakfast,
-//  pets: data.meta.pets,
-//  address: data.location.address,
-//  city: data.location.city,
-//  zip: data.location.zip,
-//  country: data.location.country,
-//  continent: data.location.continent,
-//  lat: data.location.lat,
-//  lng: data.location.lng,
-// };
-
 export const initialValues = {
  name: "", // Required
  description: "", // Required

@@ -15,7 +15,6 @@ import HeroLandingPage from "../../components/Hero/HeroLandingPage";
 import ScrollToTopButton from "../../components/Button/ScrollToTopButton";
 
 const Home = () => {
- console.clear();
  let [searchParams, setSearchParams] = useSearchParams();
 
  // Updating head section of the page

@@ -15,7 +15,7 @@ import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 
 // Importing context and auth
-import RequireAuth from "./auth/RequireAuth";
+import RequireAuth from "./api/auth/RequireAuth";
 import { AuthProvider } from "./context/AuthProvider";
 import { VenueProvider } from "./context/venueContext";
 

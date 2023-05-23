@@ -1,13 +1,32 @@
-import * as React from "react";
+// Importing React
+import React, { useState } from "react";
 
-import { Button, TextField, Dialog, DialogContent, DialogContentText, DialogTitle, IconButton } from "@mui/material";
+// Importing Formik
+import { Formik } from "formik";
+import * as yup from "yup";
+
+// Importing MUI
+import { Alert, Box, Button, TextField, Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
+
+// Importing MUI Icons
 import { PhotoCamera } from "@mui/icons-material";
 
+// Importing components
 import { headers } from "../../api/auth/headers";
 import { profiles } from "../../api/constants";
 
+const updateLocalStorageAvatar = (newAvatar) => {
+ const userDataString = localStorage.getItem("UserData");
+ const userData = JSON.parse(userDataString);
+ userData.avatar = newAvatar;
+ const updatedUserDataString = JSON.stringify(userData);
+ localStorage.setItem("UserData", updatedUserDataString);
+};
+
 const ReplaceUserImage = ({ name }) => {
- const [open, setOpen] = React.useState(false);
+ const [open, setOpen] = useState(false);
+ const [avatar, setAvatar] = useState();
+ const [updateSuccessful, setUpdateSuccessful] = useState("");
 
  const handleClickOpen = () => {
   setOpen(true);
@@ -17,38 +36,53 @@ const ReplaceUserImage = ({ name }) => {
   setOpen(false);
  };
 
- const handleRequest = (e) => {
-  e.preventDefault();
-
-  const form = e.target;
-  const formData = new FormData(form);
-  const avatar = formData.get("avatar");
-
+ const handleRequest = async () => {
   // Variables for request
   const Url = "https://api.noroff.dev/api/v1/holidaze";
   const endPoint = profiles + `/${name}/media`;
   const body = { avatar: avatar };
 
-  fetch(Url + endPoint, {
-   headers: headers("application/json"),
-   method: "PUT",
-   body: JSON.stringify(body),
-  })
-   .then((response) => {
-    if (!response.ok) {
-     throw new Error("Failed to submit form");
-    }
-    return response.json();
-   })
-   .then((data) => {
-    // Handle successful response from API
-
-    console.log("data", data);
-   })
-   .catch((error) => {
-    // Handle error
-    console.error(error);
+  try {
+   const response = await fetch(Url + endPoint, {
+    method: "PUT",
+    headers: headers("application/json"),
+    body: JSON.stringify(body),
    });
+
+   if (!response.ok) {
+    setUpdateSuccessful(false);
+    throw new Error("Request failed with status: " + response.status);
+   }
+
+   const data = await response.json();
+
+   if (data) {
+    setUpdateSuccessful(true);
+    updateLocalStorageAvatar(avatar);
+    setTimeout(() => {
+     window.location.reload();
+    }, 3000);
+   }
+
+   return data;
+  } catch (error) {
+   console.error(error);
+   throw error;
+  }
+ };
+
+ const initialValues = {
+  avatar: "",
+ };
+
+ const checkoutSchema = yup.object().shape({
+  avatar: yup.string().required("A valid URL is missing"),
+ });
+
+ const changeAvatar = (e, setFieldValue) => {
+  const avatar = e.target.value;
+  setAvatar(avatar);
+  setFieldValue("avatar", avatar, false);
  };
 
  return (
@@ -56,16 +90,55 @@ const ReplaceUserImage = ({ name }) => {
    <IconButton color="secondary" aria-label="upload picture" component="label" onClick={handleClickOpen}>
     <PhotoCamera />
    </IconButton>
-   <Dialog open={open} onClose={handleClose}>
-    <DialogTitle>Update user Avatar</DialogTitle>
+   <Dialog
+    open={open}
+    onClose={handleClose}
+    sx={{
+     padding: 3,
+    }}
+   >
+    <DialogTitle>Change your profile image</DialogTitle>
     <DialogContent>
-     <DialogContentText>Change your profile image</DialogContentText>
-     <form onSubmit={handleRequest}>
-      <TextField autoFocus margin="dense" id="avatar" name="avatar" label="User avatar URL" type="url" fullWidth variant="standard" />
-      <Button type="submit" variant="contained" color="warning">
-       Continue
-      </Button>
-     </form>
+     <Formik onSubmit={handleRequest} initialValues={initialValues} validationSchema={checkoutSchema}>
+      {({ values, errors, touched, handleBlur, handleSubmit, setFieldValue }) => (
+       <>
+        <Box
+         component="form"
+         sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 2,
+         }}
+         onSubmit={handleSubmit}
+         autoComplete="off"
+        >
+         <TextField
+          margin="dense"
+          id="avatar"
+          name="avatar"
+          label="User avatar URL"
+          type="url"
+          fullWidth
+          value={values.avatar}
+          onBlur={handleBlur}
+          onChange={(e) => changeAvatar(e, setFieldValue)}
+          error={!!touched.avatar && !!errors.avatar}
+          helperText={touched.avatar && errors.avatar}
+         />
+         <Button type="submit" variant="contained" color="warning">
+          Continue
+         </Button>
+         {updateSuccessful === true ? (
+          <Alert severity="success">Upload successful</Alert>
+         ) : updateSuccessful === false ? (
+          <Alert severity="error">Oh no. Looks like there is a bug lurking in the system..</Alert>
+         ) : (
+          <></>
+         )}
+        </Box>
+       </>
+      )}
+     </Formik>
     </DialogContent>
    </Dialog>
   </>
