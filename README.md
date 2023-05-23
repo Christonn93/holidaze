@@ -171,7 +171,8 @@ Opens the Cypress test runner for running end-to-end tests.
 `npm run test-e2e`
 
 ```md
-Please note that some scripts may require additional configuration or setup, such as the Cypress tests.
+Please note that some scripts may require additional configuration or setup, 
+such as the Cypress tests.
 ```
 
 That's it! You have successfully installed and started the React project locally. You can now explore and modify the code according to your needs.
