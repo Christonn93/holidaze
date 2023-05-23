@@ -72,7 +72,7 @@ To assist you in planning and executing the project, the product owner has reque
 
 ## Project Timeline
 
-To ensure a smooth development process, a Gantt chart has been prepared to outline the project's timing and milestones. You can find the Gantt chart here.
+To ensure a smooth development process, a Gantt chart has been prepared to outline the project's timing and milestones. You can find the Gantt chart [here](https://github.com/users/Christonn93/projects/8/views/4).
 
 ## Design Prototype and Style Guide
 
