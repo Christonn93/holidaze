@@ -94,6 +94,10 @@ const BookingForm = ({ data, id }) => {
   setFormValues(values);
  };
 
+ let isLoggedIn = localStorage.getItem("isLoggedIn");
+
+ if (!isLoggedIn) isLoggedIn = false;
+
  return (
   <>
    <Formik onSubmit={formSubmit} initialValues={initialValues || formValues} validationSchema={checkoutSchema}>
@@ -181,9 +185,15 @@ const BookingForm = ({ data, id }) => {
           error={!!touched.guests && !!errors.guests}
           helperText={touched.guests && errors.guests}
          />
-         <Button type="submit" variant="outlined" color="success">
-          Book your stay
-         </Button>
+         {isLoggedIn ? (
+          <Button variant="contained" type="submit">
+           Submit
+          </Button>
+         ) : (
+          <Button variant="contained" type="submit" disabled>
+           Log in to book
+          </Button>
+         )}
         </>
        )}
       </Box>

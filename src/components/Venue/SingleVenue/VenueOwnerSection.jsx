@@ -28,6 +28,7 @@ const VenueOwnerSection = ({ name, avatar }) => {
       display: "flex",
       alignItems: "center",
       gap: 1,
+      flexWrap: "wrap",
      }}
     >
      <UserAvatar src={avatar} alt={name} size="56" action={handleClick} />

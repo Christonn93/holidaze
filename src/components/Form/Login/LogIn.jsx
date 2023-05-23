@@ -3,7 +3,7 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Importing function
-import { loginUser } from "../../api/auth/logIn";
+import { loginUser } from "../../../api/auth/logIn";
 
 // Importing formik
 import { Formik } from "formik";
@@ -12,9 +12,9 @@ import * as yup from "yup";
 // Importing MUI
 import { TextField, Button, Box } from "@mui/material";
 
-import AuthContext from "../../context/AuthProvider";
-import { getProfile } from "../../api/auth/profile/profile";
-import UiFeedback from "../../components/UiFeedback/UiFeedback";
+import AuthContext from "../../../context/AuthProvider";
+import { getProfile } from "../../../api/auth/profile/profile";
+import UiFeedback from "../../UiFeedback/UiFeedback";
 
 const LogIn = () => {
  // eslint-disable-next-line

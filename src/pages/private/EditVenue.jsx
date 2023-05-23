@@ -15,7 +15,6 @@ import DisabledByDefaultIcon from "@mui/icons-material/DisabledByDefault";
 
 // Importing Components
 import MainButton from "../../components/Button/MainButton";
-import PreviewListing from "../../components/Dialog/PreviewListing";
 
 // Importing functions
 import useApi from "../../hooks/useApi";
@@ -354,7 +353,6 @@ const EditVenue = () => {
          marginTop: 2,
         }}
        >
-        <PreviewListing data={initialValues} />
         <Button type="submit" variant="contained" color="success" onClick={() => {}}>
          Edit venue
         </Button>

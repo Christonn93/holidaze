@@ -5,7 +5,7 @@ import React from "react";
 import { Container, Typography } from "@mui/material";
 
 // Importing Components
-import LogIn from "../../feature/Login/LogIn";
+import LogIn from "../../components/Form/Login/LogIn";
 import Link from "../../components/Link/Link";
 
 const Login = () => {

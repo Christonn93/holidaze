@@ -7,6 +7,7 @@ import { Box, Toolbar, useTheme } from "@mui/material";
 
 // Importing images
 import Logo from "../../assets/Images/logo.png";
+import LogoWhite from "../../assets/Images/logo-white.png";
 
 // Importing components
 import Image from "../../components/Image/Image";
@@ -37,7 +38,7 @@ const Header = () => {
     >
      <Box>
       <Link to="/">
-       <Image src={Logo} alt={Logo} className="logo" />
+       <Image src={theme.palette.mode === "dark" ? LogoWhite : Logo} alt={Logo} className="logo" />
       </Link>
      </Box>
      <Box

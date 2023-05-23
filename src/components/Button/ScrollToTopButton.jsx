@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Box, IconButton } from "@mui/material";
+import { Box, Button } from "@mui/material";
 
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 
@@ -31,9 +31,9 @@ const ScrollToTopButton = () => {
      float: "right",
     }}
    >
-    <IconButton onClick={handleClick} color="info" aria-label="scroll up button">
+    <Button onClick={handleClick} aria-label="scroll up button" variant="outlined" color="secondary">
      <ArrowUpwardIcon />
-    </IconButton>
+    </Button>
    </Box>
   )
  );

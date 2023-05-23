@@ -2,27 +2,18 @@
 import React from "react";
 
 // Importing MUI
-import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Chip, Typography } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Chip, Typography } from "@mui/material";
 
 // Import MUI Icons
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 // Importing functions
 import { changeTimeFormat } from "../../js/changeTimeFormat";
+import ActionDialog from "../Dialog/ActionDialog";
 
 const BookingAccordion = ({ data }) => {
  console.clear();
  const dateToday = new Date().toISOString();
-
- const handleClick = (option) => {
-  if (option === "review") {
-   alert("Review booking");
-  }
-
-  if (option === "cancel") {
-   alert("Cancel booking");
-  }
- };
 
  return (
   <>
@@ -62,15 +53,11 @@ const BookingAccordion = ({ data }) => {
         <Box>
          {dateFrom > dateToday ? (
           <>
-           <Button variant="outlined" color="error" onClick={() => handleClick("cancel")}>
-            Cancel booking
-           </Button>
+           <ActionDialog title={"Cancel booking"} response={"This feature will come in the future"} btnText={"Cancel booking"} btnVariant={"outlined"} btnColor={"error"} />
           </>
          ) : (
           <>
-           <Button variant="outlined" color="success" onClick={() => handleClick("review")}>
-            Give review
-           </Button>
+           <ActionDialog title={"Give review"} response={"This feature will come in the future"} btnText={"Give review"} btnVariant={"outlined"} btnColor={"success"} />
           </>
          )}
         </Box>

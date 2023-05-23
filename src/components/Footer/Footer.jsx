@@ -3,13 +3,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 // Importing MUI
-import { Box, Container, Grid, Stack, Typography } from "@mui/material";
+import { Box, Container, Typography, useTheme } from "@mui/material";
 
 // Importing MUI Icons
 import CopyrightIcon from "@mui/icons-material/Copyright";
 
 // Importing images
 import Logo from "../../assets/Images/logo.png";
+import LogoWhite from "../../assets/Images/logo-white.png";
 
 // Importing components
 import Image from "../../components/Image/Image";
@@ -17,50 +18,34 @@ import Image from "../../components/Image/Image";
 const Footer = () => {
  const timeDate = new Date();
  const year = timeDate.getFullYear();
+ const theme = useTheme();
  return (
   <footer>
    <Container>
     <Box
      sx={{
-      flexGrow: 1,
-      padding: 2,
+      display: "flex",
+      flexDirection: "column",
+      gap: 2,
+      justifyContent: "center",
+      alignContent: "center",
+      alignItems: "center",
+      width: 2 / 2,
      }}
     >
-     <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 1, sm: 2, md: 12 }}>
-      <Grid item xs={2} sm={4} md={4}>
-       <Link to="/">
-        <Image src={Logo} alt={Logo} className="logo" />
-       </Link>
-      </Grid>
-      <Grid
-       item
-       xs={2}
-       sm={4}
-       md={4}
-       sx={{
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        gap: 1,
-       }}
-      >
-       <CopyrightIcon />
-       <Typography variant="body2"> Holidaze {year}</Typography>
-      </Grid>
-      <Grid
-       item
-       xs={2}
-       sm={4}
-       md={4}
-       sx={{
-        display: "flex",
-        justifyContent: "center",
-        gap: 1,
-       }}
-      >
-       <Stack></Stack>
-      </Grid>
-     </Grid>
+     <Link to="/">
+      <Image src={theme.palette.mode === "dark" ? LogoWhite : Logo} alt={Logo} className="logo" />
+     </Link>
+     <Box
+      sx={{
+       display: "flex",
+       alignContent: "center",
+       gap: 1,
+      }}
+     >
+      <CopyrightIcon />
+      <Typography variant="body2"> Holidaze {year}</Typography>
+     </Box>
     </Box>
    </Container>
   </footer>

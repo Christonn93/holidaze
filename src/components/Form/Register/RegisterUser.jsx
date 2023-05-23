@@ -6,13 +6,14 @@ import { Formik } from "formik";
 import * as yup from "yup";
 
 // Importing function
-import { registerUser } from "../../api/auth/register";
+import { registerUser } from "../../../api/auth/register";
 
 // Importing MUI
 import { TextField, Button, Checkbox, useTheme, Box, FormControlLabel } from "@mui/material";
 
 // Importing components
-import UiFeedback from "../../components/UiFeedback/UiFeedback";
+import UiFeedback from "../../UiFeedback/UiFeedback";
+import { useNavigate } from "react-router-dom";
 
 const RegisterUser = () => {
  const [name, setUsername] = useState();
@@ -22,11 +23,13 @@ const RegisterUser = () => {
  const [emailIsNoroff, setNoroffEmail] = useState(false);
  const [password, setPassword] = useState();
  const [isChecked, setIsChecked] = useState(false);
- const [registerStatus, setRegisterStatus] = useState(true);
+ const [registerStatus, setRegisterStatus] = useState();
  const [responseMessage, setResponseMessage] = useState("");
  const [responseCode, setResponseCode] = useState("");
 
  const theme = useTheme();
+
+ const navigation = useNavigate();
 
  const formSubmit = async () => {
   const resp = await registerUser({ name, email, avatar, manager, password });
@@ -34,7 +37,11 @@ const RegisterUser = () => {
   if ("accessToken" in resp) {
    localStorage.setItem("ApiToken", resp["accessToken"]);
    localStorage.setItem("UserData", JSON.stringify(resp));
-   alert("User registration success, You can now log in");
+   setRegisterStatus(true);
+   setResponseMessage("Your profile is created. You will now be taken to the login page");
+   setTimeout(() => {
+    navigation("/login");
+   }, "2000");
   } else {
    setRegisterStatus(false);
    setResponseMessage(resp.errors[0].message);
@@ -100,10 +107,16 @@ const RegisterUser = () => {
 
  return (
   <>
-   {!registerStatus ? (
+   {registerStatus === false ? (
     <>
      <Box marginTop={2} marginBottom={2}>
       <UiFeedback severity={"error"} title={"Error" + " " + responseCode} message={responseMessage + "." + " " + "Please try again"} />
+     </Box>
+    </>
+   ) : registerStatus === true ? (
+    <>
+     <Box marginTop={2} marginBottom={2}>
+      <UiFeedback severity={"success"} title={"Congratulation"} message={responseMessage} />
      </Box>
     </>
    ) : (

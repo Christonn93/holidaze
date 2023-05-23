@@ -5,7 +5,7 @@ import React from "react";
 import { Container, Typography } from "@mui/material";
 
 // Importing Components
-import RegisterUser from "../../feature/Register/RegisterUser";
+import RegisterUser from "../../components/Form/Register/RegisterUser";
 import Link from "../../components/Link/Link";
 
 const Register = () => {

@@ -24,6 +24,10 @@ const VenueDetails = ({ data }) => {
   if (path === "edit") {
    navigate(`/venue/edit/${id}`);
   }
+
+  if (path === "view") {
+   navigate(`/venue/${id}`);
+  }
  };
 
  return (
@@ -66,7 +70,21 @@ const VenueDetails = ({ data }) => {
             alignItems: "center",
            }}
           >
-           <Typography variant="subtitle1">{venue.name}</Typography>
+           <Typography
+            variant="subtitle1"
+            onClick={() => handleNavigate("view", venue.id)}
+            sx={[
+             {
+              "&:hover": {
+               textDecoration: "underline",
+               cursor: "pointer",
+               color: "secondary",
+              },
+             },
+            ]}
+           >
+            {venue.name}
+           </Typography>
            <IconButton aria-label="edit venue" size="medium" onClick={() => handleNavigate("edit", venue.id)}>
             <BuildIcon fontSize="inherit" />
            </IconButton>
