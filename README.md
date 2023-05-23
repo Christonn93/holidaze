@@ -152,23 +152,12 @@ This command will start the development server and the application will be acces
 
 In the project directory, you can use the following npm scripts:
 
-Starts the development server.
-`npm start`
-
-Builds the production-ready optimized bundle.
-`npm build`
-
- Runs the test scripts.
-`npm test`
-
-Ejects the app from the create-react-app configuration.
-`npm run eject`
-
-Runs the Cypress end-to-end tests.
-`npm run cypress-test`
-
-Opens the Cypress test runner for running end-to-end tests.
-`npm run test-e2e`
+- `npm start`: Starts the development server.
+- `npm build`: Builds the production-ready optimized bundle.
+- `npm test`: Runs the test scripts.
+- `npm run eject`: Ejects the app from the create-react-app configuration.
+- `npm run cypress-test`: Runs the Cypress end-to-end tests.
+- `npm run test-e2e`: Opens the Cypress test runner for running end-to-end tests.
 
 ```md
 Please note that some scripts may require additional configuration or setup, 
