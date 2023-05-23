@@ -1,106 +1,72 @@
 // Importing React
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 // Importing MUI
-import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Chip, Typography } from "@mui/material";
+import { Box, Button } from "@mui/material";
 
-// Import MUI Icons
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+// Importing hooks and functions
+import useApi from "../../hooks/useApi";
+import { venues } from "../../api/constants";
 
-// Importing Component
-
-// Importing functions
-import { updateHead } from "../../js/updateHeader";
-import { changeTimeFormat } from "../../js/changeTimeFormat";
-
-// Importing Mock data
-import { mockBookingData } from "../../js/MockData/mockBooking";
+// Importing Components
+import UiFeedback from "../../components/UiFeedback/UiFeedback";
+import Loading from "../../components/Loading/Loading";
 
 const TestingNewComponents = () => {
- // eslint-disable-line no-console
- console.clear();
- updateHead("Playground");
+ let [limit, setLimit] = useState(5);
 
- const dateToday = new Date().toISOString();
- console.log(dateToday);
+ // Fetch endpoint
+ let endpoint = venues + `?_owner=true&_bookings=true&limit=${limit}`;
 
- const handleClick = (option) => {
-  if (option === "review") {
-   alert("Review booking");
-  }
+ // Setting method for the fetch
+ const method = "GET";
 
-  if (option === "cancel") {
-   alert("Cancel booking");
-  }
+ // Making the fetch call
+ const { data, isLoading, isError } = useApi(endpoint, method);
+
+ // Separate state for tracking initial page load
+ const [isInitialLoad, setIsInitialLoad] = useState(isLoading);
+
+ console.log(isInitialLoad);
+
+ useEffect(() => {
+  setIsInitialLoad(true);
+ }, []);
+
+ // Setting up error option
+ if (isError) {
+  console.error(isError);
+  return <UiFeedback severity="error" title={"An unexpected error have accrued"} message={"Please refresh the page"} />;
+ }
+
+ // If data value is empty
+ if (!data.map) {
+  console.log(data);
+  return <UiFeedback severity="error" title={"An unexpected error have accrued"} message={"Please refresh the page"} />;
+ }
+
+ // Button action for loading more
+ const loadMoreVenues = () => {
+  setIsInitialLoad(false);
+  setLimit(limit + 5);
+ };
+
+ const boxSx = {
+  display: "flex",
+  justifyContent: "center",
+  alignContent: "center",
+  margin: 2,
  };
 
  return (
-  <Box
-   sx={{
-    display: "flex",
-    flexDirection: "column",
-    gap: 2,
-    marginTop: 5,
-    marginBottom: 5,
-   }}
-  >
-   <Typography>Testing new components</Typography>
-   <Box>
-    <Box>
-     {mockBookingData.map((e) => {
-      const dateFrom = e.dateFrom;
-      return (
-       <Accordion>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-         <Box
-          sx={{
-           display: "flex",
-           justifyContent: "space-between",
-           alignItems: "center",
-           alignContent: "center",
-           width: 2 / 2,
-           padding: 1,
-          }}
-         >
-          <Typography>{e.venue.name}</Typography>
-          <Chip label={dateFrom > dateToday ? "Done" : "Upcoming"} color={dateFrom > dateToday ? "error" : "success"} variant="outlined" />
-         </Box>
-        </AccordionSummary>
-        <AccordionDetails
-         sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          alignContent: "center",
-          width: 2 / 2,
-         }}
-        >
-         <Box key={e.id}>
-          <Typography>Check in: {changeTimeFormat(e.dateFrom)}</Typography>
-          <Typography>Check out: {changeTimeFormat(e.dateTo)}</Typography>
-         </Box>
-         <Box>
-          {dateFrom > dateToday ? (
-           <>
-            <Button variant="outlined" color="success" onClick={() => handleClick("review")}>
-             Give review
-            </Button>
-           </>
-          ) : (
-           <>
-            <Button variant="outlined" color="error" onClick={() => handleClick("cancel")}>
-             Cancel booking
-            </Button>
-           </>
-          )}
-         </Box>
-        </AccordionDetails>
-       </Accordion>
-      );
-     })}
-    </Box>
+  <>
+   {isLoading && isInitialLoad ? <Loading /> : data.map((venue) => <h1 key={venue.id}>{venue.name}</h1>)}
+   <Box sx={boxSx}>
+    <Button variant="contained" color="success" type="submit" onClick={loadMoreVenues}>
+     View more
+    </Button>
    </Box>
-  </Box>
+  </>
  );
 };
 

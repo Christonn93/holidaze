@@ -99,6 +99,9 @@ const Navigation = () => {
        </ListItemIcon>
        Profile
       </MenuItem>
+      <MenuItem onClick={() => handleNavigate("testing")} data-cy="navigate-to-profile">
+       Testing page
+      </MenuItem>
       <Divider />
       <MenuItem onClick={handleLogout} color="error">
        <ListItemIcon>

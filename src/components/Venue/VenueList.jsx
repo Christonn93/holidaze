@@ -1,5 +1,5 @@
 // Importing React
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
 // Importing MUI
@@ -40,6 +40,13 @@ const VenueList = () => {
  // Making the fetch call
  const { data, isLoading, isError } = useApi(endpoint, method);
 
+ // Separate state for tracking initial page load
+ const [isInitialLoad, setIsInitialLoad] = useState(isLoading);
+
+ useEffect(() => {
+  setIsInitialLoad(true);
+ }, []);
+
  // Setting up error option
  if (isError) {
   console.error(isError);
@@ -53,38 +60,35 @@ const VenueList = () => {
  }
 
  const loadMoreVenues = () => {
+  setIsInitialLoad(false);
   setLimit(limit + 10);
  };
 
  return (
   <>
-   {data
-    .filter((venue) => {
-     return (
-      venue.name.toLowerCase().includes(search.toLowerCase()) ||
-      venue.location.country.toLowerCase().includes(search.toLowerCase()) ||
-      venue.location.continent.toLowerCase().includes(search.toLowerCase()) ||
-      venue.location.city.toLowerCase().includes(search.toLowerCase())
-     );
-    })
-    .map((venue) => {
-     return (
+   {isLoading && isInitialLoad ? (
+    <Loading />
+   ) : (
+    data
+     .filter((venue) => {
+      return (
+       venue.name.toLowerCase().includes(search.toLowerCase()) ||
+       venue.location.country.toLowerCase().includes(search.toLowerCase()) ||
+       venue.location.continent.toLowerCase().includes(search.toLowerCase()) ||
+       venue.location.city.toLowerCase().includes(search.toLowerCase())
+      );
+     })
+     .map((venue) => (
       <Box
        key={venue.id}
        sx={{
         marginTop: 2,
        }}
       >
-       {isLoading && data.length === 0 ? (
-        <Loading />
-       ) : isError ? (
-        <UiFeedback severity="error" title={"An unexpected error have accrued"} message={"Please refresh the page"} />
-       ) : (
-        <VenueCard data={venue} />
-       )}
+       <VenueCard data={venue} />
       </Box>
-     );
-    })}
+     ))
+   )}
    <Box
     sx={{
      display: "flex",
