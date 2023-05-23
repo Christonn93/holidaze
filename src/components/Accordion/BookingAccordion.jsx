@@ -36,7 +36,7 @@ const BookingAccordion = ({ data }) => {
             padding: 1,
            }}
           >
-           <Typography>{e.venue.name}</Typography>
+           <Typography variant="h5">{e.venue.name}</Typography>
            <Chip label={dateFrom > dateToday ? "Upcoming" : "Done"} color={dateFrom > dateToday ? "success" : "error"} variant="outlined" />
           </Box>
          </AccordionSummary>
@@ -84,7 +84,7 @@ const BookingAccordion = ({ data }) => {
             padding: 1,
            }}
           >
-           <Typography>{e.venue.name}</Typography>
+           <Typography variant="h5">{e.venue.name}</Typography>
            <Chip label={dateFrom > dateToday ? "Upcoming" : "Done"} color={dateFrom > dateToday ? "success" : "error"} variant="outlined" />
           </Box>
          </AccordionSummary>
