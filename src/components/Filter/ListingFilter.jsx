@@ -64,6 +64,7 @@ const ListingFilter = ({ text, setParams }) => {
     sx={{
      display: "flex",
      justifyContent: "space-between",
+     marginBottom: 2,
     }}
    >
     <Typography variant="h3">{text}</Typography>

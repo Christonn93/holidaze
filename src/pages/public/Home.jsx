@@ -26,13 +26,13 @@ const Home = () => {
     sx={{
      display: "flex",
      flexDirection: "column",
-     gap: 2,
+     gap: 4,
     }}
    >
     <HeroLandingPage />
 
     <Box>
-     <ListingFilter text={"Our venues"} setParams={setSearchParams} />
+     <ListingFilter text={"Our newest venues"} setParams={setSearchParams} />
     </Box>
     <Box>
      <VenueList params={searchParams} />

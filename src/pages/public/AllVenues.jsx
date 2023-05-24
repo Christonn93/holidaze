@@ -21,31 +21,28 @@ import ListingFilter from "../../components/Filter/ListingFilter";
 
 const AllVenues = () => {
  let [limit, setLimit] = useState(10);
- let [offset, setOffset] = useState(-0);
+ let [offset, setOffset] = useState(0);
  let [searchParams, setSearchParams] = useSearchParams();
  const [pageNumber, setPageNumber] = useState(1);
  // eslint-disable-next-line
  let [key, value] = searchParams.entries();
 
- // Empty search value
- let search = "";
-
  // Fetch endpoint
  let endpoint = venues + `?_owner=true&_bookings=true&limit=${limit}&offset=${offset}&sort=created&sortOrder=desc`;
+ let search = "";
 
- // Setting url key for filtering options
- if (key === undefined) key = "";
- if (key) endpoint = venues + `?_owner=true&_bookings=true&limit=${limit}&offset=${offset}&sort=${key[0]}&sortOrder=${key[1]}`;
- if (key[0] === "search") {
-  endpoint = venues + `?_owner=true&_bookings=true&limit=${limit}&offset=${offset}/search=${key[1]}`;
-  search = key[1];
+ // Update the endpoint based on search parameters
+ if (key) {
+  if (key[0] === "search") {
+   endpoint = venues + `?_owner=true&_bookings=true&limit=${limit}&offset=${offset}&search=${key[1]}`;
+   search = key[1];
+  } else {
+   endpoint = venues + `?_owner=true&_bookings=true&limit=${limit}&offset=${offset}&sort=${key[0]}&sortOrder=${key[1]}`;
+  }
  }
 
- // Setting method for the fetch
- const method = "GET";
-
  // Making the fetch call
- const { data, isLoading, isError } = useApi(endpoint, method);
+ const { data, isLoading, isError } = useApi(endpoint, "GET");
 
  // Separate state for tracking initial page load
  const [isInitialLoad, setIsInitialLoad] = useState(isLoading);
@@ -85,7 +82,6 @@ const AllVenues = () => {
    <Box>
     <ListingFilter text={"All venues"} setParams={setSearchParams} />
    </Box>
-
    {isLoading && isInitialLoad ? (
     <Loading />
    ) : (
