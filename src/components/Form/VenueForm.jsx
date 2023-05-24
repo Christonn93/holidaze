@@ -142,6 +142,7 @@ const VenueForm = () => {
         New venue form
        </Typography>
        <TextField
+        data-cy="venueName"
         id="venueName"
         name="name"
         label="Venue name"
@@ -152,6 +153,7 @@ const VenueForm = () => {
         helperText={touched.name && errors.name}
        />
        <TextField
+        data-cy="venueDescription"
         id="venueDescription"
         name="description"
         label="Venue description"
@@ -166,16 +168,24 @@ const VenueForm = () => {
        <Box>
         <Typography variant="body2">Venue includes?</Typography>
         <FormGroup row>
-         <FormControlLabel control={<Checkbox onClick={() => setFieldValue("wifi", !values.wifi)} checked={values.wifi} value={values.wifi} name="wifi" id="wifiCheck" />} label="Wifi" />
          <FormControlLabel
-          control={<Checkbox onClick={() => setFieldValue("parking", !values.parking)} checked={values.parking} value={values.parking} name="parking" id="parkingCheck" />}
+          control={<Checkbox onClick={() => setFieldValue("wifi", !values.wifi)} checked={values.wifi} value={values.wifi} name="wifi" id="wifiCheck" data-cy="wifi" />}
+          label="Wifi"
+         />
+         <FormControlLabel
+          control={<Checkbox onClick={() => setFieldValue("parking", !values.parking)} checked={values.parking} value={values.parking} name="parking" id="parkingCheck" data-cy="parking" />}
           label="Parking"
          />
          <FormControlLabel
-          control={<Checkbox onClick={() => setFieldValue("breakfast", !values.breakfast)} checked={values.breakfast} value={values.breakfast} name="breakfast" id="breakfastCheck" />}
+          control={
+           <Checkbox onClick={() => setFieldValue("breakfast", !values.breakfast)} checked={values.breakfast} value={values.breakfast} name="breakfast" id="breakfastCheck" data-cy="breakfast" />
+          }
           label="Breakfast"
          />
-         <FormControlLabel control={<Checkbox onClick={() => setFieldValue("pets", !values.pets)} checked={values.pets} value={values.pets} name="pets" id="petsCheck" />} label="Pets" />
+         <FormControlLabel
+          control={<Checkbox onClick={() => setFieldValue("pets", !values.pets)} checked={values.pets} value={values.pets} name="pets" id="petsCheck" data-cy="pets" />}
+          label="Pets"
+         />
         </FormGroup>
        </Box>
 
@@ -207,6 +217,7 @@ const VenueForm = () => {
               }}
              >
               <Field
+               data-cy="venueImage"
                name={`media.${index}`}
                type="url"
                onBlur={handleBlur}
@@ -240,6 +251,7 @@ const VenueForm = () => {
         }}
        >
         <TextField
+         data-cy="address"
          name="address"
          id="address"
          label="Address"
@@ -250,6 +262,7 @@ const VenueForm = () => {
          helperText={touched.address && errors.address}
         />
         <TextField
+         data-cy="city"
          name="city"
          id="city"
          label="city"
@@ -259,8 +272,19 @@ const VenueForm = () => {
          error={!!touched.city && !!errors.city}
          helperText={touched.city && errors.city}
         />
-        <TextField name="zip" id="zip" label="zip" value={values.zip} onBlur={handleBlur} onChange={handleChange} error={!!touched.zip && !!errors.zip} helperText={touched.zip && errors.zip} />
         <TextField
+         data-cy="zip"
+         name="zip"
+         id="zip"
+         label="zip"
+         value={values.zip}
+         onBlur={handleBlur}
+         onChange={handleChange}
+         error={!!touched.zip && !!errors.zip}
+         helperText={touched.zip && errors.zip}
+        />
+        <TextField
+         data-cy="country"
          name="country"
          id="country"
          label="country"
@@ -271,6 +295,7 @@ const VenueForm = () => {
          helperText={touched.country && errors.country}
         />
         <TextField
+         data-cy="continent"
          name="continent"
          id="continent"
          label="continent"
@@ -291,6 +316,7 @@ const VenueForm = () => {
         }}
        >
         <TextField
+         data-cy="price"
          name="price"
          id="price"
          label="Price"
@@ -302,6 +328,7 @@ const VenueForm = () => {
          helperText={touched.price && errors.price}
         />
         <TextField
+         data-cy="maxGuests"
          name="maxGuests"
          id="maxGuests"
          label="Guests"
@@ -322,7 +349,7 @@ const VenueForm = () => {
          marginTop: 2,
         }}
        >
-        <Button type="submit" variant="contained" color="success" onClick={() => {}}>
+        <Button type="submit" variant="contained" color="success" onClick={() => {}} data-cy="postVenue">
          Post venue
         </Button>
        </Box>

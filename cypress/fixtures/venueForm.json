@@ -1,0 +1,12 @@
+{
+  "name": "Cypress test venue",
+  "description": "Cypress Test Description for a Mock Airbnb. Our Cypress test suite for the mock Airbnb platform focuses on thoroughly assessing the functionality, reliability, and user experience of the website.",
+  "image": "https://cdn.sanity.io/images/o0o2tn5x/production/13b9c8412093e2f0cdb5495e1f59144967fa1664-512x512.jpg",
+  "address": "Mock address 22",
+  "city": "Larvik",
+  "zip": "3267",
+  "country": "Norway",
+  "continent": "Europa",
+  "price": 299,
+  "guests": 5
+}
