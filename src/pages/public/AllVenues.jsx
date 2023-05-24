@@ -35,9 +35,9 @@ const AllVenues = () => {
 
  // Setting url key for filtering options
  if (key === undefined) key = "";
- if (key) endpoint = venues + `?_owner=true&_bookings=true&limit=${limit}&sort=${key[0]}&sortOrder=${key[1]}`;
+ if (key) endpoint = venues + `?_owner=true&_bookings=true&limit=${limit}&offset=${offset}&sort=${key[0]}&sortOrder=${key[1]}`;
  if (key[0] === "search") {
-  endpoint = venues + `?_owner=true&_bookings=true&limit=${limit}/search=${key[1]}`;
+  endpoint = venues + `?_owner=true&_bookings=true&limit=${limit}&offset=${offset}/search=${key[1]}`;
   search = key[1];
  }
 
@@ -68,13 +68,13 @@ const AllVenues = () => {
 
  const loadPages = (direction) => {
   if (direction === "back") {
-   setLimit(limit - 10);
+   setLimit(10);
    setOffset(offset - 10);
    setPageNumber(pageNumber - 1);
   }
 
   if (direction === "forward") {
-   setLimit(limit + 10);
+   setLimit(10);
    setOffset(offset + 10);
    setPageNumber(pageNumber + 1);
   }
