@@ -28,6 +28,7 @@ import Home from "./pages/public/Home";
 import Login from "./pages/public/Login";
 import Register from "./pages/public/Register";
 import Venue from "./pages/public/Venue";
+import AllVenues from "./pages/public/AllVenues";
 import RouteNotFound from "./pages/public/404";
 import VenueManagerProfile from "./pages/public/VenueManagerProfile";
 
@@ -56,6 +57,7 @@ function App() {
          <Route path="/login" element={<Login />} />
          <Route path="/register" element={<Register />} />
          <Route path="/venue/:id" element={<Venue />} />
+         <Route path="/venues" element={<AllVenues />} />
          <Route path="/profile/:name" element={<VenueManagerProfile />} />
          <Route path="/search/:params" element={<SearchResult />} />
          <Route path="*" element={<RouteNotFound />} />

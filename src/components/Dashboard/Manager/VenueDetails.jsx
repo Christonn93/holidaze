@@ -42,7 +42,7 @@ const VenueDetails = ({ data }) => {
      }}
     >
      <Typography variant="h2">Venues you manage</Typography>
-     <Button variant="contained" color="info" onClick={() => handleNavigate("create")}>
+     <Button variant="contained" color="primary" onClick={() => handleNavigate("create")}>
       Add new venue
      </Button>
     </Box>

@@ -29,7 +29,7 @@ const LogoutDialog = ({ location }) => {
   <>
    {location === "Dashboard" ? (
     <>
-     <Button variant={"outlined"} color="error" onClick={handleClickOpen}>
+     <Button variant={"outlined"} color="CustomError" onClick={handleClickOpen}>
       <Logout fontSize="small" />
       Logout
      </Button>

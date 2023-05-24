@@ -32,7 +32,7 @@ const Home = () => {
     <HeroLandingPage />
 
     <Box>
-     <ListingFilter setParams={setSearchParams} />
+     <ListingFilter text={"Our venues"} setParams={setSearchParams} />
     </Box>
     <Box>
      <VenueList params={searchParams} />

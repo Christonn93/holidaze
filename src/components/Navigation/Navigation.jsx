@@ -5,7 +5,10 @@ import { useNavigate } from "react-router-dom";
 // Importing MUI
 import { Avatar, Box, Divider, IconButton, ListItemIcon, Menu, MenuItem, Tooltip } from "@mui/material";
 
+// Importing MUI Icons
 import Logout from "@mui/icons-material/Logout";
+import ViewListIcon from "@mui/icons-material/ViewList";
+import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
 
 // Importing components
 import { getLocalStorageItem } from "../../js/storage/getItems";
@@ -28,13 +31,19 @@ const Navigation = () => {
 
  const handleNavigate = (path) => {
   setAnchorEl(null);
+
   if (!isLoggedIn) navigate("/login");
+
   if (path === "profile") {
    navigate("/profile");
   }
 
   if (path === "testing") {
    navigate("/testing");
+  }
+
+  if (path === "all") {
+   navigate("/venues");
   }
  };
 
@@ -99,7 +108,16 @@ const Navigation = () => {
        </ListItemIcon>
        Profile
       </MenuItem>
+      <MenuItem onClick={() => handleNavigate("all")} data-cy="navigate-to-profile">
+       <ListItemIcon>
+        <ViewListIcon fontSize="small" />
+       </ListItemIcon>
+       All venues
+      </MenuItem>
       <MenuItem onClick={() => handleNavigate("testing")} data-cy="navigate-to-profile">
+       <ListItemIcon>
+        <AutoFixHighIcon fontSize="small" />
+       </ListItemIcon>
        Testing page
       </MenuItem>
       <Divider />
@@ -112,6 +130,13 @@ const Navigation = () => {
      </Box>
     ) : (
      <Box data-cy="dropdown-menu">
+      <MenuItem onClick={() => handleNavigate("all")} data-cy="navigate-to-profile">
+       <ListItemIcon>
+        <ViewListIcon fontSize="small" />
+       </ListItemIcon>
+       All venues
+      </MenuItem>
+      <Divider />
       <MenuItem onClick={() => handleNavigate("path")} data-cy="login-button">
        <Avatar /> Login / register
       </MenuItem>

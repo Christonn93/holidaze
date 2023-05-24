@@ -190,6 +190,9 @@ export const themeSettings = (mode) => {
        secondary: {
         main: colors.secondary[500],
        },
+       error: {
+        main: colors.redAccent[700],
+       },
        neutral: {
         dark: colors.grey[700],
         main: colors.grey[500],
@@ -210,13 +213,25 @@ export const themeSettings = (mode) => {
        TextError: {
         main: colors.redAccent[500],
        },
+       TabTextColor: {
+        main: colors.primary[500],
+       },
+       TabIndicatorColor: {
+        main: colors.primary[500],
+       },
+       CustomError: {
+        main: colors.redAccent[700],
+       },
       }
     : {
        primary: {
-        main: colors.primary[500],
+        main: colors.primary[800],
        },
        secondary: {
         main: colors.secondary[500],
+       },
+       error: {
+        main: colors.redAccent[700],
        },
        neutral: {
         dark: colors.grey[700],
@@ -224,7 +239,7 @@ export const themeSettings = (mode) => {
         light: colors.grey[100],
        },
        background: {
-        default: "#FDFFFC",
+        default: "#f4f4f4",
        },
        primaryButton: {
         main: colors.primary[500],
@@ -237,6 +252,15 @@ export const themeSettings = (mode) => {
        },
        TextError: {
         main: colors.redAccent[500],
+       },
+       TabTextColor: {
+        main: colors.grey[100],
+       },
+       TabIndicatorColor: {
+        main: colors.grey[100],
+       },
+       CustomError: {
+        main: colors.redAccent[700],
        },
       }),
   },
@@ -277,6 +301,17 @@ export const themeSettings = (mode) => {
    fontWeight: 500,
   },
   components: {
+   MuiTab: {
+    styleOverrides: {
+     root: {
+      color: "TabTextColor.main",
+      "&.Mui-selected": {
+       color: "TabTextColor.main",
+       borderRadius: "25px",
+      },
+     },
+    },
+   },
    MuiDatePicker: {
     styleOverrides: {
      root: {
@@ -298,6 +333,12 @@ export const themeSettings = (mode) => {
        "&.Mui-focused fieldset": {
         borderColor: colors.primary[500],
        },
+       "& label.Mui-error": {
+        borderColor: colors.redAccent[700],
+       },
+      },
+      "& .MuiFormHelperText-root.Mui-error": {
+       color: colors.redAccent[700],
       },
      },
     },

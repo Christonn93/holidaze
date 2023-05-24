@@ -3,21 +3,27 @@ import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
 // Importing MUI
-import { Box, Button } from "@mui/material";
+import { Box, IconButton, Chip } from "@mui/material";
+
+// Importing MUI icons
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 // Importing hooks and functions
 import useApi from "../../hooks/useApi";
 import { venues } from "../../api/constants";
 
 // Importing Components
-import VenueCard from "../Cards/VenueCards/VenueCard";
+import VenueCard from "../../components/Cards/VenueCards/VenueCard";
 import UiFeedback from "../../components/UiFeedback/UiFeedback";
 import Loading from "../../components/Loading/Loading";
+import ListingFilter from "../../components/Filter/ListingFilter";
 
-const VenueList = () => {
+const AllVenues = () => {
  let [limit, setLimit] = useState(10);
- let [searchParams] = useSearchParams();
-
+ let [offset, setOffset] = useState(-0);
+ let [searchParams, setSearchParams] = useSearchParams();
+ const [pageNumber, setPageNumber] = useState(1);
  // eslint-disable-next-line
  let [key, value] = searchParams.entries();
 
@@ -25,7 +31,7 @@ const VenueList = () => {
  let search = "";
 
  // Fetch endpoint
- let endpoint = venues + `?_owner=true&_bookings=true&limit=${limit}&sort=created&sortOrder=desc`;
+ let endpoint = venues + `?_owner=true&_bookings=true&limit=${limit}&offset=${offset}&sort=created&sortOrder=desc`;
 
  // Setting url key for filtering options
  if (key === undefined) key = "";
@@ -60,13 +66,26 @@ const VenueList = () => {
   return <UiFeedback severity="error" title={"An unexpected error have accrued"} message={"Please refresh the page"} />;
  }
 
- const loadMoreVenues = () => {
-  setIsInitialLoad(false);
-  setLimit(limit + 10);
+ const loadPages = (direction) => {
+  if (direction === "back") {
+   setLimit(limit - 10);
+   setOffset(offset - 10);
+   setPageNumber(pageNumber - 1);
+  }
+
+  if (direction === "forward") {
+   setLimit(limit + 10);
+   setOffset(offset + 10);
+   setPageNumber(pageNumber + 1);
+  }
  };
 
  return (
   <>
+   <Box>
+    <ListingFilter text={"All venues"} setParams={setSearchParams} />
+   </Box>
+
    {isLoading && isInitialLoad ? (
     <Loading />
    ) : (
@@ -95,15 +114,21 @@ const VenueList = () => {
      display: "flex",
      justifyContent: "center",
      alignContent: "center",
+     alignItems: "center",
      margin: 2,
+     gap: 2,
     }}
    >
-    <Button variant="contained" color="success" type="submit" onClick={loadMoreVenues}>
-     View more
-    </Button>
+    <IconButton onClick={() => loadPages("back")}>
+     <ArrowBackIosIcon />
+    </IconButton>
+    <Chip label={pageNumber} variant="outlined" sx={{ padding: 1 }} />
+    <IconButton onClick={() => loadPages("forward")}>
+     <ArrowForwardIosIcon />
+    </IconButton>
    </Box>
   </>
  );
 };
 
-export default VenueList;
+export default AllVenues;

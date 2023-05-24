@@ -8,7 +8,7 @@ import FilterAltOffIcon from "@mui/icons-material/FilterAltOff";
 import SearchBar from "../SearchBar/SearchBar";
 import { useNavigate } from "react-router-dom";
 
-const ListingFilter = ({ setParams }) => {
+const ListingFilter = ({ text, setParams }) => {
  const [open, setOpen] = useState(false);
  const [filterOpen, setFilterOpen] = useState(false);
  const anchorRef = useRef(null);
@@ -66,7 +66,7 @@ const ListingFilter = ({ setParams }) => {
      justifyContent: "space-between",
     }}
    >
-    <Typography variant="h3">Our venues</Typography>
+    <Typography variant="h3">{text}</Typography>
     <Box
      sx={{
       display: "flex",
