@@ -1,6 +1,10 @@
-# Holidaze Accommodation Booking Application
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1c2b0464-3715-4306-b922-61d3336780d0/deploy-status)](https://app.netlify.com/sites/holidaze-ex/deploys)
+
+ Holidaze Accommodation Booking Application
 
 <img src="./src/assets/Images/readme-main-image.png">
+
+[Live site](https://holidaze-ex.netlify.app/)
 
 ## Table of context
 
@@ -82,7 +86,7 @@ A design prototype has been created to guide the visual and user experience desi
 
 Additionally, a comprehensive style guide has been prepared to maintain consistency throughout the project.
 
-- [Style tile](https://xd.adobe.com/view/9dea87d3-870f-4cb6-bdc4-ead0088a65c6-c8b9/)
+- [Style tile](https://xd.adobe.com/view/87711d66-3c72-4bd2-a168-4249a1c29731-d222/)
 - [Prototype Desktop](https://xd.adobe.com/view/b8f06851-3275-4470-86a2-606f44983f53-eda3/)
 - [Prototype Mobile](https://xd.adobe.com/view/4fb74c05-a32b-422d-a0df-db3dea40a13d-1ae4/)
 
