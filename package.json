@@ -16,6 +16,7 @@
     "date-fns": "^2.29.3",
     "dotenv": "^16.0.3",
     "formik": "^2.2.9",
+    "google-map-react": "^2.2.1",
     "jsdoc": "^4.0.2",
     "react": "^18.2.0",
     "react-calendar": "^4.2.1",
@@ -59,7 +60,8 @@
   },
   "react-dotenv": {
     "whitelist": [
-      "API_BASEURL"
+      "API_BASEURL",
+      "GOOGLE_MAP_KEY"
     ]
   },
   "devDependencies": {

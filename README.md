@@ -140,6 +140,7 @@ This command will install all the dependencies specified in the package.json fil
 
 ```plaintext
 API_BASEURL=http://example.com/api
+GOOGLE_MAP_KEY=API_KEY
 ```
 
 Make sure to replace <http://example.com/api> with the actual API base URL.
