@@ -94,8 +94,9 @@ const Venue = () => {
         justifyContent: "center",
         gap: 2,
         padding: 2,
-        maxWidth: 400,
+        maxWidth: 450,
        }}
+       style={{ width: "100%" }}
       >
        <VenueDetails maxGuests={maxGuests} wifi={wifi} breakfast={breakfast} parking={parking} pets={pets} />
        <Typography variant="h5">{price} ,- night guests</Typography>

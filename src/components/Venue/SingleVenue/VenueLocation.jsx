@@ -11,8 +11,6 @@ const VenueLocation = ({ data }) => {
  // Destructing location data
  const { address, city, zip, country, continent, lat, lng } = data;
 
- const condition = false;
-
  return (
   <>
    <Box>
@@ -21,7 +19,7 @@ const VenueLocation = ({ data }) => {
     <Typography variant="body1">Zip: {zip}</Typography>
     <Typography variant="body1">Country: {country}</Typography>
     <Typography variant="body1">Continent: {continent}</Typography>
-    {condition ? (
+    {lat && lng ? (
      <>
       <Box
        sx={{

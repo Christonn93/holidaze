@@ -139,11 +139,12 @@ This command will install all the dependencies specified in the package.json fil
 4. Create a .env file in the project root directory and add any required environment variables. You can refer to the .env.example file for the required variables. For example, if you have an API_BASEURL variable, your .env file should contain:
 
 ```plaintext
-API_BASEURL=http://example.com/api
-GOOGLE_MAP_KEY=API_KEY
+REACT_APP_API_BASEURL=http://example.com/api
+REACT_APP_GOOGLE_MAP_KEY=API_KEY
 ```
 
 Make sure to replace <http://example.com/api> with the actual API base URL.
+Make sure to replace <API_KEY> with the actual API key.
 
 5. Once the dependencies are installed and the environment variables are set, you can start the development server by running the following command:
 
@@ -201,6 +202,7 @@ If you encounter any issues during the installation process, please refer to the
 - react-router-dom
 - react-scripts
 - styled-components
+- google-map-react
 - sweetalert2
 - web-vitals
 - yup

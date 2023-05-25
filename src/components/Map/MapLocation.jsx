@@ -1,13 +1,14 @@
 // Import React
 import React from "react";
 import GoogleMapReact from "google-map-react";
-import env from "react-dotenv";
 
 // Importing MUI
 import { Box, useTheme, useMediaQuery } from "@mui/material";
 
 // Importing MUI Icons
 import PushPinIcon from "@mui/icons-material/PushPin";
+
+const key = process.env.REACT_APP_GOOGLE_MAP_KEY;
 
 const MapLocation = ({ lat, lng }) => {
  const device = useTheme();
@@ -25,17 +26,17 @@ const MapLocation = ({ lat, lng }) => {
 
  const mobile = {
   height: "250px",
-  width: "350px",
+  width: "100%",
  };
 
  const desktop = {
   height: "400px",
-  width: "400px",
+  width: "100%",
  };
  return (
   <>
    <Box style={isMobile ? mobile : desktop}>
-    <GoogleMapReact bootstrapURLKeys={{ key: env.REACT_APP_GOOGLE_MAP_KEY }} defaultCenter={defaultProps.center} defaultZoom={defaultProps.zoom}>
+    <GoogleMapReact bootstrapURLKeys={{ key }} defaultCenter={defaultProps.center} defaultZoom={defaultProps.zoom}>
      <AnyReactComponent lat={lat} lng={lng} text={<PushPinIcon color="secondary" />} />
     </GoogleMapReact>
    </Box>
