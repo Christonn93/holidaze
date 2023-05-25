@@ -1,6 +1,7 @@
 import { authReg } from "../constants";
+import env from "react-dotenv";
 
-const Url = "https://api.noroff.dev/api/v1/holidaze";
+const Url = env.API_BASEURL;
 const endPoint = authReg;
 
 export async function registerUser(input) {

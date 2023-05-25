@@ -1,5 +1,5 @@
 // Importing React
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 
 // Importing MUI
@@ -16,16 +16,15 @@ import Loading from "../../components/Loading/Loading";
 import Alert from "../../components/Alert/Alert";
 
 const VenueManagerProfile = () => {
+ // eslint-disable-next-line
+ const [offset, setOffset] = useState(0);
  const { name } = useParams();
- updateHead("Profile");
 
- const endpoint = profiles + `/${name}?_venues=true&_bookings=true`;
- const method = "GET";
+ const endpoint = profiles + `/${name}?_venues=true&_bookings=true&limit=${100}&offset=${offset}&sort=created&sortOrder=desc`;
 
- const { data, isLoading, isError } = useApi(endpoint, method);
+ const { data, isLoading, isError } = useApi(endpoint, "GET");
 
  if (data.statusCode === 401) {
-  // console.log(data);
   return <Alert variant={"filled"} severity={"error"} title={"Oh no!"} text={"You need to be logged in to view this page"} buttons={false} />;
  }
 
@@ -47,6 +46,8 @@ const VenueManagerProfile = () => {
 
  // Capitalize title
  const fixedName = name.charAt(0).toUpperCase() + name.slice(1);
+
+ updateHead("Profile", `Hi, my name is ${fixedName}. I'm a venue manager and have some good quality venues for you to visit.`);
 
  return (
   <>

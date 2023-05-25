@@ -1,3 +1,5 @@
+import env from "react-dotenv";
+
 export const formSubmit = (id, values, submitProps, alertContent, alert, navigating, setFormValues) => {
  console.log("Form data", values);
 
@@ -32,9 +34,9 @@ export const formSubmit = (id, values, submitProps, alertContent, alert, navigat
   },
  };
 
- const Url = `https://api.noroff.dev/api/v1/holidaze/venues/${id}`;
+ const Url = env.API_BASEURL;
  const token = localStorage.getItem("ApiToken");
- fetch(Url, {
+ fetch(Url + `/venues/${id}`, {
   headers: {
    "Content-Type": "application/json",
    Authorization: `Bearer ${token}`,

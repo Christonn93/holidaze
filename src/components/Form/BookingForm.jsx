@@ -1,5 +1,6 @@
 // Importing React
 import React, { useEffect, useState } from "react";
+import env from "react-dotenv";
 import { DateRange } from "react-date-range";
 
 // Importing Formik
@@ -62,9 +63,9 @@ const BookingForm = ({ data, id }) => {
 
   console.log(body);
 
-  const Url = `https://api.noroff.dev/api/v1/holidaze/bookings`;
+  const Url = env.API_BASEURL;
   const token = localStorage.getItem("ApiToken");
-  fetch(Url, {
+  fetch(Url + "/bookings", {
    headers: {
     "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,

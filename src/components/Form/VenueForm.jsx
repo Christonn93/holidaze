@@ -1,5 +1,6 @@
 // Importing React
 import React, { useState } from "react";
+import env from "react-dotenv";
 import { useNavigate } from "react-router-dom";
 
 // Importing Formik
@@ -69,10 +70,9 @@ const VenueForm = () => {
     lng: lng,
    },
   };
-
-  const Url = "https://api.noroff.dev/api/v1/holidaze/venues";
+  const Url = env.API_BASEURL;
   const token = localStorage.getItem("ApiToken");
-  fetch(Url, {
+  fetch(Url + "/venues", {
    headers: {
     "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,

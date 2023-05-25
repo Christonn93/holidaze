@@ -1,5 +1,7 @@
 // Importing React
 import { useEffect, useState } from "react";
+import env from "react-dotenv";
+
 import { headers } from "../api/auth/headers";
 
 /**
@@ -19,7 +21,7 @@ const useApi = (endpoint, method, body) => {
  const [isLoading, setIsLoading] = useState(false);
  const [isError, setIsError] = useState(false);
 
- const url = "https://api.noroff.dev/api/v1/holidaze";
+ const url = env.API_BASEURL;
 
  useEffect(() => {
   async function getData() {

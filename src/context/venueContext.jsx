@@ -1,5 +1,6 @@
 // Importing React
 import { createContext, useState } from "react";
+import env from "react-dotenv";
 
 import { headers } from "../api/auth/headers";
 
@@ -16,8 +17,8 @@ export function VenueProvider({ children }) {
  });
 
  async function getVenueData(id) {
-  const baseUrl = "https://api.noroff.dev/api/v1/holidaze";
-  const fetchedData = await fetch(baseUrl + `/venues/${id}?_owner=true&_bookings=true`, {
+  const Url = env.API_BASEURL;
+  const fetchedData = await fetch(Url + `/venues/${id}?_owner=true&_bookings=true`, {
    method: "GET",
    headers: headers("application/json"),
   });

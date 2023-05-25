@@ -1,8 +1,9 @@
 import { profiles } from "../../constants";
 import { headers } from "../headers";
+import env from "react-dotenv";
 
 export async function getProfile(credentials) {
- const Url = "https://api.noroff.dev/api/v1/holidaze";
+ const Url = env.API_BASEURL;
 
  const storedData = localStorage.getItem("UserData");
  const data = JSON.parse(storedData);

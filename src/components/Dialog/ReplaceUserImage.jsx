@@ -1,5 +1,6 @@
 // Importing React
 import React, { useState } from "react";
+import env from "react-dotenv";
 
 // Importing Formik
 import { Formik } from "formik";
@@ -38,7 +39,7 @@ const ReplaceUserImage = ({ name }) => {
 
  const handleRequest = async () => {
   // Variables for request
-  const Url = "https://api.noroff.dev/api/v1/holidaze";
+  const Url = env.API_BASEURL;
   const endPoint = profiles + `/${name}/media`;
   const body = { avatar: avatar };
 

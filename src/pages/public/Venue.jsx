@@ -18,8 +18,7 @@ import VenueDetails from "../../components/Venue/SingleVenue/VenueDetails";
 import ImageCarousel from "../../components/Carousel/ImageCarousel";
 import BookingForm from "../../components/Form/BookingForm";
 import SiteCrumbs from "../../components/Breadcrumbs/SiteCrumbs";
-// eslint-disable-next-line
-import VenueMainMedia from "../../components/Venue/SingleVenue/VenueMainMedia";
+import VenueLocation from "../../components/Venue/SingleVenue/VenueLocation";
 
 const Venue = () => {
  let { id } = useParams();
@@ -33,7 +32,7 @@ const Venue = () => {
  if (isError) console.error(isError);
 
  // Destructing venue data
- const { id: venueId, name, description, media, price, maxGuests, created, updated, meta, bookings, owner } = data;
+ const { id: venueId, name, description, media, price, maxGuests, created, updated, meta, bookings, owner, location } = data;
 
  if (!meta && !owner && !bookings) {
   return null;
@@ -70,7 +69,20 @@ const Venue = () => {
       gap: 3,
      }}
     >
-     <VenueDescription venueDescription={description} />
+     <Box
+      sx={{
+       display: "flex",
+       flexDirection: "column",
+       flexWrap: "wrap",
+       gap: 2,
+      }}
+     >
+      <VenueDescription venueDescription={description} />
+      <Typography variant="h4" marginBottom={1}>
+       Location
+      </Typography>
+      <VenueLocation data={location} />
+     </Box>
      <Box>
       <Typography variant="h4" marginBottom={1}>
        Book your stay!

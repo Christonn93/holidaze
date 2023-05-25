@@ -1,6 +1,8 @@
 // baseUrl
+import env from "react-dotenv";
+
 // export const baseUrl = process.env.API_BASEURL;
-export const baseUrl = "https://api.noroff.dev/api/v1/holidaze";
+export const baseUrl = env.API_BASEURL;
 
 // Endpoints for api
 export const authReg = "/auth/register";

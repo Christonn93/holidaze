@@ -140,6 +140,7 @@ This command will install all the dependencies specified in the package.json fil
 
 ```plaintext
 API_BASEURL=http://example.com/api
+GOOGLE_MAP_KEY=KEY
 ```
 
 Make sure to replace <http://example.com/api> with the actual API base URL.
@@ -199,6 +200,7 @@ If you encounter any issues during the installation process, please refer to the
 - react-material-ui-carousel
 - react-router-dom
 - react-scripts
+- react-leaflet
 - styled-components
 - sweetalert2
 - web-vitals

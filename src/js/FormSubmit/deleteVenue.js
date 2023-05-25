@@ -1,11 +1,13 @@
+import env from "react-dotenv";
+
 /**
  *
  * @param {id} venueId For deleting venue
  */
 export const deleteVenue = (id, alertContent, alert, navigating) => {
- const Url = `https://api.noroff.dev/api/v1/holidaze/venues/${id}`;
+ const Url = env.API_BASEURL;
  const token = localStorage.getItem("ApiToken");
- fetch(Url, {
+ fetch(Url + `/venues/${id}`, {
   headers: {
    "Content-Type": "application/json",
    Authorization: `Bearer ${token}`,
