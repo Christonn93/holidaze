@@ -1,19 +1,20 @@
+// Importing React
 import React, { useRef, useState } from "react";
 
+// Importing MUI
 import { Box, ClickAwayListener, Grow, IconButton, MenuItem, MenuList, Paper, Popper, Typography } from "@mui/material";
 
+// Importing MUI Icons
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import FilterAltOffIcon from "@mui/icons-material/FilterAltOff";
 
+// Importing Components
 import SearchBar from "../SearchBar/SearchBar";
-import { useNavigate } from "react-router-dom";
 
-const ListingFilter = ({ text, setParams }) => {
+const ListingFilter = ({ text, setParams, params }) => {
  const [open, setOpen] = useState(false);
  const [filterOpen, setFilterOpen] = useState(false);
  const anchorRef = useRef(null);
-
- const navigate = useNavigate();
 
  const handleClick = (option, direction) => {
   const filters = { [option]: direction };
@@ -55,7 +56,22 @@ const ListingFilter = ({ text, setParams }) => {
 
  const clearFilter = () => {
   setFilterOpen(false);
-  navigate("/");
+  const keys = params.keys(),
+   values = params.values(),
+   entries = params.entries();
+
+  for (const key of keys) {
+   params.delete(key);
+   console.log(key);
+  }
+
+  for (const value of values) {
+   console.log(value);
+  }
+
+  for (const entry of entries) {
+   console.log(`${entry[0]}: ${entry[1]}`);
+  }
  };
 
  return (

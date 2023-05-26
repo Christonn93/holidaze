@@ -2,7 +2,7 @@
 import React from "react";
 
 // Importing MUI components
-import { Box, Typography, Alert, AlertTitle } from "@mui/material";
+import { Card, Paper, Typography, Alert, AlertTitle } from "@mui/material";
 
 // Importing map
 import MapLocation from "../../Map/MapLocation";
@@ -13,7 +13,12 @@ const VenueLocation = ({ data }) => {
 
  return (
   <>
-   <Box>
+   <Paper
+    elevation="3"
+    sx={{
+     padding: 2,
+    }}
+   >
     <Typography variant="body1">Address: {address}</Typography>
     <Typography variant="body1">City: {city}</Typography>
     <Typography variant="body1">Zip: {zip}</Typography>
@@ -21,29 +26,23 @@ const VenueLocation = ({ data }) => {
     <Typography variant="body1">Continent: {continent}</Typography>
     {lat && lng ? (
      <>
-      <Box
+      <Card
        sx={{
         marginTop: 2,
        }}
       >
        <MapLocation lat={lat} lng={lng} />
-      </Box>
+      </Card>
      </>
     ) : (
      <>
-      <Box
-       sx={{
-        marginTop: 2,
-       }}
-      >
-       <Alert severity="error">
-        <AlertTitle>Oh no</AlertTitle>
-        Looks like there is no map to display for this venue
-       </Alert>
-      </Box>
+      <Alert severity="error">
+       <AlertTitle>Oh no</AlertTitle>
+       Looks like there is no map to display for this venue
+      </Alert>
      </>
     )}
-   </Box>
+   </Paper>
   </>
  );
 };

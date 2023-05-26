@@ -83,7 +83,7 @@ const AllVenues = () => {
  return (
   <>
    <Box>
-    <ListingFilter text={"All venues"} setParams={setSearchParams} />
+    <ListingFilter text={"All venues"} setParams={setSearchParams} params={searchParams} />
    </Box>
 
    {isLoading && isInitialLoad ? (

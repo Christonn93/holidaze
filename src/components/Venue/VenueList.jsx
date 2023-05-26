@@ -1,6 +1,6 @@
 // Importing React
 import React, { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
 // Importing MUI
 import { Box, Button } from "@mui/material";
@@ -15,8 +15,10 @@ import UiFeedback from "../../components/UiFeedback/UiFeedback";
 import Loading from "../../components/Loading/Loading";
 
 const VenueList = () => {
- let [limit, setLimit] = useState(10);
+ // eslint-disable-next-line
+ let [limit, setLimit] = useState(50);
  let [searchParams] = useSearchParams();
+ const navigate = useNavigate();
 
  // eslint-disable-next-line
  let [key, value] = searchParams.entries();
@@ -61,8 +63,9 @@ const VenueList = () => {
  }
 
  const loadMoreVenues = () => {
-  setIsInitialLoad(false);
-  setLimit(limit + 10);
+  navigate("/venues");
+  // setIsInitialLoad(false);
+  // setLimit(limit + 10);
  };
 
  return (
@@ -99,7 +102,7 @@ const VenueList = () => {
     }}
    >
     <Button variant="contained" color="success" type="submit" onClick={loadMoreVenues}>
-     View more
+     View all listings
     </Button>
    </Box>
   </>

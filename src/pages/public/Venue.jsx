@@ -67,6 +67,7 @@ const Venue = () => {
       justifyContent: "space-between",
       flexWrap: "wrap",
       gap: 3,
+      marginTop: 2,
      }}
     >
      <Box

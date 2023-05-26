@@ -20,7 +20,7 @@ const Footer = () => {
  const year = timeDate.getFullYear();
  const theme = useTheme();
  return (
-  <footer>
+  <footer style={{ marginTop: "20px" }}>
    <Container>
     <Box
      sx={{
