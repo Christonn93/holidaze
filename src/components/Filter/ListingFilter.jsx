@@ -1,5 +1,6 @@
 // Importing React
 import React, { useRef, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 // Importing MUI
 import { Box, ClickAwayListener, Grow, IconButton, MenuItem, MenuList, Paper, Popper, Typography } from "@mui/material";
@@ -14,6 +15,7 @@ import SearchBar from "../SearchBar/SearchBar";
 const ListingFilter = ({ text, setParams, params }) => {
  const [open, setOpen] = useState(false);
  const [filterOpen, setFilterOpen] = useState(false);
+ const [searchParams, setSearchParams] = useSearchParams();
  const anchorRef = useRef(null);
 
  const handleClick = (option, direction) => {
@@ -61,8 +63,8 @@ const ListingFilter = ({ text, setParams, params }) => {
    entries = params.entries();
 
   for (const key of keys) {
-   params.delete(key);
    console.log(key);
+   removeQueryParams(key);
   }
 
   for (const value of values) {
@@ -71,6 +73,19 @@ const ListingFilter = ({ text, setParams, params }) => {
 
   for (const entry of entries) {
    console.log(`${entry[0]}: ${entry[1]}`);
+  }
+ };
+
+ // eslint-disable-next-line
+ const removeQueryParams = (key) => {
+  const param = searchParams.get(key);
+
+  if (param) {
+   // 👇️ delete each query param
+   searchParams.delete(key);
+
+   // 👇️ update state after
+   setSearchParams(searchParams);
   }
  };
 
