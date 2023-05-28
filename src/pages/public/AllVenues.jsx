@@ -1,7 +1,6 @@
 // Importing React
 import React, { useState, useEffect } from "react";
-// eslint-disable-next-line
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 // Importing MUI
 import { Box, IconButton, Chip, Alert } from "@mui/material";
@@ -27,9 +26,6 @@ const AllVenues = () => {
  let [limit, setLimit] = useState(15);
  let [offset, setOffset] = useState(-0);
  const [currentPage, setCurrentPage] = useState(1);
-
- // Navigate
- // const Navigate = useNavigate();
 
  // Empty search value
  let search = "";
@@ -81,16 +77,12 @@ const AllVenues = () => {
    setLimit(15);
    setOffset(offset - 15);
    setCurrentPage(currentPage - 1);
-
-   // Navigate(`/venues/page/${currentPage}`);
   }
 
   if (direction === "forward") {
    setLimit(15);
    setOffset(offset + 15);
    setCurrentPage(currentPage + 1);
-
-   // Navigate(`/venues/page/${currentPage}`);
   }
  };
 
