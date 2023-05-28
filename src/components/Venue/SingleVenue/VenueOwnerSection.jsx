@@ -1,10 +1,14 @@
+// Importing React
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+// importing MUi
 import { Box, Typography } from "@mui/material";
 
+// Importing components
 import UserAvatar from "../../../components/UserAvatar/UserAvatar";
 
+// Importing functions
 import { changeTimeFormat } from "../../../js/changeTimeFormat";
 
 const VenueOwnerSection = ({ name, avatar, created, updated }) => {

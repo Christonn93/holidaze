@@ -135,21 +135,13 @@ const AllVenues = () => {
      gap: 2,
     }}
    >
-    {currentPage === 1 ? (
-     <></>
-    ) : (
-     <IconButton onClick={() => loadPages("back")}>
-      <ArrowBackIosIcon />
-     </IconButton>
-    )}
+    <IconButton onClick={() => loadPages("back")} disabled={currentPage === 1}>
+     <ArrowBackIosIcon />
+    </IconButton>
     <Chip label={currentPage} variant="outlined" sx={{ padding: 1 }} />
-    {data.length !== 15 ? (
-     <></>
-    ) : (
-     <IconButton onClick={() => loadPages("forward")}>
-      <ArrowForwardIosIcon />
-     </IconButton>
-    )}
+    <IconButton onClick={() => loadPages("forward")} disabled={data.length !== 15}>
+     <ArrowForwardIosIcon />
+    </IconButton>
    </Box>
   </>
  );
