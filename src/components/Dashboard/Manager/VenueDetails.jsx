@@ -8,6 +8,7 @@ import BuildIcon from "@mui/icons-material/Build";
 
 // Importing functions
 import ManageVenueChip from "../../Chip/ManageVenueChip";
+import ViewBookings from "../../Dialog/ViewBookings";
 
 const VenueDetails = ({ data }) => {
  const navigate = useNavigate();
@@ -60,8 +61,15 @@ const VenueDetails = ({ data }) => {
            padding: 1,
           }}
          >
-          <Box>
+          <Box
+           sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+           }}
+          >
            <ManageVenueChip venue={venue} />
+           <ViewBookings venue={venue.bookings} />
           </Box>
           <Box
            sx={{

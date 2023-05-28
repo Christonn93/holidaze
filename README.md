@@ -6,6 +6,44 @@
 
 [Live site](https://holidaze-ex.netlify.app/)
 
+## Delivery links
+
+<thead>
+ <tr>
+  <th>Resource</th>
+  <td>URL</td>
+ </tr>
+</thead>
+<tbody>
+ <tr>
+  <th>Gantt Chart</th>
+  <td><a href="https://github.com/users/Christonn93/projects/8/views/4">Gant chart</a></td>
+ </tr>
+ <tr>
+  <th>Design Prototype</th>
+  <td>
+    <a href="https://xd.adobe.com/view/b8f06851-3275-4470-86a2-606f44983f53-eda3/">Prototype Desktop</a>
+    <a href="https://xd.adobe.com/view/4fb74c05-a32b-422d-a0df-db3dea40a13d-1ae4/">Prototype Mobile</a>
+  </td>
+ </tr>
+ <tr>
+  <th>Style Guide</th>
+  <td><a href="https://xd.adobe.com/view/87711d66-3c72-4bd2-a168-4249a1c29731-d222/">Style Guide</a></td>
+ </tr>
+ <tr>
+  <th>Kanban Board</th>
+  <td><a href="https://github.com/users/Christonn93/projects/8/views/1">KanBoard</a></td>
+ </tr>
+ <tr>
+  <th>Repository</th>
+  <td><a href="https://github.com/Christonn93/holidaze">Repository</a></td>
+ </tr>
+ <tr>
+  <th>Hosted Demo</th>
+  <td><a href="https://holidaze-ex.netlify.app/">Live site</a></td>
+ </tr>
+</tbody>
+
 ## Table of context
 
 - [Introduction](#introduction)

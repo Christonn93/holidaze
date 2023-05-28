@@ -2,8 +2,8 @@ export const initialValues = {
  name: "", // Required
  description: "", // Required
  media: [""], // Optional
- price: null, // Required
- maxGuests: null, // Required
+ price: "", // Required
+ maxGuests: "", // Required
  wifi: false, // Optional (default: false)
  parking: false, // Optional (default: false)
  breakfast: false, // Optional (default: false)
@@ -14,5 +14,5 @@ export const initialValues = {
  country: "", // Optional (default: "Unknown")
  continent: "", // Optional (default: "Unknown")
  lat: 0, // Optional (default: 0)
- lng: 0, // Optional (default: 0)
+ lng: 2, // Optional (default: 0)
 };
