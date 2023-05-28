@@ -42,7 +42,7 @@ const VenueOwnerSection = ({ name, avatar, created, updated }) => {
     <Box
      sx={{
       display: "flex",
-      gap: 2,
+      gap: 1,
       flexWrap: "wrap",
      }}
     >

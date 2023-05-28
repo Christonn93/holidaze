@@ -10,7 +10,7 @@ import * as yup from "yup";
 import { initialValues } from "./VenueFormValues";
 
 // Importing MUI
-import { Alert, Box, Button, Checkbox, FormControlLabel, FormGroup, IconButton, TextField, Typography } from "@mui/material";
+import { Alert, Box, Button, Checkbox, FormControlLabel, FormGroup, IconButton, TextField, Typography, useTheme, useMediaQuery } from "@mui/material";
 
 // Importing MUI Icons
 import AddBoxIcon from "@mui/icons-material/AddBox";
@@ -35,6 +35,8 @@ const VenueForm = () => {
  // eslint-disable-next-line
  const [responseCode, setResponseCode] = useState("");
  const navigate = useNavigate();
+ const device = useTheme();
+ const isMobile = useMediaQuery(device.breakpoints.down("md"));
 
  const formSubmit = (values) => {
   console.log("Form data", values);
@@ -258,50 +260,55 @@ const VenueForm = () => {
          onChange={handleChange}
          error={!!touched.address && !!errors.address}
          helperText={touched.address && errors.address}
+         style={isMobile ? { width: "100%" } : {}}
         />
         <TextField
          data-cy="city"
          name="city"
          id="city"
-         label="city"
+         label="City"
          value={values.city}
          onBlur={handleBlur}
          onChange={handleChange}
          error={!!touched.city && !!errors.city}
          helperText={touched.city && errors.city}
+         style={isMobile ? { width: "100%" } : {}}
         />
         <TextField
          data-cy="zip"
          name="zip"
          id="zip"
-         label="zip"
+         label="Zip"
          value={values.zip}
          onBlur={handleBlur}
          onChange={handleChange}
          error={!!touched.zip && !!errors.zip}
          helperText={touched.zip && errors.zip}
+         style={isMobile ? { width: "100%" } : {}}
         />
         <TextField
          data-cy="country"
          name="country"
          id="country"
-         label="country"
+         label="Country"
          value={values.country}
          onBlur={handleBlur}
          onChange={handleChange}
          error={!!touched.country && !!errors.country}
          helperText={touched.country && errors.country}
+         style={isMobile ? { width: "100%" } : {}}
         />
         <TextField
          data-cy="continent"
          name="continent"
          id="continent"
-         label="continent"
+         label="Continent"
          value={values.continent}
          onBlur={handleBlur}
          onChange={handleChange}
          error={!!touched.continent && !!errors.continent}
          helperText={touched.continent && errors.continent}
+         style={isMobile ? { width: "100%" } : {}}
         />
        </Box>
 
@@ -324,6 +331,7 @@ const VenueForm = () => {
          onChange={handleChange}
          error={!!touched.price && !!errors.price}
          helperText={touched.price && errors.price}
+         style={isMobile ? { width: "100%" } : {}}
         />
         <TextField
          data-cy="maxGuests"
@@ -336,6 +344,7 @@ const VenueForm = () => {
          onChange={handleChange}
          error={!!touched.maxGuests && !!errors.maxGuests}
          helperText={touched.maxGuests && errors.maxGuests}
+         style={isMobile ? { width: "100%" } : {}}
         />
        </Box>
 

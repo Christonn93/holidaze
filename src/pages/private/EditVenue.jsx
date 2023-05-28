@@ -7,7 +7,7 @@ import { Formik, FieldArray, Field } from "formik";
 import * as yup from "yup";
 
 // Importing MUI
-import { Alert, Box, Button, Checkbox, FormControlLabel, FormGroup, IconButton, TextField, Typography } from "@mui/material";
+import { Alert, Box, Button, Checkbox, FormControlLabel, FormGroup, IconButton, TextField, Typography, useTheme, useMediaQuery } from "@mui/material";
 
 // Importing MUI Icons
 import AddBoxIcon from "@mui/icons-material/AddBox";
@@ -27,6 +27,9 @@ const EditVenue = () => {
  const [alert, setAlert] = useState(false);
  const [alertContent, setAlertContent] = useState("");
  const [formValues, setFormValues] = useState();
+
+ const device = useTheme();
+ const isMobile = useMediaQuery(device.breakpoints.down("md"));
 
  const navigate = useNavigate();
  const endpoint = venues + `/${id}?_owner=true&_bookings=true`;
@@ -279,37 +282,51 @@ const EditVenue = () => {
          onChange={handleChange}
          error={!!touched.address && !!errors.address}
          helperText={touched.address && errors.address}
+         style={isMobile ? { width: "100%" } : {}}
         />
         <TextField
          name="city"
          id="city"
-         label="city"
+         label="City"
          value={values.city}
          onBlur={handleBlur}
          onChange={handleChange}
          error={!!touched.city && !!errors.city}
          helperText={touched.city && errors.city}
+         style={isMobile ? { width: "100%" } : {}}
         />
-        <TextField name="zip" id="zip" label="zip" value={values.zip} onBlur={handleBlur} onChange={handleChange} error={!!touched.zip && !!errors.zip} helperText={touched.zip && errors.zip} />
+        <TextField
+         name="zip"
+         id="zip"
+         label="Zip"
+         value={values.zip}
+         onBlur={handleBlur}
+         onChange={handleChange}
+         error={!!touched.zip && !!errors.zip}
+         helperText={touched.zip && errors.zip}
+         style={isMobile ? { width: "100%" } : {}}
+        />
         <TextField
          name="country"
          id="country"
-         label="country"
+         label="Country"
          value={values.country}
          onBlur={handleBlur}
          onChange={handleChange}
          error={!!touched.country && !!errors.country}
          helperText={touched.country && errors.country}
+         style={isMobile ? { width: "100%" } : {}}
         />
         <TextField
          name="continent"
          id="continent"
-         label="continent"
+         label="Continent"
          value={values.continent}
          onBlur={handleBlur}
          onChange={handleChange}
          error={!!touched.continent && !!errors.continent}
          helperText={touched.continent && errors.continent}
+         style={isMobile ? { width: "100%" } : {}}
         />
        </Box>
 
@@ -331,6 +348,7 @@ const EditVenue = () => {
          onChange={handleChange}
          error={!!touched.price && !!errors.price}
          helperText={touched.price && errors.price}
+         style={isMobile ? { width: "100%" } : {}}
         />
         <TextField
          name="maxGuests"
@@ -342,6 +360,7 @@ const EditVenue = () => {
          onChange={handleChange}
          error={!!touched.maxGuests && !!errors.maxGuests}
          helperText={touched.maxGuests && errors.maxGuests}
+         style={isMobile ? { width: "100%" } : {}}
         />
        </Box>
 
