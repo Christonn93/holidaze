@@ -3,7 +3,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 // importing MUi
-import { Box, Card, Typography } from "@mui/material";
+import { Box, Card, Typography, useTheme, useMediaQuery } from "@mui/material";
 
 // Importing functions
 import useApi from "../../hooks/useApi";
@@ -23,6 +23,9 @@ import Loading from "../../components/Loading/Loading";
 
 const Venue = () => {
  let { id } = useParams();
+ const device = useTheme();
+ const isMobile = useMediaQuery(device.breakpoints.down("md"));
+
  const endpoint = venues + `/${id}?_owner=true&_bookings=true`;
  const method = "GET";
 
@@ -85,7 +88,7 @@ const Venue = () => {
       </Typography>
       <VenueLocation data={location} />
      </Box>
-     <Box>
+     <Box sx={{ maxWidth: "500px" }} style={isMobile ? { width: "100%" } : {}}>
       <Typography variant="h4" marginBottom={1}>
        Book your stay!
       </Typography>
@@ -96,7 +99,6 @@ const Venue = () => {
         justifyContent: "center",
         gap: 2,
         padding: 2,
-        maxWidth: 450,
        }}
        style={{ width: "100%" }}
       >

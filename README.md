@@ -250,6 +250,8 @@ Not to the page that you was on before going in to the venue to read.
 For me this is not considered good UX. I tried solving this issue by creating a new path to set `page/{number}` in the url to keep track on what page you are on. Was able to set the number there and make it change on pagination. But not fix the issue with returning to page 1.
 I would like to get a example on how to solve this, so I know hot o do it for a later time.
 
+Wanted to hide the api url in .env, but when running tests its broke the testings. So had to remove it from that area
+
 ## Author
 
 <div style="display: flex; gap: 20px; align-items: center;">
