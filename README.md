@@ -26,6 +26,7 @@
 - [End to End Testing](#end-to-end-testing)
 - [Acknowledgements](#acknowledgements)
 - [References](#references)
+- [Unsolved issue](#unsolved-issue)
 - [Author](#author)
 
 ## Introduction
@@ -230,6 +231,19 @@ npm run test-e2e
 - [React login example](https://javascript.plainenglish.io/basic-react-login-using-external-api-e33322e480cd)
 - [Dynamic form fields](https://www.freecodecamp.org/news/build-dynamic-forms-in-react/)
 - [MUI](https://mui.com/material-ui/getting-started/overview/)
+
+## Unsolved issue
+
+The is one unsolved issue that I was not able to find a solution to.
+
+Will give a example on the issue i wanted to solve.
+
+```plaintext
+You are at all venues, navigating around on the pages. then you find a venue that is interesting at page 10. You navigate in to that venue to read more, then go back to all venues but it brings you back to page 1. not to the page that you was on before going in to the venue to read.
+```
+
+For me this is not considered good UX. I tried solving this issue by creating a new path to set `page/{number}` in the url to keep track on what page you are on. Was able to set the number there and make it change on pagination. But not fix the issue with returning to page 1.
+I would like to get a example on how to solve this, so I know hot o do it for a later time.
 
 ## Author
 
