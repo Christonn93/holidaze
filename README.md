@@ -1,4 +1,5 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/1c2b0464-3715-4306-b922-61d3336780d0/deploy-status)](https://app.netlify.com/sites/holidaze-ex/deploys)
+[![wakatime](https://wakatime.com/badge/user/0669e8e8-365e-41fd-adda-8245b2fd3d0a/project/37a185c5-899e-4f5b-83ac-0223a64ab749.svg)](https://wakatime.com/badge/user/0669e8e8-365e-41fd-adda-8245b2fd3d0a/project/37a185c5-899e-4f5b-83ac-0223a64ab749)
 
  Holidaze Accommodation Booking Application
 
@@ -83,13 +84,14 @@ To ensure a smooth development process, a Gantt chart has been prepared to outli
 
 ## Design Prototype and Style Guide
 
-A design prototype has been created to guide the visual and user experience design of the application. You can access the prototype [here](https://github.com/users/Christonn93/projects/8/views/4).
+A design prototype has been created to guide the visual and user experience design of the application.
+
+- [Prototype Desktop](https://xd.adobe.com/view/b8f06851-3275-4470-86a2-606f44983f53-eda3/)
+- [Prototype Mobile](https://xd.adobe.com/view/4fb74c05-a32b-422d-a0df-db3dea40a13d-1ae4/)
 
 Additionally, a comprehensive style guide has been prepared to maintain consistency throughout the project.
 
 - [Style tile](https://xd.adobe.com/view/87711d66-3c72-4bd2-a168-4249a1c29731-d222/)
-- [Prototype Desktop](https://xd.adobe.com/view/b8f06851-3275-4470-86a2-606f44983f53-eda3/)
-- [Prototype Mobile](https://xd.adobe.com/view/4fb74c05-a32b-422d-a0df-db3dea40a13d-1ae4/)
 
 ## Project Management
 
@@ -239,7 +241,10 @@ The is one unsolved issue that I was not able to find a solution to.
 Will give a example on the issue i wanted to solve.
 
 ```plaintext
-You are at all venues, navigating around on the pages. then you find a venue that is interesting at page 10. You navigate in to that venue to read more, then go back to all venues but it brings you back to page 1. not to the page that you was on before going in to the venue to read.
+You are at all venues, navigating around on the pages. 
+Then you find a venue that is interesting at page 10. 
+You navigate in to that venue to read more, then go back to all venues but it brings you back to page 1. 
+Not to the page that you was on before going in to the venue to read.
 ```
 
 For me this is not considered good UX. I tried solving this issue by creating a new path to set `page/{number}` in the url to keep track on what page you are on. Was able to set the number there and make it change on pagination. But not fix the issue with returning to page 1.

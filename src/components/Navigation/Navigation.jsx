@@ -8,7 +8,6 @@ import { Avatar, Box, Divider, IconButton, ListItemIcon, Menu, MenuItem, Tooltip
 // Importing MUI Icons
 import Logout from "@mui/icons-material/Logout";
 import ViewListIcon from "@mui/icons-material/ViewList";
-import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
 
 // Importing components
 import { getLocalStorageItem } from "../../js/storage/getItems";
@@ -114,12 +113,6 @@ const Navigation = () => {
        </ListItemIcon>
        All venues
       </MenuItem>
-      <MenuItem onClick={() => handleNavigate("testing")} data-cy="navigate-to-profile">
-       <ListItemIcon>
-        <AutoFixHighIcon fontSize="small" />
-       </ListItemIcon>
-       Testing page
-      </MenuItem>
       <Divider />
       <MenuItem onClick={handleLogout} color="error">
        <ListItemIcon>
@@ -148,3 +141,11 @@ const Navigation = () => {
 };
 
 export default Navigation;
+
+// import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
+// <MenuItem onClick={() => handleNavigate("testing")} data-cy="navigate-to-profile">
+// <ListItemIcon>
+//  <AutoFixHighIcon fontSize="small" />
+// </ListItemIcon>
+// Testing page
+// </MenuItem>
