@@ -10,8 +10,9 @@ const SiteCrumbs = ({ firstStep, secondStep }) => {
   event.preventDefault();
  }
 
- const handleNavigate = () => {
-  navigate("/");
+ const handleNavigate = (path) => {
+  if (path === "home") navigate("/");
+  if (path === "venue") navigate("/venues");
  };
 
  return (
@@ -19,7 +20,7 @@ const SiteCrumbs = ({ firstStep, secondStep }) => {
    <Breadcrumbs aria-label="breadcrumb">
     <Typography
      color="text.primary"
-     onClick={handleNavigate}
+     onClick={() => handleNavigate("home")}
      sx={{
       "&:hover": {
        cursor: "pointer",
@@ -29,7 +30,9 @@ const SiteCrumbs = ({ firstStep, secondStep }) => {
     >
      Home
     </Typography>
-    <Typography color="text.primary">{firstStep}</Typography>
+    <Typography color="text.primary" onClick={() => handleNavigate("venue")}>
+     {firstStep}
+    </Typography>
     <Typography color="text.primary">{secondStep}</Typography>
    </Breadcrumbs>
   </div>
