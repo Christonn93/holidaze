@@ -13,7 +13,7 @@ const ImageCarousel = ({ media }) => {
    indicators={false}
   >
    {media.map((item) => (
-    <ImageListItem>
+    <ImageListItem key="item">
      <CardMedia src="image" component="img" image={item} key={item} alt={item} sx={{ height: 500 }} />
     </ImageListItem>
    ))}

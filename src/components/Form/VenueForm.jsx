@@ -117,8 +117,6 @@ const VenueForm = () => {
   maxGuests: yup.string().required("Guests amount is missing"),
  });
 
- console.clear();
-
  return (
   <>
    {alert ? (

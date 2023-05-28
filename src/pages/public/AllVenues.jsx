@@ -1,9 +1,10 @@
 // Importing React
 import React, { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+// eslint-disable-next-line
+import { useSearchParams, useNavigate } from "react-router-dom";
 
 // Importing MUI
-import { Box, IconButton, Chip } from "@mui/material";
+import { Box, IconButton, Chip, Alert } from "@mui/material";
 
 // Importing MUI icons
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
@@ -26,6 +27,9 @@ const AllVenues = () => {
  let [limit, setLimit] = useState(15);
  let [offset, setOffset] = useState(-0);
  const [currentPage, setCurrentPage] = useState(1);
+
+ // Navigate
+ // const Navigate = useNavigate();
 
  // Empty search value
  let search = "";
@@ -77,12 +81,16 @@ const AllVenues = () => {
    setLimit(15);
    setOffset(offset - 15);
    setCurrentPage(currentPage - 1);
+
+   // Navigate(`/venues/page/${currentPage}`);
   }
 
   if (direction === "forward") {
    setLimit(15);
    setOffset(offset + 15);
    setCurrentPage(currentPage + 1);
+
+   // Navigate(`/venues/page/${currentPage}`);
   }
  };
 
@@ -116,6 +124,15 @@ const AllVenues = () => {
       </Box>
      ))
    )}
+
+   {data.length !== 15 ? (
+    <Box sx={{ marginTop: 2 }}>
+     <Alert severity="warning">You have reached the end of our listings</Alert>
+    </Box>
+   ) : (
+    <></>
+   )}
+
    <Box
     sx={{
      display: "flex",

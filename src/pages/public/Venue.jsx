@@ -19,6 +19,7 @@ import ImageCarousel from "../../components/Carousel/ImageCarousel";
 import BookingForm from "../../components/Form/BookingForm";
 import SiteCrumbs from "../../components/Breadcrumbs/SiteCrumbs";
 import VenueLocation from "../../components/Venue/SingleVenue/VenueLocation";
+import Loading from "../../components/Loading/Loading";
 
 const Venue = () => {
  let { id } = useParams();
@@ -27,7 +28,7 @@ const Venue = () => {
 
  const { data, isLoading, isError } = useApi(endpoint, method);
 
- if (isLoading) return <h1>Loading...</h1>;
+ if (isLoading) return <Loading />;
 
  if (isError) console.error(isError);
 

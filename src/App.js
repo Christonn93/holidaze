@@ -58,6 +58,7 @@ function App() {
          <Route path="/register" element={<Register />} />
          <Route path="/venue/:id" element={<Venue />} />
          <Route path="/venues" element={<AllVenues />} />
+         <Route path="/venues/page/:number" element={<AllVenues />} />
          <Route path="/profile/:name" element={<VenueManagerProfile />} />
          <Route path="/search/:params" element={<SearchResult />} />
          <Route path="*" element={<RouteNotFound />} />

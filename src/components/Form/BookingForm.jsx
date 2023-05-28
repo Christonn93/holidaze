@@ -17,7 +17,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import { getDatesBetween } from "../../js/getDatesBetween";
 
 const BookingForm = ({ data, id }) => {
- console.clear();
  // useState variables
  const [success, setSuccess] = useState(false);
  const [error, setError] = useState(false);
@@ -33,7 +32,9 @@ const BookingForm = ({ data, id }) => {
 
  // eslint-disable-next-line
  const [formValues, setFormValues] = useState();
- console.log(data);
+
+ // eslint-disable-next-line
+ const dataArray = data;
 
  const checkoutSchema = yup.object().shape({});
 

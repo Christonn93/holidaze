@@ -28,7 +28,7 @@ const VenueDescription = ({ venueDescription }) => {
     <Box>
      {description.map((e) => {
       return (
-       <Typography variant="body1" marginBottom={2}>
+       <Typography variant="body1" marginBottom={2} key={e}>
         {e}
        </Typography>
       );

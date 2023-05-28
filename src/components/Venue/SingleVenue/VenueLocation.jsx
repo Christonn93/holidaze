@@ -14,7 +14,7 @@ const VenueLocation = ({ data }) => {
  return (
   <>
    <Paper
-    elevation="3"
+    elevation={3}
     sx={{
      padding: 2,
     }}
