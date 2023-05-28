@@ -16,7 +16,7 @@ import Loading from "../../components/Loading/Loading";
 
 const VenueList = () => {
  // eslint-disable-next-line
- let [limit, setLimit] = useState(50);
+ let [limit] = useState(50);
  let [searchParams] = useSearchParams();
  const navigate = useNavigate();
 
@@ -62,12 +62,6 @@ const VenueList = () => {
   return <UiFeedback severity="error" title={"An unexpected error have accrued"} message={"Please refresh the page"} />;
  }
 
- const loadMoreVenues = () => {
-  navigate("/venues");
-  // setIsInitialLoad(false);
-  // setLimit(limit + 10);
- };
-
  return (
   <>
    {isLoading && isInitialLoad ? (
@@ -77,9 +71,10 @@ const VenueList = () => {
      .filter((venue) => {
       return (
        venue.name.toLowerCase().includes(search.toLowerCase()) ||
+       venue.location.city.toLowerCase().includes(search.toLowerCase()) ||
+       venue.location.address.toLowerCase().includes(search.toLowerCase()) ||
        venue.location.country.toLowerCase().includes(search.toLowerCase()) ||
-       venue.location.continent.toLowerCase().includes(search.toLowerCase()) ||
-       venue.location.city.toLowerCase().includes(search.toLowerCase())
+       venue.location.continent.toLowerCase().includes(search.toLowerCase())
       );
      })
      .map((venue) => (
@@ -101,7 +96,14 @@ const VenueList = () => {
      margin: 2,
     }}
    >
-    <Button variant="contained" color="success" type="submit" onClick={loadMoreVenues}>
+    <Button
+     variant="contained"
+     color="success"
+     type="submit"
+     onClick={() => {
+      navigate("/venues");
+     }}
+    >
      View all listings
     </Button>
    </Box>

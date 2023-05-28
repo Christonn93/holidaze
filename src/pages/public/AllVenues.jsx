@@ -20,12 +20,12 @@ import Loading from "../../components/Loading/Loading";
 import ListingFilter from "../../components/Filter/ListingFilter";
 
 const AllVenues = () => {
- let [limit, setLimit] = useState(10);
- let [offset, setOffset] = useState(-0);
  let [searchParams, setSearchParams] = useSearchParams();
- const [pageNumber, setPageNumber] = useState(1);
  // eslint-disable-next-line
  let [key, value] = searchParams.entries();
+ let [limit, setLimit] = useState(15);
+ let [offset, setOffset] = useState(-0);
+ const [currentPage, setCurrentPage] = useState(1);
 
  // Empty search value
  let search = "";
@@ -66,17 +66,23 @@ const AllVenues = () => {
   return <UiFeedback severity="error" title={"An unexpected error have accrued"} message={"Please refresh the page"} />;
  }
 
+ // Error if data == 0
+ if (data.length == 0) {
+  return <UiFeedback severity="error" title={"No more venues"} message={"That is all the venues we have"} />;
+ }
+
+ // Function for changing pages
  const loadPages = (direction) => {
   if (direction === "back") {
-   setLimit(10);
-   setOffset(offset - 10);
-   setPageNumber(pageNumber - 1);
+   setLimit(15);
+   setOffset(offset - 15);
+   setCurrentPage(currentPage - 1);
   }
 
   if (direction === "forward") {
-   setLimit(10);
-   setOffset(offset + 10);
-   setPageNumber(pageNumber + 1);
+   setLimit(15);
+   setOffset(offset + 15);
+   setCurrentPage(currentPage + 1);
   }
  };
 
@@ -93,9 +99,10 @@ const AllVenues = () => {
      .filter((venue) => {
       return (
        venue.name.toLowerCase().includes(search.toLowerCase()) ||
+       venue.location.city.toLowerCase().includes(search.toLowerCase()) ||
+       venue.location.address.toLowerCase().includes(search.toLowerCase()) ||
        venue.location.country.toLowerCase().includes(search.toLowerCase()) ||
-       venue.location.continent.toLowerCase().includes(search.toLowerCase()) ||
-       venue.location.city.toLowerCase().includes(search.toLowerCase())
+       venue.location.continent.toLowerCase().includes(search.toLowerCase())
       );
      })
      .map((venue) => (
@@ -119,13 +126,21 @@ const AllVenues = () => {
      gap: 2,
     }}
    >
-    <IconButton onClick={() => loadPages("back")}>
-     <ArrowBackIosIcon />
-    </IconButton>
-    <Chip label={pageNumber} variant="outlined" sx={{ padding: 1 }} />
-    <IconButton onClick={() => loadPages("forward")}>
-     <ArrowForwardIosIcon />
-    </IconButton>
+    {currentPage === 1 ? (
+     <></>
+    ) : (
+     <IconButton onClick={() => loadPages("back")}>
+      <ArrowBackIosIcon />
+     </IconButton>
+    )}
+    <Chip label={currentPage} variant="outlined" sx={{ padding: 1 }} />
+    {data.length !== 15 ? (
+     <></>
+    ) : (
+     <IconButton onClick={() => loadPages("forward")}>
+      <ArrowForwardIosIcon />
+     </IconButton>
+    )}
    </Box>
   </>
  );

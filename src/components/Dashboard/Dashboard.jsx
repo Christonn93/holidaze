@@ -21,7 +21,6 @@ import Alert from "../Alert/Alert";
 import LogoutDialog from "../Dialog/LogoutDialog";
 
 const Dashboard = ({ status }) => {
- console.clear();
  const [value, setValue] = useState(0);
 
  updateHead("Dashboard");

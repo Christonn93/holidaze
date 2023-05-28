@@ -21,9 +21,9 @@ const ListingFilter = ({ text, setParams, params }) => {
  const handleClick = (option, direction) => {
   const filters = { [option]: direction };
 
-  if (option === "price") setParams(filters);
-  if (option === "maxGuests") setParams(filters);
-  if (option === "rating") setParams(filters);
+  if (option === "price") setParams(filters, { replace: true });
+  if (option === "maxGuests") setParams(filters, { replace: true });
+  if (option === "rating") setParams(filters, { replace: true });
 
   setFilterOpen(true);
   setOpen(false);

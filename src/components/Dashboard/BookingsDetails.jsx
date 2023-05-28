@@ -18,9 +18,6 @@ const BookingsDetails = ({ data }) => {
   return <h1>There was no data found</h1>;
  }
 
- console.clear();
- console.log(data);
-
  return (
   <>
    <h2>Here will your bookings be displayed</h2>

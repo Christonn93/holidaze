@@ -23,10 +23,10 @@ const BookingAccordion = ({ data }) => {
      <>
       {dateFrom > dateToday ? (
        <>
-        {" "}
         <Accordion>
          <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
           <Box
+           key={e.id}
            sx={{
             display: "flex",
             justifyContent: "space-between",
@@ -71,10 +71,10 @@ const BookingAccordion = ({ data }) => {
        </>
       ) : dateFrom < dateToday ? (
        <>
-        {" "}
         <Accordion>
          <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
           <Box
+           key={e.id}
            sx={{
             display: "flex",
             justifyContent: "space-between",

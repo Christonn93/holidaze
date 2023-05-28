@@ -3,10 +3,11 @@ import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 // Importing MUI
-import { IconButton, TextField } from "@mui/material";
+import { Box, IconButton, TextField } from "@mui/material";
 
 // Importing MUI Icons
 import SearchIcon from "@mui/icons-material/Search";
+import ClearIcon from "@mui/icons-material/Clear";
 
 const searchField = {};
 
@@ -25,19 +26,18 @@ const SearchBar = () => {
   const form = e.target;
   const searchValue = form.search.value;
   setSearchParams({ search: searchValue });
+ };
 
-  // eslint-disable-next-line
-  const removeQueryParams = () => {
-   const param = searchParams.get("search");
+ const removeQueryParams = () => {
+  const param = searchParams.get("search");
 
-   if (param) {
-    // 👇️ delete each query param
-    searchParams.delete("search");
+  if (param) {
+   // 👇️ delete each query param
+   searchParams.delete("search");
 
-    // 👇️ update state after
-    setSearchParams(searchParams);
-   }
-  };
+   // 👇️ update state after
+   setSearchParams(searchParams);
+  }
  };
 
  return (
@@ -46,9 +46,25 @@ const SearchBar = () => {
     <SearchIcon />
    </IconButton>
    {displayForm && (
-    <form onSubmit={handleSubmit}>
+    <Box
+     component={"form"}
+     onSubmit={handleSubmit}
+     sx={{
+      display: "flex",
+      gap: 1,
+      alignItems: "center",
+     }}
+    >
      <TextField sx={searchField} variant="standard" label={"Search"} name="search" />
-    </form>
+     <IconButton
+      onClick={() => {
+       removeQueryParams();
+       showForm();
+      }}
+     >
+      <ClearIcon />
+     </IconButton>
+    </Box>
    )}
   </>
  );
