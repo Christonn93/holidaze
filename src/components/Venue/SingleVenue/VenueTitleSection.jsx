@@ -4,9 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Box, IconButton, Tooltip, Typography } from "@mui/material";
 import SettingsIcon from "@mui/icons-material/Settings";
 
-import { changeTimeFormat } from "../../../js/changeTimeFormat";
-
-const VenueTitleSection = ({ name, venueOwner, id, created, updated }) => {
+const VenueTitleSection = ({ name, venueOwner, id }) => {
  const [isManager] = useState(() => {
   const storedData = localStorage.getItem("UserData");
   const parseStoredData = JSON.parse(storedData);
@@ -19,9 +17,6 @@ const VenueTitleSection = ({ name, venueOwner, id, created, updated }) => {
  const buttonAction = () => {
   navigate(`/venue/edit/${id}`);
  };
-
- const createdTime = changeTimeFormat(created);
- const updatedTime = changeTimeFormat(updated);
 
  return (
   <>
@@ -44,16 +39,6 @@ const VenueTitleSection = ({ name, venueOwner, id, created, updated }) => {
        </IconButton>
       </Tooltip>
      </Box>
-     <Box
-      sx={{
-       display: "flex",
-       gap: 2,
-       flexWrap: "wrap",
-      }}
-     >
-      <Typography variant="subtitle2">Created: {createdTime}</Typography>
-      <Typography variant="subtitle2">Updated: {updatedTime}</Typography>
-     </Box>
     </>
    ) : (
     <>
@@ -61,16 +46,6 @@ const VenueTitleSection = ({ name, venueOwner, id, created, updated }) => {
       <Typography variant="h1" marginBottom={1}>
        {name}
       </Typography>
-     </Box>
-     <Box
-      sx={{
-       display: "flex",
-       gap: 2,
-       flexWrap: "wrap",
-      }}
-     >
-      <Typography variant="subtitle2">Created: {createdTime}</Typography>
-      <Typography variant="subtitle2">Updated: {updatedTime}</Typography>
      </Box>
     </>
    )}

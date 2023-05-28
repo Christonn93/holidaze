@@ -1,11 +1,13 @@
 import React from "react";
-
-import { Box, Typography } from "@mui/material";
-import UserAvatar from "../../../components/UserAvatar/UserAvatar";
-
 import { useNavigate } from "react-router-dom";
 
-const VenueOwnerSection = ({ name, avatar }) => {
+import { Box, Typography } from "@mui/material";
+
+import UserAvatar from "../../../components/UserAvatar/UserAvatar";
+
+import { changeTimeFormat } from "../../../js/changeTimeFormat";
+
+const VenueOwnerSection = ({ name, avatar, created, updated }) => {
  const navigate = useNavigate();
 
  const handleClick = () => {
@@ -20,6 +22,9 @@ const VenueOwnerSection = ({ name, avatar }) => {
  // Capitalize title
  const fixedName = name.charAt(0).toUpperCase() + name.slice(1);
 
+ const createdTime = changeTimeFormat(created);
+ const updatedTime = changeTimeFormat(updated);
+
  return (
   <>
    <Box>
@@ -33,6 +38,16 @@ const VenueOwnerSection = ({ name, avatar }) => {
     >
      <UserAvatar src={avatar} alt={name} size="56" action={handleClick} />
      <Typography variant="h4">{fixedName}</Typography>
+    </Box>
+    <Box
+     sx={{
+      display: "flex",
+      gap: 2,
+      flexWrap: "wrap",
+     }}
+    >
+     <Typography variant="subtitle2">Created: {createdTime}</Typography>
+     <Typography variant="subtitle2">Updated: {updatedTime}</Typography>
     </Box>
    </Box>
   </>

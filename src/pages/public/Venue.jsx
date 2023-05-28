@@ -58,7 +58,7 @@ const Venue = () => {
    >
     <SiteCrumbs firstStep={"Venues"} secondStep={name} />
     <Box>
-     <VenueTitleSection name={name} venueOwner={ownerName} id={venueId} created={created} updated={updated} />
+     <VenueTitleSection name={name} venueOwner={ownerName} id={venueId} />
      <ImageCarousel media={media} />
     </Box>
 
@@ -119,7 +119,7 @@ const Venue = () => {
      <Typography variant="h4" marginBottom={1}>
       Owner details
      </Typography>
-     <VenueOwnerSection name={ownerName} avatar={avatar} email={email} />
+     <VenueOwnerSection name={ownerName} avatar={avatar} email={email} created={created} updated={updated} />
     </Box>
    </Box>
   </>
