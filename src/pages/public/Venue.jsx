@@ -24,7 +24,7 @@ import Loading from "../../components/Loading/Loading";
 const Venue = () => {
  let { id } = useParams();
  const device = useTheme();
- const isMobile = useMediaQuery(device.breakpoints.down("md"));
+ const isMobile = useMediaQuery(device.breakpoints.down("sm"));
 
  const endpoint = venues + `/${id}?_owner=true&_bookings=true`;
  const method = "GET";

@@ -4,9 +4,9 @@ import React from "react";
 // Importing MUI
 import { Alert, Snackbar, useMediaQuery, useTheme } from "@mui/material";
 
-const SnackbarAlert = ({ open, setOpen, severity, children}) => {
+const SnackbarAlert = ({ open, setOpen, severity, children }) => {
  const device = useTheme();
- const isMobile = useMediaQuery(device.breakpoints.down("md"));
+ const isMobile = useMediaQuery(device.breakpoints.down("sm"));
 
  const handleClose = () => {
   setOpen(false);

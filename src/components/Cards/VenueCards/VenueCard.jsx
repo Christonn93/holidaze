@@ -23,7 +23,7 @@ import { CardBase, CardBaseMobile, flexSpaceBetween } from "./VenueCardSx";
  */
 const VenueCard = ({ data }) => {
  const device = useTheme();
- const isMobile = useMediaQuery(device.breakpoints.down("md"));
+ const isMobile = useMediaQuery(device.breakpoints.down("sm"));
  const navigate = useNavigate();
 
  // Destruction data

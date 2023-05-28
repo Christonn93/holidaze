@@ -29,7 +29,7 @@ const EditVenue = () => {
  const [formValues, setFormValues] = useState();
 
  const device = useTheme();
- const isMobile = useMediaQuery(device.breakpoints.down("md"));
+ const isMobile = useMediaQuery(device.breakpoints.down("sm"));
 
  const navigate = useNavigate();
  const endpoint = venues + `/${id}?_owner=true&_bookings=true`;

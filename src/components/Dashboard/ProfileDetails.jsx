@@ -16,7 +16,7 @@ import ReplaceUserImage from "../Dialog/ReplaceUserImage";
  */
 const ProfileDetails = ({ name, avatar, venueManager }) => {
  const device = useTheme();
- const isMobile = useMediaQuery(device.breakpoints.down("md"));
+ const isMobile = useMediaQuery(device.breakpoints.down("sm"));
 
  if (!name) {
   console.error(name);

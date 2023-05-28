@@ -36,7 +36,7 @@ const VenueForm = () => {
  const [responseCode, setResponseCode] = useState("");
  const navigate = useNavigate();
  const device = useTheme();
- const isMobile = useMediaQuery(device.breakpoints.down("md"));
+ const isMobile = useMediaQuery(device.breakpoints.down("sm"));
 
  const formSubmit = (values) => {
   console.log("Form data", values);

@@ -12,7 +12,7 @@ const key = process.env.REACT_APP_GOOGLE_MAP_KEY;
 
 const MapLocation = ({ lat, lng }) => {
  const device = useTheme();
- const isMobile = useMediaQuery(device.breakpoints.down("md"));
+ const isMobile = useMediaQuery(device.breakpoints.down("sm"));
 
  const defaultProps = {
   center: {
